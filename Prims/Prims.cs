@@ -1,18 +1,19 @@
-﻿using EEMod.Effects;
-using EEMod.Extensions;
-using EEMod.NPCs.CoralReefs;
-using EEMod.Projectiles.Mage;
-using EEMod.Projectiles.Melee;
-using EEMod.Projectiles.Ranged;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Terraria;
+﻿using EEMod.Autoloading;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using Terraria;
+using System.Collections.Generic;
+using EEMod.Extensions;
+using System.Linq;
+using System;
+using EEMod.Effects;
+using EEMod.Projectiles.Mage;
 using static Terraria.ModLoader.ModContent;
+using System.Reflection;
+using EEMod.Projectiles.Ranged;
+using EEMod.Projectiles.Melee;
+using EEMod.NPCs.CoralReefs;
 
 namespace EEMod
 {
@@ -23,7 +24,7 @@ namespace EEMod
         {
             string ShaderPass { get; }
 
-            void ApplyShader<T>(Effect effect, T trail, List<Vector2> positions, string ESP);
+            void ApplyShader<T>(Effect effect, T trail, List<Vector2> positions, string ESP, float progressParam);
         }
 
         public void DrawTrails(SpriteBatch spriteBatch)
@@ -52,16 +53,17 @@ namespace EEMod
         {
             public string ShaderPass => "DefaultPass";
 
-            public void ApplyShader<T>(Effect effect, T trail, List<Vector2> positions, string ESP)
+            public void ApplyShader<T>(Effect effect, T trail, List<Vector2> positions, string ESP, float progressParam)
             {
                 try
                 {
+                    effect.Parameters["progress"].SetValue(progressParam);
                     effect.CurrentTechnique.Passes[ESP].Apply();
+                    effect.CurrentTechnique.Passes[ShaderPass].Apply();
                 }
                 catch
                 {
                 }
-                effect.CurrentTechnique.Passes[ShaderPass].Apply();
             }
         }
 
@@ -467,7 +469,7 @@ namespace EEMod
             {
                 _points.Add(Main.MouseWorld);
                 active = true;
-                Cap = 20;
+                Cap = 100;
                 lerper++;
                 if (_points.Count > Cap)
                 {
@@ -528,7 +530,7 @@ namespace EEMod
                     if (currentIndex < vertices.Length)
                         vertices[currentIndex++] = new VertexPositionColorTexture(new Vector3(position.ForDraw(), 0f), color, uv);
                 }
-                void PrepareShader(Effect effects)
+                void PrepareShader(Effect effects, float progress = 0)
                 {
                     int width = device.Viewport.Width;
                     int height = device.Viewport.Height;
@@ -536,7 +538,7 @@ namespace EEMod
                     Matrix view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(width / 2, height / -2, 0) * Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(zoom.X, zoom.Y, 1f);
                     Matrix projection = Matrix.CreateOrthographic(width, height, 0, 1000);
                     effects.Parameters["WorldViewProjection"].SetValue(view * projection);
-                    _trailShader.ApplyShader(effects, this, _points, "MainPS");
+                    _trailShader.ApplyShader(effects, this, _points, "RainbowLightPass", progress);
                 }
                 void PrepareBasicShader()
                 {
@@ -560,6 +562,31 @@ namespace EEMod
                     float j = (Cap - (i * 0.9f)) / Cap;
                     float width = (i / Cap) * Width;
                     float width2 = ((i + 1) / Cap) * Width;
+                    Vector2 firstUp = _points[i] - normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f)) * sineFactor;
+                    Vector2 firstDown = _points[i] + normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f)) * sineFactor;
+                    Vector2 secondUp = _points[i + 1] - normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i + 1) / 3f)) * sineFactor;
+                    Vector2 secondDown = _points[i + 1] + normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i + 1) / 3f)) * sineFactor;
+
+                    AddVertex(firstDown, c * alphaValue, new Vector2((i / Cap), 1));
+                    AddVertex(firstUp, c * alphaValue, new Vector2((i / Cap), 0));
+                    AddVertex(secondDown, c * alphaValue, new Vector2((i + 1) / Cap, 1));
+
+                    AddVertex(secondUp, c * alphaValue, new Vector2((i + 1) / Cap, 0));
+                    AddVertex(secondDown, c * alphaValue, new Vector2((i + 1) / Cap, 1));
+                    AddVertex(firstUp, c * alphaValue, new Vector2((i / Cap), 0));
+                }
+                void MakePrimMidFadeEnds(int i, int Width, float alphaValue, Color baseColour = default, float fadeValue = 1, float sineFactor = 0)
+                {
+                    Color c = (baseColour == default ? Color.White : baseColour) * (i / Cap) * fadeValue;
+                    Vector2 normal = CurveNormal(_points, i);
+                    Vector2 normalAhead = CurveNormal(_points, i + 1);
+                    float fallout = (float)Math.Sin(i * (3.14f / Cap));
+                    float fallout1 = (float)Math.Sin((i + 1) * (3.14f / Cap));
+                    float lerpers = lerper / 15f;
+                    float sine1 = i * (6.14f / _points.Count);
+                    float sine2 = (i + 1) * (6.14f / Cap);
+                    float width = Width * Math.Abs((float)Math.Sin(sine1 + lerpers) * (i / Cap)) * fallout;
+                    float width2 = Width * Math.Abs((float)Math.Sin(sine2 + lerpers) * ((i + 1) / Cap)) * fallout1;
                     Vector2 firstUp = _points[i] - normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f)) * sineFactor;
                     Vector2 firstDown = _points[i] + normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f)) * sineFactor;
                     Vector2 secondUp = _points[i + 1] - normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i + 1) / 3f)) * sineFactor;
@@ -731,7 +758,7 @@ namespace EEMod
                         }
                     }
 
-                    PrepareShader(EEMod.TrailPractice);
+                    PrepareShader(EEMod.TrailPractice, lerper);
                     device.DrawUserPrimitives(PrimitiveType.TriangleList, vertices, 0, noOfPoints / 3);
                 };
                 DrawPrimDelegate TesterPrims = (int noOfPoints) =>
@@ -746,15 +773,15 @@ namespace EEMod
                         {
                             if (i != _points.Count - 1)
                             {
-                                MakePrimMidFade(i, 20, 0.8f);
+                                MakePrimMidFadeEnds(i, 20, 0.8f, default, 1f, 2);
                             }
                             else
                             {
                             }
                         }
                     }
-
-                    PrepareShader(EEMod.TrailPractice);
+                    lerper++;
+                    PrepareShader(EEMod.TrailPractice, lerper / 40f);
                     device.DrawUserPrimitives(PrimitiveType.TriangleList, vertices, 0, noOfPoints / 3);
                 };
                 DrawPrimDelegate JellyfishPrims = (int noOfPoints) =>

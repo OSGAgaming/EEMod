@@ -1,17 +1,29 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EEMod.Autoloading;
+using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using System.Collections.Generic;
+using EEMod.Extensions;
+using System.Linq;
+using System;
+using EEMod.Effects;
+using EEMod.Projectiles.Mage;
+using static Terraria.ModLoader.ModContent;
+using System.Reflection;
+using EEMod.Projectiles.Ranged;
+using EEMod.Projectiles.Melee;
+using EEMod.NPCs.CoralReefs;
 
 namespace EEMod.Prim
 {
-    public class PrimTrailHelper
+    public class PrimTrailManager
     {
-        public static List<PrimTrail> _trails = new List<PrimTrail>();
+        public List<PrimTrail> _trails = new List<PrimTrail>();
 
         public void DrawTrails(SpriteBatch spriteBatch)
         {
-            foreach (PrimTrail trail in _trails)
+            foreach (PrimTrail trail in _trails.ToArray())
             {
                 trail.Draw(spriteBatch);
             }
@@ -19,11 +31,13 @@ namespace EEMod.Prim
 
         public void UpdateTrails()
         {
-            foreach (PrimTrail trail in _trails)
+            foreach (PrimTrail trail in _trails.ToArray())
             {
                 trail.Update();
             }
         }
+
+        public void CreateTrail(PrimTrail PT) => _trails.Add(PT);
     }
 
     public partial class PrimTrail : IUpdateable
@@ -42,17 +56,17 @@ namespace EEMod.Prim
         protected Effect _effect;
         protected BasicEffect _basicEffect;
 
-        public PrimTrail()
+        public PrimTrail(Projectile projectile)
         {
             _device = Main.graphics.GraphicsDevice;
             _basicEffect = new BasicEffect(_device);
-            PrimTrailHelper._trails.Add(this);
+            _projectile = projectile;
             SetDefaults();
         }
 
         public void Dispose()
         {
-            PrimTrailHelper._trails.Remove(this);
+            EEMod.primitives._trails.Remove(this);
         }
 
         public void Update()
