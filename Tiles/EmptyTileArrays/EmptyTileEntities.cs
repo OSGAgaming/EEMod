@@ -1,18 +1,11 @@
-using Terraria;
+using EEMod.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using EEMod.Extensions;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using Terraria;
 using Terraria.ModLoader;
-using System.IO;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ID;
-using Terraria.ModLoader.IO;
-using Terraria.ObjectData;
 
 namespace EEMod.Tiles.EmptyTileArrays
 {
@@ -31,30 +24,32 @@ namespace EEMod.Tiles.EmptyTileArrays
 
         public bool CanActivate { get; set; }
         public Texture2D texture => EEMod.instance.GetTexture(tex);
+
         public EmptyTileDrawEntity(Vector2 position, string text)
         {
             this.position = position;
             tex = text;
             origin = new Vector2(0, texture.Height);
         }
+
         public void Activiate()
         {
             if (CanActivate)
                 activeTime = activityTime;
         }
+
         public virtual void DuringActivation()
         {
-
         }
+
         public virtual void DuringNonActivation()
         {
-
         }
 
         public virtual void OnUpdate()
         {
-
         }
+
         public void Update()
         {
             if ((position * 16 - Main.LocalPlayer.Center).LengthSquared() < RENDERDISTANCE * RENDERDISTANCE)
@@ -73,12 +68,14 @@ namespace EEMod.Tiles.EmptyTileArrays
                 }
             }
         }
+
         public virtual void Draw()
         {
             if ((position * 16 - Main.LocalPlayer.Center).LengthSquared() < RENDERDISTANCE * RENDERDISTANCE)
                 Main.spriteBatch.Draw(texture, (position * 16).ForDraw() + new Vector2(0, texture.Height), new Rectangle(0, 0, texture.Width, texture.Height), colour * alpha, rotation, origin, 1f, SpriteEffects.None, 0f);
         }
     }
+
     public static class EmptyTileEntityCache
     {
         static internal Dictionary<Vector2, Vector2> EmptyTilePairs = new Dictionary<Vector2, Vector2>();
@@ -101,6 +98,7 @@ namespace EEMod.Tiles.EmptyTileArrays
             }
             EEWorld.EEWorld.CreateInvisibleTiles(array, position);
         }
+
         public static void Remove(Vector2 position)
         {
             EmptyTileEntityPairs.Remove(Convert(position));
@@ -110,6 +108,7 @@ namespace EEMod.Tiles.EmptyTileArrays
                 EmptyTilePairs.Remove(item.Key);
             }
         }
+
         public static Vector2 Convert(Vector2 position)
         {
             return EmptyTilePairs[position];
@@ -123,6 +122,7 @@ namespace EEMod.Tiles.EmptyTileArrays
                     ETE.Update();
             }
         }
+
         public static void Draw()
         {
             foreach (EmptyTileDrawEntity ETE in EmptyTileEntityPairs.Values)
@@ -131,11 +131,13 @@ namespace EEMod.Tiles.EmptyTileArrays
                     ETE.Draw();
             }
         }
+
         public static void Invoke(Vector2 position)
         {
             EmptyTileEntityPairs[Convert(position)].Activiate();
         }
     }
+
     public class Crystal : EmptyTileDrawEntity
     {
         public float speed;
@@ -143,6 +145,7 @@ namespace EEMod.Tiles.EmptyTileArrays
         public string glowPath;
         public float shaderLerp;
         public float lerp;
+
         public Crystal(Vector2 position, string texture, string glow) : base(position, texture)
         {
             this.position = position;
@@ -150,6 +153,7 @@ namespace EEMod.Tiles.EmptyTileArrays
             speed = Main.rand.NextFloat(0.01f, 0.03f);
             glowPath = glow;
         }
+
         public override int activityTime => 20;
 
         public override void DuringActivation()
@@ -158,6 +162,7 @@ namespace EEMod.Tiles.EmptyTileArrays
             colour = Color.Lerp(Lighting.GetColor((int)position.X, (int)position.Y), Color.LightBlue, (float)Math.Sin((Math.PI / (float)activityTime) * activeTime));
             rotation = (shaderLerp - 1) / 20f;
         }
+
         public override void DuringNonActivation()
         {
             Vector2 rand = new Vector2(Main.rand.NextFloat(ScreenPosition.X, ScreenPosition.X + texture.Width), Main.rand.NextFloat(ScreenPosition.Y, ScreenPosition.Y + texture.Height));
@@ -184,8 +189,8 @@ namespace EEMod.Tiles.EmptyTileArrays
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
         }
-
     }
+
     public class BigCrystal : EmptyTileDrawEntity
     {
         public float speed;
@@ -193,6 +198,7 @@ namespace EEMod.Tiles.EmptyTileArrays
         public string glowPath;
         public float shaderLerp;
         public float lerp;
+
         public BigCrystal(Vector2 position, string text, string glow) : base(position, text)
         {
             this.position = position;
@@ -201,6 +207,7 @@ namespace EEMod.Tiles.EmptyTileArrays
             glowPath = glow;
             origin = new Vector2(texture.Width, texture.Height);
         }
+
         public override int activityTime => 40;
 
         public override void DuringActivation()
@@ -236,6 +243,5 @@ namespace EEMod.Tiles.EmptyTileArrays
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
         }
-
     }
 }

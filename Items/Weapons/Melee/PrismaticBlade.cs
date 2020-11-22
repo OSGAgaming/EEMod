@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using EEMod.Projectiles.Melee;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using EEMod.Projectiles.Melee;
-using Microsoft.Xna.Framework;
-using System;
+
 //TODO:
 //-Shimmer on blade itself
 //-Proper right click motion
@@ -34,12 +34,15 @@ namespace EEMod.Items.Weapons.Melee
             item.height = 30;
             item.UseSound = SoundID.Item1;
         }
-        int swordsActive = 0;
-        int[] swordArray = new int[9];
+
+        private int swordsActive = 0;
+        private int[] swordArray = new int[9];
+
         public override bool AltFunctionUse(Player player)
         {
             return true;
         }
+
         public override bool UseItem(Player player)
         {
             if (player.altFunctionUse == 2)
@@ -60,6 +63,7 @@ namespace EEMod.Items.Weapons.Melee
             }
             return base.UseItem(player);
         }
+
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             int damage2 = damage;

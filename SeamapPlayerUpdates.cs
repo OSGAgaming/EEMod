@@ -1,27 +1,16 @@
-using EEMod.Buffs.Debuffs;
-using EEMod.Config;
 using EEMod.Extensions;
 using EEMod.ID;
 using EEMod.Net;
-using EEMod.NPCs;
-using EEMod.NPCs.Bosses.Akumo;
-using EEMod.NPCs.Bosses.Hydros;
-using EEMod.NPCs.CoralReefs;
-using EEMod.Projectiles;
-using EEMod.Tiles;
+using EEMod.Seamap.SeamapAssets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
+using ReLogic.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static EEMod.EEWorld.EEWorld;
 using static Terraria.ModLoader.ModContent;
-using EEMod.SeamapAssets;
-using ReLogic.Graphics;
-using EEMod.Seamap.SeamapAssets;
 
 namespace EEMod
 {
@@ -240,11 +229,8 @@ namespace EEMod
                     Initialize();
                     Filters.Scene.Deactivate("EEMod:Noise2D");
                     SM.SaveAndQuit(KeyID.CoralReefs); // coral reefs
-
-
                 }
             }
-
 
             for (int j = 0; j < 450; j++)
             {
@@ -404,6 +390,7 @@ namespace EEMod
         public Vector2 otherBoatPos;
         public Vector2 currentLightningPos;
         public float intenstityLightning;
+
         private void DrawSubText()
         {
             EEPlayer modPlayer = Main.LocalPlayer.GetModPlayer<EEPlayer>();

@@ -1,10 +1,5 @@
-using EEMod.UI.Elements;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace EEMod.UI.States
@@ -20,18 +15,17 @@ namespace EEMod.UI.States
             panel.VAlign = 0.01f;
             Append(panel);
         }
+
         public override void OnActivate()
         {
         }
 
         public override void OnDeactivate()
         {
-
         }
 
         public override void Update(GameTime gameTime)
         {
-
         }
     }
 }

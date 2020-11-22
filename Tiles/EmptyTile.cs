@@ -22,14 +22,17 @@ namespace EEMod.Tiles
             mineResist = 4f;
             minPick = 100;
         }
+
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
             num = 0;
         }
+
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             EmptyTileEntityCache.Invoke(new Vector2(i, j));
         }
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             return false;

@@ -1,5 +1,5 @@
-using System;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,12 +28,14 @@ namespace EEMod.Items.Gliders
             item.noWet = true;
         }
 
-        int lerpage;
-        int updraftCooldown;
+        private int lerpage;
+        private int updraftCooldown;
+
         public override void UpdateInventory(Player player)
         {
             Main.LocalPlayer.GetModPlayer<EEPlayer>().isHoldingGlider = false;
         }
+
         public override void HoldStyle(Player player)
         {
             Main.LocalPlayer.GetModPlayer<EEPlayer>().isHoldingGlider = true;
@@ -59,7 +61,6 @@ namespace EEMod.Items.Gliders
             }
             if (player.velocity.Y > 0)
             {
-
                 player.gravity = 0.15f;
                 player.bodyFrame.Y = 4 * 56;
 

@@ -1,5 +1,4 @@
 using EEMod.Projectiles;
-using EEMod.Projectiles.Mage;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,8 +24,10 @@ namespace EEMod.Items.Weapons.Combo
                 CurrentCombo = 0;
             }
         }
+
         public override int NumberOfCombinations => 2;
         public override int ComboProjectile => ModContent.ProjectileType<TestComboWeaponProjectile>();
+
         public override void SetDefaults()
         {
             item.damage = 20;

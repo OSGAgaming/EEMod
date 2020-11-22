@@ -2,10 +2,8 @@
 using EEMod.Extensions;
 using EEMod.ID;
 using EEMod.NPCs.Bosses.Kraken;
-using EEMod.Prim;
 using EEMod.Projectiles;
 using EEMod.Projectiles.Mage;
-using EEMod.Tiles;
 using EEMod.Tiles.EmptyTileArrays;
 using EEMod.VerletIntegration;
 using Microsoft.Xna.Framework;
@@ -55,8 +53,6 @@ namespace EEMod
             orig(self, spriteBatch, drawOffset, waterStyle, globalAlpha, isBackgroundDraw);
         }
 
-      
-
         private void UnloadDetours()
         {
             On.Terraria.GameContent.Liquid.LiquidRenderer.InternalDraw -= LiquidRenderer_InternalDraw;
@@ -89,14 +85,17 @@ namespace EEMod
             //DrawSpiderPort();
             orig(self);
         }
+
         private void Main_DrawGoreBehind(On.Terraria.Main.orig_DrawGoreBehind orig, Main self)
         {
             orig(self);
         }
+
         private void Main_DrawNPC1(On.Terraria.Main.orig_DrawNPC orig, Main self, int iNPCIndex, bool behindTiles)
         {
             orig(self, iNPCIndex, behindTiles);
         }
+
         private void WorldGen_SmashAltar(On.Terraria.WorldGen.orig_SmashAltar orig, int i, int j)
         {
             orig(i, j);
@@ -155,7 +154,7 @@ namespace EEMod
             if (Directory.Exists(EEPath))
             {
                 //TODO make this better
-                string[] Subworlds = new string[] { "CoralReefs", "Sea","VolcanoIsland" };
+                string[] Subworlds = new string[] { "CoralReefs", "Sea", "VolcanoIsland" };
                 foreach (string S in Subworlds)
                 {
                     string CRPath = $@"{EEPath}\{S}.wld";
@@ -166,7 +165,6 @@ namespace EEMod
                     }
                 }
             }
-
 
             float num = 56f;
 
@@ -180,12 +178,12 @@ namespace EEMod
                 num += 24f;
             }
             string SLock = "Unlocked Islands:";
-            foreach(string SW in SubworldsUnlocked)
+            foreach (string SW in SubworldsUnlocked)
             {
                 SLock += $" {SW},";
             }
             SLock = SLock.TrimEnd(',', ' ');
-            if(SLock == "Unlocked Islands:")
+            if (SLock == "Unlocked Islands:")
             {
                 SLock = "No Unlocked Islands";
             }
@@ -213,7 +211,8 @@ namespace EEMod
 
             return index;
         }
-        void HandleCrystalDraw(Vector2 position)
+
+        private void HandleCrystalDraw(Vector2 position)
         {
             Texture2D tex = instance.GetTexture("Tiles/EmptyTileArrays/CoralCrystal");
             Rectangle mouseBox = new Rectangle((int)Main.MouseScreen.X, (int)Main.MouseScreen.Y, 3, 3);
@@ -266,12 +265,12 @@ namespace EEMod
                     {
                         Verlet.Points[index].point = Main.LocalPlayer.Center;
                     }
-
                 }
                 Lighting.AddLight(vec, new Vector3(235, 166, 0) / 255);
             }
 
             #region Spawning particles
+
             if (bufferVariable != Main.LocalPlayer.GetModPlayer<EEPlayer>().isHangingOnVine)
             {
                 if (Main.LocalPlayer.GetModPlayer<EEPlayer>().isHangingOnVine)
@@ -294,9 +293,11 @@ namespace EEMod
                     }
                 }
             }
-            #endregion
+
+            #endregion Spawning particles
 
             #region Player movement
+
             if (!Main.LocalPlayer.GetModPlayer<EEPlayer>().isHangingOnVine)
             {
                 rotationBuffer += (rotGoto - rotationBuffer) / 12f;
@@ -315,16 +316,11 @@ namespace EEMod
                 rotationBuffer = 0f;
             }
             bufferVariable = Main.LocalPlayer.GetModPlayer<EEPlayer>().isHangingOnVine;
-            #endregion
+
+            #endregion Player movement
         }
 
-
-
-       
- 
-
-
-        void HandleBulbDraw(Vector2 position)
+        private void HandleBulbDraw(Vector2 position)
         {
             Lighting.AddLight(position, new Vector3(0, 0.1f, 0.4f));
             Vector2 tilePos = position / 16;
@@ -385,19 +381,16 @@ namespace EEMod
 
             Noise2DShift.CurrentTechnique.Passes[0].Apply();
 
-
             Noise2DShift.Parameters["lightColour"].SetValue(Lighting.GetColor((int)tilePos.X, (int)tilePos.Y).ToVector3());
             Texture2D tex = instance.GetTexture("ShaderAssets/BulbousBall");
 
             Main.spriteBatch.Draw(tex, new Rectangle((int)position.ForDraw().X, (int)position.ForDraw().Y + (int)(Math.Sin(sineInt * 4) * 10), tex.Width + (int)(Math.Sin(sineInt) * 10), tex.Height + (int)Math.Cos(sineInt) * 10), new Rectangle(0, 0, tex.Width + (int)Math.Sin(sineInt) * 10, tex.Height + (int)Math.Cos(sineInt) * 10), Color.White * 0, (float)Math.Sin(sineInt), tex.Bounds.Size() / 2, SpriteEffects.None, 0f);
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
-
-
         }
+
         private void Main_DrawWoF(On.Terraria.Main.orig_DrawWoF orig, Main self)
         {
-
             //UpdateLight();
             ModContent.GetInstance<EEMod>().TVH.Update();
 
@@ -471,11 +464,13 @@ namespace EEMod
 
             orig(self);
         }
+
         private void Main_DrawNPC(On.Terraria.Main.orig_DrawNPC orig, Main self, int iNPCTiles, bool behindTiles)
         {
             prims.DrawTrails(Main.spriteBatch);
             orig(self, iNPCTiles, behindTiles);
         }
+
         private void Main_DrawBG(On.Terraria.Main.orig_DrawBG orig, Main self)
         {
             if (EEModConfigClient.Instance.BetterLighting && !Main.gameMenu)
@@ -867,7 +862,9 @@ namespace EEMod
                 }
             }
         }
+
         public static float lerp;
+
         private void Main_DoUpdate(On.Terraria.Main.orig_DoUpdate orig, Terraria.Main self, Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (!Main.gameMenu && Main.netMode != NetmodeID.MultiplayerClient && !isSaving)

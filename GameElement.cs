@@ -226,7 +226,6 @@ namespace EEMod
                 }
             }
 
-
             if (parent != null)
             {
                 if (tag == "SAEnemy" && collides)

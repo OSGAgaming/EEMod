@@ -1,10 +1,9 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
-using EEMod.Prim;
+using Terraria.ModLoader;
 
 //TODO:
 //Make it explode
@@ -34,14 +33,18 @@ namespace EEMod.Projectiles.Melee
             projectile.damage = 20;
             projectile.knockBack = 3.5f;
         }
-        double radians = 0;
-        int flickerTime = 0;
-        float alphaCounter = 0;
-        int chargeTime = 90;
+
+        private double radians = 0;
+        private int flickerTime = 0;
+        private float alphaCounter = 0;
+        private int chargeTime = 90;
+
         //ai[0] = charge
         //ai[1] = Whether or not thrown
-        int height = 60;
-        int width = 54;
+        private int height = 60;
+
+        private int width = 54;
+
         public override void AI()
         {
             alphaCounter += 0.08f;
@@ -112,16 +115,13 @@ namespace EEMod.Projectiles.Melee
                 projectile.position.Y = player.Center.Y - (int)(Math.Sin(radians * 0.96) * 40) - (projectile.height / 2);
                 projectile.position.X = player.Center.X - (int)(Math.Cos(radians * 0.96) * 40) - (projectile.width / 2);
             }
-
-
-
             else if (projectile.ai[1] == 1)
             {
                 if (projectile.ai[0] < chargeTime)
                 {
                     projectile.active = false;
                 }
-                else 
+                else
                 {
                     EEMod.Particles.Get("Main").SetSpawningModules(new SpawnRandomly(0.4f));
                     EEMod.Particles.Get("Main").SpawnParticles(projectile.Center + (projectile.velocity * 5), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)) * 2, 2, Color.Cyan, new SlowDown(0.99f), new ZigzagMotion(10, 1.5f), new AfterImageTrail(0.5f));
@@ -151,6 +151,7 @@ namespace EEMod.Projectiles.Melee
                 }
             }
         }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             if (projectile.ai[1] == 0)
@@ -177,7 +178,8 @@ namespace EEMod.Projectiles.Melee
                 return false;
             }
             return true;
-       }
+        }
+
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             if (projectile.ai[0] >= chargeTime)
@@ -191,14 +193,14 @@ namespace EEMod.Projectiles.Melee
             }
         }
 
-
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (projectile.ai[1] == 1 && projectile.ai[0] >= chargeTime)
-            { 
+            {
                 DoTheThing(projectile.position);
             }
         }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (projectile.ai[0] >= chargeTime)
@@ -214,9 +216,9 @@ namespace EEMod.Projectiles.Melee
             {
                 for (double i = 0; i < 6.28; i += Main.rand.NextFloat(1f, 2f))
                 {
-                     int lightningproj = Projectile.NewProjectile(pos, new Vector2((float)Math.Sin(i), (float)Math.Cos(i)) * 2.5f, ModContent.ProjectileType<AxeLightning>(), projectile.damage, projectile.knockBack, projectile.owner);
-                     if (Main.netMode != NetmodeID.Server)
-                        {
+                    int lightningproj = Projectile.NewProjectile(pos, new Vector2((float)Math.Sin(i), (float)Math.Cos(i)) * 2.5f, ModContent.ProjectileType<AxeLightning>(), projectile.damage, projectile.knockBack, projectile.owner);
+                    if (Main.netMode != NetmodeID.Server)
+                    {
                         new Prim.AxeLightningPrimTrail(Main.projectile[lightningproj]);
                         //    EEMod.prims.CreateTrail(Main.projectile[lightningproj]);
                     }

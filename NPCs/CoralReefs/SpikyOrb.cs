@@ -1,15 +1,13 @@
 using EEMod.Extensions;
+using EEMod.Items.Placeables.Ores;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static EEMod.Tiles.Furniture.OrbHolder;
-using EEMod.Items.Placeables.Ores;
 
 namespace EEMod.NPCs.CoralReefs
 {
@@ -237,7 +235,9 @@ namespace EEMod.NPCs.CoralReefs
                 }
             }
         }
-        bool a;
+
+        private bool a;
+
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.Center.X, (int)npc.Center.Y, npc.width, npc.height, ModContent.ItemType<LythenOre>(), Main.rand.Next(10, 15));
@@ -246,9 +246,11 @@ namespace EEMod.NPCs.CoralReefs
                 case 0:
                     Item.NewItem((int)npc.Center.X, (int)npc.Center.Y, npc.width, npc.height, ItemID.Sapphire, Main.rand.Next(1, 4));
                     break;
+
                 case 1:
                     Item.NewItem((int)npc.Center.X, (int)npc.Center.Y, npc.width, npc.height, ItemID.Emerald, Main.rand.Next(1, 4));
                     break;
+
                 case 2:
                     Item.NewItem((int)npc.Center.X, (int)npc.Center.Y, npc.width, npc.height, ItemID.Diamond, Main.rand.Next(1, 4));
                     break;

@@ -7,12 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace EEMod
 {
@@ -50,6 +47,7 @@ namespace EEMod
                  y3 * Math.Pow(t, 3)
              );
         }
+
         private static float X(float t,
    float x0, float x1, float x2)
         {
@@ -69,6 +67,7 @@ namespace EEMod
                 y2 * Math.Pow(t, 2)
             );
         }
+
         public static int[,] ConvertTexToBitmap(string tex, int thresh)
         {
             System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap($@"{Main.SavePath}\Mod Sources\EEMod\" + tex + ".png");
@@ -82,6 +81,7 @@ namespace EEMod
             }
             return Array;
         }
+
         public static void TexToDust(string path, Vector2 position, int accuracy = 1, float spacing = 1, int threshold = 126)
         {
             int[,] array = ConvertTexToBitmap(path, threshold);
@@ -97,6 +97,7 @@ namespace EEMod
                 }
             }
         }
+
         public static void DrawBezier(SpriteBatch spriteBatch, Texture2D headTexture, string glowMaskTexture, Color drawColor, Vector2 endPoints, Vector2 startingPos, Vector2 c1, Vector2 c2, float chainsPerUse, float rotDis, bool alphaBlend = false, bool emitsDust = false)
         {
             for (float i = 0; i <= 1; i += chainsPerUse)
@@ -134,6 +135,7 @@ namespace EEMod
             //  spriteBatch.Draw(neckTex2D, new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, drawColor, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
             //spriteBatch.Draw(mod.GetTexture(glowMaskTexture), new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, Color.White, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
         }
+
         public static void DrawBezier(Texture2D headTexture, string glowMaskTexture, Color drawColor, Vector2 endPoints, Vector2 startingPos, Vector2 c1, float addonPerUse, float rotDis, bool alphaBlend = false, bool emitsDust = false)
         {
             float width = headTexture.Width;
@@ -175,6 +177,7 @@ namespace EEMod
             //  spriteBatch.Draw(neckTex2D, new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, drawColor, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
             //spriteBatch.Draw(mod.GetTexture(glowMaskTexture), new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, Color.White, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
         }
+
         public static void DrawBezier(Texture2D headTexture, Color drawColor, Vector2 endPoints, Vector2 startingPos, Vector2 c1, float addonPerUse, float rotDis = 0f, bool alphaBlend = false, float scale = 1, bool emitsDust = false, bool fadeScale = false)
         {
             float width = headTexture.Width;
@@ -215,6 +218,7 @@ namespace EEMod
             //  spriteBatch.Draw(neckTex2D, new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, drawColor, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
             //spriteBatch.Draw(mod.GetTexture(glowMaskTexture), new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, Color.White, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
         }
+
         public static void DrawParticlesAlongBezier(Vector2 endPoints, Vector2 startingPos, Vector2 c1, Vector2 c2, float chainsPerUse, Color color, int frequency, float rotDis = 0, float spawnChance = 1f, params IParticleModule[] modules)
         {
             float length = (startingPos - endPoints).Length();
@@ -232,6 +236,7 @@ namespace EEMod
                 }
             }
         }
+
         public static void DrawChain(Texture2D tex, Vector2 p1, Vector2 p2, float rotOffset = 0)
         {
             //USE IN PROPER HOOK PLZ THX
@@ -274,6 +279,7 @@ namespace EEMod
             //  spriteBatch.Draw(neckTex2D, new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, drawColor, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
             //spriteBatch.Draw(mod.GetTexture(glowMaskTexture), new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, Color.White, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
         }
+
         public static void DrawBezier(SpriteBatch spriteBatch, Texture2D headTexture, string glowMaskTexture, Color drawColor, Vector2 endPoints, Vector2 startingPos, Vector2 c1, Vector2 c2, float chainsPerUse, float rotDis, int frame, int noOfFrames, int frameDiff)
         {
             int yeet = 0;
@@ -300,6 +306,7 @@ namespace EEMod
             //  spriteBatch.Draw(neckTex2D, new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, drawColor, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
             //spriteBatch.Draw(mod.GetTexture(glowMaskTexture), new Vector2(head.Center.X - Main.screenPosition.X, head.Center.Y - Main.screenPosition.Y), head.frame, Color.White, head.rotation, new Vector2(36 * 0.5f, 32 * 0.5f), 1f, SpriteEffects.None, 0f);
         }
+
         public static void DrawBezier(SpriteBatch spriteBatch, Texture2D headTexture, string glowMaskTexture, Color drawColor, Vector2 endPoints, Vector2 startingPos, Vector2 c1, Vector2 c2, float chainsPerUse, float rotDis, Texture2D endingTexture)
         {
             for (float i = 0; i <= 1; i += chainsPerUse)
@@ -409,13 +416,15 @@ namespace EEMod
                 && !player.ZoneBeach
                 && player.ZoneOverworldHeight;
         }
+
         public static void DrawLine(Vector2 p1, Vector2 p2, Color tint = default, float lineWidth = 1f)
         {
             Vector2 between = p2 - p1;
             float length = between.Length();
             float rotation = (float)Math.Atan2(between.Y, between.X);
-            Main.spriteBatch.Draw(Main.magicPixel, p1, new Rectangle(0,0,1,1), tint == default ? Color.White : tint, rotation, new Vector2(0f, 0.5f), new Vector2(length, lineWidth), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(Main.magicPixel, p1, new Rectangle(0, 0, 1, 1), tint == default ? Color.White : tint, rotation, new Vector2(0f, 0.5f), new Vector2(length, lineWidth), SpriteEffects.None, 0f);
         }
+
         public static void SpawnOre(int type, double frequency, float depth, float depthLimit)
         {
             int x = Main.maxTilesX;

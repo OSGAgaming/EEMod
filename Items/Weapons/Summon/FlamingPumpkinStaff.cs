@@ -1,4 +1,3 @@
-using EEMod.Buffs.Buffs;
 using EEMod.Projectiles.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -38,7 +37,8 @@ namespace EEMod.Items.Weapons.Summon
             return new Vector2(0, -2);
         }
 
-        int flameColor = 0;
+        private int flameColor = 0;
+
         public override bool AltFunctionUse(Player player)
         {
             if (flameColor < 3)

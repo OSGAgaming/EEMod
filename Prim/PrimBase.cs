@@ -1,24 +1,14 @@
-﻿using EEMod.Autoloading;
-using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using Terraria;
 using System.Collections.Generic;
-using EEMod.Extensions;
-using System.Linq;
-using System;
-using EEMod.Effects;
-using EEMod.Projectiles.Mage;
-using static Terraria.ModLoader.ModContent;
-using System.Reflection;
-using EEMod.Projectiles.Ranged;
-using EEMod.Projectiles.Melee;
-using EEMod.NPCs.CoralReefs;
+using Terraria;
+
 namespace EEMod.Prim
 {
     public class PrimTrailHelper
     {
         public static List<PrimTrail> _trails = new List<PrimTrail>();
+
         public void DrawTrails(SpriteBatch spriteBatch)
         {
             foreach (PrimTrail trail in _trails)
@@ -26,6 +16,7 @@ namespace EEMod.Prim
                 trail.Draw(spriteBatch);
             }
         }
+
         public void UpdateTrails()
         {
             foreach (PrimTrail trail in _trails)
@@ -34,6 +25,7 @@ namespace EEMod.Prim
             }
         }
     }
+
     public partial class PrimTrail : IUpdateable
     {
         protected Projectile _projectile;
@@ -49,6 +41,7 @@ namespace EEMod.Prim
         protected GraphicsDevice _device;
         protected Effect _effect;
         protected BasicEffect _basicEffect;
+
         public PrimTrail()
         {
             _device = Main.graphics.GraphicsDevice;
@@ -61,27 +54,28 @@ namespace EEMod.Prim
         {
             PrimTrailHelper._trails.Remove(this);
         }
+
         public void Update()
         {
             OnUpdate();
         }
+
         public virtual void OnUpdate()
         {
-
         }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-
         }
+
         public virtual void SetDefaults()
         {
-
         }
 
         public virtual void OnDestroy()
         {
-
         }
+
         //Helper methods
     }
 }

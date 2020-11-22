@@ -1,11 +1,7 @@
+using EEMod.ID;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Graphics.Effects;
-using Terraria.ID;
-using Terraria.ModLoader;
-using EEMod.ID;
 
 namespace EEMod.Projectiles.Runes
 {
@@ -18,6 +14,7 @@ namespace EEMod.Projectiles.Runes
         }
 
         public override int ThisRuneID => (int)RuneID.IceRune;
+
         public override void SetDefaults()
         {
             projectile.width = 46;

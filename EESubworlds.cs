@@ -1,8 +1,6 @@
 using EEMod.Tiles;
-using EEMod.Tiles.EmptyTileArrays;
 using EEMod.Tiles.Ores;
 using EEMod.Tiles.Walls;
-using IL.Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -61,9 +59,10 @@ namespace EEMod
             SubworldManager.Reset(seed);
             SubworldManager.PostReset(customProgressObject);
 
-
             //Placing initial blocks
+
             #region Initial block placement
+
             EEMod.progressMessage = "Generating Upper layer base";
             FillRegion(Main.maxTilesX, (Main.maxTilesY / 3), Vector2.Zero, ModContent.TileType<LightGemsandTile>());
 
@@ -79,19 +78,18 @@ namespace EEMod
             EEMod.progressMessage = "Generating Coral Sand";
             FillRegionNoEditWithNoise(Main.maxTilesX, Main.maxTilesY / 20, new Vector2(0, Main.maxTilesY / 20), ModContent.TileType<CoralSandTile>());
 
-            #endregion
+            #endregion Initial block placement
 
             #region Finding suitable chasm positions and room positions
+
             int maxTiles = (int)(Main.maxTilesX * Main.maxTilesY * 9E-04);
             EEMod.progressMessage = "Finding Suitable Chasm Positions";
-
 
             Vector2 size = new Vector2(Main.maxTilesX - 300, Main.maxTilesY / 20);
             NoiseGenWave(new Vector2(300, 80), size, new Vector2(20, 100), (ushort)ModContent.TileType<CoralSandTile>(), 0.5f);
             NoiseGenWave(new Vector2(300, 60), size, new Vector2(50, 50), TileID.StoneSlab, 0.6f);
             int[] roomGen = Helpers.FillPseudoRandomUniform<int>(4);
             int[] typeGen = Helpers.FillPseudoRandomUniform<int>(4);
-
 
             try
             {
@@ -224,17 +222,14 @@ namespace EEMod
                             PlaceRoom(legoYodaTheSequel);
                         }
                     }
-
                 }
 
                 EEMod.progressMessage = "Genning Rooms";
-
 
                 MakeCoralRoom(Main.maxTilesX / 2, Main.maxTilesY / 2, 400, 0, WorldGen.genRand.Next(4), true);
                 MinibiomeLocations.Add(new Vector3(Main.maxTilesX / 2, Main.maxTilesY / 2, 0));
                 MakeCoralRoom(Main.maxTilesX / 2, Main.maxTilesY / 2 + 400, 400, 0, 0, false);
                 MinibiomeLocations.Add(new Vector3(Main.maxTilesX / 2, Main.maxTilesY / 2 + 400, 0));
-
 
                 Vector2[] chosen = { Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero };
                 for (int i = 0; i < roomsUp.Length; i++)
@@ -271,9 +266,10 @@ namespace EEMod
                     }
                 }
 
-                #endregion
+                #endregion Finding suitable chasm positions and room positions
 
                 #region Making chasms
+
                 EEMod.progressMessage = "Making Wavy Chasms"; //I sense OPTIMIZATION
                 for (int i = 0; i < 2; i++)
                 {
@@ -300,13 +296,15 @@ namespace EEMod
                 }
 
                 MakeWavyChasm3(highestRoom, new Vector2(highestRoom.X + WorldGen.genRand.Next(-100, 101), 100), TileID.StoneSlab, 100, 10, true, new Vector2(20, 40));
-                #endregion
+
+                #endregion Making chasms
 
                 MakeLayer(Main.maxTilesX / 2, Main.maxTilesY / 2 - 400, 100, 1, ModContent.TileType<GemsandTile>());
 
                 RemoveStoneSlabs();
 
                 #region Placing ores
+
                 EEMod.progressMessage = "Generating Ores";
                 //Generating ores
                 int barrier = 800;
@@ -324,9 +322,11 @@ namespace EEMod
                         }
                     }
                 }
-                #endregion
+
+                #endregion Placing ores
 
                 #region Ruins
+
                 EEMod.progressMessage = "Generating Ruins";
                 int mlem = 0;
                 while (mlem < 5)
@@ -347,14 +347,14 @@ namespace EEMod
                         mlem++;
                     }
                 }
-                #endregion
+
+                #endregion Ruins
 
                 #region Remaining generation
+
                 //Placing water and etc
                 KillWall(Main.maxTilesX, Main.maxTilesY, Vector2.Zero);
                 FillRegionWithWater(Main.maxTilesX, Main.maxTilesY - depth, new Vector2(0, depth));
-
-
 
                 perlinNoise = new PerlinNoiseFunction(Main.maxTilesX, (int)(Main.maxTilesY * 0.9f), 50, 50, 0.4f);
                 int[,] perlinNoiseFunction = perlinNoise.perlinBinary;
@@ -387,15 +387,19 @@ namespace EEMod
                         }
                     }
                 }
-                #endregion
+
+                #endregion Remaining generation
 
                 #region Placing the boat
+
                 PlaceShipWalls(boatPos, TileCheckWater(boatPos) - 22, ShipWalls);
                 PlaceShip(boatPos, TileCheckWater(boatPos) - 22, ShipTiles);
                 CoralBoatPos = new Vector2(boatPos, TileCheckWater(boatPos) - 22);
-                #endregion
+
+                #endregion Placing the boat
 
                 #region Implementing dynamic objects
+
                 EEMod.progressMessage = "Adding Dynamics";
                 for (int j = 42; j < Main.maxTilesY - 42; j++)
                 {
@@ -455,8 +459,7 @@ namespace EEMod
                     }
                 }
 
-                #endregion
-
+                #endregion Implementing dynamic objects
             }
             catch (Exception e)
             {

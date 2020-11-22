@@ -1,8 +1,6 @@
-using EEMod.Extensions;
 using EEMod.Items.Placeables;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -24,7 +22,8 @@ namespace EEMod.Tiles
             mineResist = 1f;
             minPick = 0;
         }
-        void PlaceGroundGrass(int i, int j)
+
+        private void PlaceGroundGrass(int i, int j)
         {
             int noOfGrassBlades = (int)(((i + j) % 16) * 0.4f);
             string tex = "Tiles/KelpGrassLong";
@@ -42,18 +41,23 @@ namespace EEMod.Tiles
                     case 0:
                         Chosen = tex;
                         break;
+
                     case 1:
                         Chosen = tex2;
                         break;
+
                     case 2:
                         Chosen = tex3;
                         break;
+
                     case 3:
                         Chosen = tex4;
                         break;
+
                     case 4:
                         Chosen = tex5;
                         break;
+
                     case 5:
                         Chosen = tex6;
                         break;
@@ -62,19 +66,20 @@ namespace EEMod.Tiles
                 ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos, j * 16), Chosen, 0f, Color.Lerp(Color.LightGreen, Color.Green, ((i + j + a * 3) % 4) / 4f), ((i + j * a * 2) % 2 == 0)));
             }
         }
+
         public override void PlaceInWorld(int i, int j, Item item)
         {
             PlaceGroundGrass(i, j);
         }
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             if (!Main.tileSolid[Framing.GetTileSafely(i, j - 1).type] || !Framing.GetTileSafely(i, j - 1).active() && Framing.GetTileSafely(i, j).slope() == 0)
             {
-                    PlaceGroundGrass(i, j);
+                PlaceGroundGrass(i, j);
             }
             if (!Main.tileSolid[Framing.GetTileSafely(i, j + 1).type] || !Framing.GetTileSafely(i, j + 1).active() && Framing.GetTileSafely(i, j).slope() == 0)
             {
-
             }
             return true;
         }

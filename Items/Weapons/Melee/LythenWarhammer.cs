@@ -1,6 +1,5 @@
 ﻿using EEMod.Items.Placeables.Ores;
 using EEMod.Projectiles.Melee;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,7 +47,7 @@ namespace EEMod.Items.Weapons.Melee
 
         public override bool CanUseItem(Player player)
         {
-            if(player.ownedProjectileCounts[ModContent.ProjectileType<LythenWarhammerProjectile>()] >= 1)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<LythenWarhammerProjectile>()] >= 1)
             {
                 return false;
             }

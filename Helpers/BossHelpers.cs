@@ -356,6 +356,7 @@ namespace EEMod
                 }
             }
         }
+
         public static bool OnGround(NPC npc)
         {
             Vector2 tilePos;
@@ -441,7 +442,6 @@ namespace EEMod
                         if (Math.Abs(npc.Center.X - vector2.X) <= 16 + (npc.width / 2))
                         {
                             return true;
-
                         }
                     }
                 }

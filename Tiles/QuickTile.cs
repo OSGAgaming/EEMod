@@ -15,16 +15,19 @@ namespace EEMod.Tiles
             get;
             set;
         }
+
         public abstract int Height
         {
             get;
             set;
         }
+
         public abstract bool isSolid { get; set; }
         public virtual string NameOfTile => GetType().Name;
         public virtual int Padding => 2;
         public virtual Color MapColour => new Color(60, 60, 60);
         public virtual bool isHanging => false;
+
         public override void SetDefaults()
         {
             Main.tileSolidTop[Type] = false;

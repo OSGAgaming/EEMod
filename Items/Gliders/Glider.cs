@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,17 +28,20 @@ namespace EEMod.Items.Gliders
             //item.flame = true; needs a flame texture.
             item.noWet = true;
         }
-        int lerpage;
+
+        private int lerpage;
+
         public override void UpdateInventory(Player player)
         {
             Main.LocalPlayer.GetModPlayer<EEPlayer>().isHoldingGlider = false;
         }
+
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            
             EEMod.Particles.Get("Main").SetSpawningModules(new SpawnPeriodically(2));
-            EEMod.Particles.Get("Main").SpawnParticles(position,null);
+            EEMod.Particles.Get("Main").SpawnParticles(position, null);
         }
+
         public override void HoldStyle(Player player)
         {
             Main.LocalPlayer.GetModPlayer<EEPlayer>().isHoldingGlider = true;
@@ -64,7 +67,6 @@ namespace EEMod.Items.Gliders
             }
             if (player.velocity.Y > 0)
             {
-
                 player.gravity = 0.133f;
                 player.bodyFrame.Y = 4 * 56;
 

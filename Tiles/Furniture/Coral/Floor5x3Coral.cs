@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -34,7 +33,6 @@ namespace EEMod.Tiles.Furniture.Coral
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-
         }
     }
 }

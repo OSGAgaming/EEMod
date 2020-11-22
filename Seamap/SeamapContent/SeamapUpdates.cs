@@ -1,10 +1,10 @@
 using EEMod.Seamap.SeamapAssets;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static EEMod.EEMod;
+
 namespace EEMod.Seamap.SeamapContent
 {
     public class SeamapUpdates
@@ -113,4 +113,3 @@ namespace EEMod.Seamap.SeamapContent
         }
     }
 }
-

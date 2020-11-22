@@ -1,31 +1,29 @@
 ﻿using EEMod.ID;
 using EEMod.Tiles;
+
+//using Microsoft.Office.Interop.Excel;
+using EEMod.Tiles.EmptyTileArrays;
 using EEMod.Tiles.Furniture;
-using EEMod.Tiles.Furniture.Coral;
 using EEMod.Tiles.Ores;
-using EEMod.Tiles.Walls;
+using EEMod.VerletIntegration;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
-using System.Diagnostics;
-//using Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using Terraria.DataStructures;
-using EEMod.Tiles.EmptyTileArrays;
-using System.Linq;
-using EEMod.VerletIntegration;
 
 namespace EEMod.EEWorld
 {
     public partial class EEWorld
     {
         public static IList<Vector2> Vines = new List<Vector2>();
+
         public override void Load(TagCompound tag)
         {
             if (tag.ContainsKey("EntracesPosses"))
@@ -256,6 +254,7 @@ namespace EEMod.EEWorld
             }
             return PerlinStrip;
         }
+
         public static void CreateInvisibleTiles(byte[,,] array, Vector2 TilePosition)
         {
             for (int i = 0; i < array.GetLength(1); i++)
@@ -272,6 +271,7 @@ namespace EEMod.EEWorld
                 }
             }
         }
+
         public static void FillRegionNoEditWithNoise(int width, int height, Vector2 startingPoint, int type)
         {
             string messageBefore = EEMod.progressMessage;
@@ -1241,6 +1241,7 @@ namespace EEMod.EEWorld
                 return 0;
             }
         }
+
         public static bool CheckRangeRight(int i, int j, int length, bool opposite = false)
         {
             for (int k = 0; k < length; k++)
@@ -1254,6 +1255,7 @@ namespace EEMod.EEWorld
 
             return true;
         }
+
         public static bool CheckRangeDown(int i, int j, int length, bool opposite = false)
         {
             for (int k = 0; k < length; k++)
@@ -1266,6 +1268,7 @@ namespace EEMod.EEWorld
             }
             return true;
         }
+
         public static int WaterCheck(int i, int j)
         {
             Tile tile1 = Framing.GetTileSafely(i, j);
@@ -1660,6 +1663,7 @@ namespace EEMod.EEWorld
                 }
             }
         }
+
         public static int TileCheckVertical(int positionX, int positionY, int step, int maxIterations = 100)
         {
             int a = 0;
@@ -1678,6 +1682,7 @@ namespace EEMod.EEWorld
             }
             return 0;
         }
+
         public static int TileCheck(int positionX, int type)
         {
             for (int i = 0; i < Main.maxTilesY; i++)
@@ -1914,9 +1919,6 @@ namespace EEMod.EEWorld
                             /*Debug.WriteLine("saifnaskdlfjnasldfjnalkdsfjnfalksjdfnalksjdnfalkdjnflaksdjfnalkdjfnakldjfnakldjfnalkjsdnflajsdnflakjsdnfklajsndf");
                             WorldGen.PlaceChest(k, l, (ushort)ModContent.TileType<GemsandChestTile>());*/
                         }
-
-
-
                     }
                 }
             }

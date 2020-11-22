@@ -91,7 +91,6 @@ namespace EEMod.Projectiles
             }
             if (projectile.ai[0] == 3) //crasche
             {
-
                 projectile.rotation = -MathHelper.Pi / 4;
                 if (perc > 0.9f)
                 {

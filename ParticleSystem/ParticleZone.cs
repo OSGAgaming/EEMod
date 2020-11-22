@@ -1,7 +1,5 @@
-using EEMod.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -14,12 +12,14 @@ namespace EEMod
         {
             particles = new Particle[MaxLength];
         }
+
         internal readonly Particle[] particles;
         private List<IParticleModule> BaseZoneModules = new List<IParticleModule>();
         private readonly List<IParticleSpawner> SpawningModules = new List<IParticleSpawner>();
         public bool CanSpawn { get; set; }
         public int zoneTimer;
-        int MAXDRAWDISTANCE => 2000;
+        private int MAXDRAWDISTANCE => 2000;
+
         public int SpawnParticles(Vector2 position, Vector2? velocity = null, Texture2D texture = null, int timeLeft = 60, int scale = 1, Color? colour = null, params IParticleModule[] CustomBaseZoneModule)
         {
             if (!Main.gamePaused)
@@ -54,6 +54,7 @@ namespace EEMod
             }
             return -1;
         }
+
         public int SpawnParticles(Vector2 position, Vector2? velocity = null, params IParticleModule[] CustomBaseZoneModule)
         {
             if (!Main.gamePaused)
@@ -88,6 +89,7 @@ namespace EEMod
             }
             return -1;
         }
+
         public int SpawnParticles(Vector2 position, Vector2? velocity = null, int scale = 1, Color? colour = null, params IParticleModule[] CustomBaseZoneModule)
         {
             if (!Main.gamePaused)
@@ -122,6 +124,7 @@ namespace EEMod
             }
             return -1;
         }
+
         public int SpawnParticles(Vector2 position, Vector2? velocity = null, Color? colour = null, params IParticleModule[] CustomBaseZoneModule)
         {
             if (!Main.gamePaused)
@@ -156,8 +159,17 @@ namespace EEMod
             }
             return -1;
         }
-        public void SetModules(params IParticleModule[] Module) { BaseZoneModules.Clear(); BaseZoneModules = Module.ToList(); }
-        public void SetSpawningModules(IParticleSpawner Module) { SpawningModules.Clear(); SpawningModules.Add(Module); }
+
+        public void SetModules(params IParticleModule[] Module)
+        {
+            BaseZoneModules.Clear(); BaseZoneModules = Module.ToList();
+        }
+
+        public void SetSpawningModules(IParticleSpawner Module)
+        {
+            SpawningModules.Clear(); SpawningModules.Add(Module);
+        }
+
         public void Update()
         {
             for (int k = 0; k < particles.Length; k++)
@@ -172,6 +184,7 @@ namespace EEMod
             }
             zoneTimer++;
         }
+
         public void Draw()
         {
             for (int k = 0; k < particles.Length; k++)
@@ -186,9 +199,11 @@ namespace EEMod
             }
         }
     }
-    class SpawnPeriodically : IParticleSpawner
+
+    internal class SpawnPeriodically : IParticleSpawner
     {
-        int spawnRate;
+        private int spawnRate;
+
         public SpawnPeriodically(int spawnRate)
         {
             this.spawnRate = spawnRate;
@@ -200,9 +215,11 @@ namespace EEMod
                 pz.CanSpawn = true;
         }
     }
-    class SpawnRandomly : IParticleSpawner
+
+    internal class SpawnRandomly : IParticleSpawner
     {
-        float chance;
+        private float chance;
+
         public SpawnRandomly(float chance)
         {
             this.chance = chance;
@@ -214,6 +231,7 @@ namespace EEMod
                 pz.CanSpawn = true;
         }
     }
+
     public interface IParticleSpawner
     {
         void CanSpawn(in ParticleZone pz);

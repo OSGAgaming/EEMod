@@ -1,9 +1,4 @@
-using EEMod.Items.Placeables;
-using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ModLoader;
-using EEMod.ID;
-using Terraria.ID;
 
 namespace EEMod.Tiles
 {

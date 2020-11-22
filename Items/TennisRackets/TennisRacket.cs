@@ -1,8 +1,8 @@
+using EEMod.Projectiles.TennisRackets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using EEMod.Projectiles.TennisRackets;
 
 namespace EEMod.Items.TennisRackets
 {

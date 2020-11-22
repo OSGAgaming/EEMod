@@ -16,10 +16,10 @@ namespace EEMod.Autoloading.AutoloadTypes
         public virtual void Initialize()
         {
         }
+
         /// <summary> Unloading stuff from the manager, such as dictionaries, lists, etc. </summary>
         public virtual void Unload()
         {
-
         }
 
         // cus it's protected

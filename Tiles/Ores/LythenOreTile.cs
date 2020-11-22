@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using EEMod.EEWorld;
 
 namespace EEMod.Tiles.Ores
 {

@@ -1,10 +1,12 @@
 ﻿using EEMod.Autoloading;
 using EEMod.Extensions;
 using EEMod.ID;
+using EEMod.Items.Dyes;
 using EEMod.Net;
 using EEMod.NPCs.CoralReefs;
+using EEMod.Seamap.SeamapContent;
+using EEMod.SeamapAssets;
 using EEMod.Skies;
-using EEMod.UI.States;
 using EEMod.Tiles.Furniture;
 using EEMod.VerletIntegration;
 using Microsoft.Xna.Framework;
@@ -21,11 +23,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.World.Generation;
-using EEMod.SeamapAssets;
-using EEMod.Seamap.SeamapContent;
-using EEMod.MachineLearning;
-using EEMod.Tiles.EmptyTileArrays;
-using EEMod.Items.Dyes;
 
 namespace EEMod
 {
@@ -53,37 +50,46 @@ namespace EEMod
 
         public static int _lastSeed;
         public static ParticleZoneHandler Particles;
+
         //public Handwriting HandwritingCNN;
         public static void GenerateWorld(string key, int seed, GenerationProgress customProgressObject = null)
         {
             switch (key)
             {
-                case nameof(EESubWorlds.CoralReefs): 
-                    EESubWorlds.CoralReefs(seed, customProgressObject); 
+                case nameof(EESubWorlds.CoralReefs):
+                    EESubWorlds.CoralReefs(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.Cutscene1): 
-                    EESubWorlds.Cutscene1(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.Cutscene1):
+                    EESubWorlds.Cutscene1(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.Island):  
-                    EESubWorlds.Island(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.Island):
+                    EESubWorlds.Island(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.Island2): 
-                    EESubWorlds.Island2(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.Island2):
+                    EESubWorlds.Island2(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.Pyramids): 
-                    EESubWorlds.Pyramids(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.Pyramids):
+                    EESubWorlds.Pyramids(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.Sea): 
-                    EESubWorlds.Sea(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.Sea):
+                    EESubWorlds.Sea(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.VolcanoInside): 
-                    EESubWorlds.VolcanoInside(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.VolcanoInside):
+                    EESubWorlds.VolcanoInside(seed, customProgressObject);
                     break;
-                case nameof(EESubWorlds.VolcanoIsland): 
-                    EESubWorlds.VolcanoIsland(seed, customProgressObject); 
+
+                case nameof(EESubWorlds.VolcanoIsland):
+                    EESubWorlds.VolcanoIsland(seed, customProgressObject);
                     break;
+
                 default:
-                typeof(EESubWorlds).GetMethod(key).Invoke(null, new object[] { seed, customProgressObject });
+                    typeof(EESubWorlds).GetMethod(key).Invoke(null, new object[] { seed, customProgressObject });
                     break;
             }
         }
@@ -99,10 +105,9 @@ namespace EEMod
             Main.spriteBatch.Draw(GetTexture("EEMod/Items/ZipCarrier"), Main.LocalPlayer.position.ForDraw(), new Rectangle(0, 0, 18, 8), Color.White, (PylonEnd - PylonBegin).ToRotation(), new Vector2(18, 8) / 2, Vector2.One, SpriteEffects.None, 0);
             Main.spriteBatch.End();
         }
-        
+
         public void TestParticleSystem()
         {
-
         }
 
         public override void Unload()
@@ -127,7 +132,6 @@ namespace EEMod
             Noise2DShift = null;
         }
 
-
         private int delay;
         private float pauseShaderTImer;
         public SpaceInvaders simpleGame;
@@ -149,7 +153,7 @@ namespace EEMod
         private int delays;
         public Verlet verlet = new Verlet();
         private bool mode = true;
-        bool bufferVariable;
+        private bool bufferVariable;
         private float rotationBuffer;
         private float rotGoto;
 
@@ -162,12 +166,10 @@ namespace EEMod
                 verlet.Update();
             if (delays > 0)
                 delays--;
-
         }
 
-        float counter;
+        private float counter;
         public static Vector2[,,] lol1 = new Vector2[3, 200, 2];
-
 
         public void UpdateGame(GameTime gameTime)
         {
@@ -242,7 +244,6 @@ namespace EEMod
             }
         }
 
-
         public override void MidUpdateProjectileItem()
         {
             if (Main.netMode != NetmodeID.Server)
@@ -267,18 +268,21 @@ namespace EEMod
 
         public static Effect Noise2D;
         public static Effect White;
-        UIManager UI;
+        private UIManager UI;
+
         public void LoadGrass()
         {
-
         }
+
         public override void PreUpdateEntities()
         {
             base.PreUpdateEntities();
             Particles.Update();
-       }
+        }
+
         public RenderTarget2D playerTarget;
         public ComponenetManager<TileObjVisual> TVH;
+
         public override void Load()
         {
             TVH = new ComponenetManager<TileObjVisual>();
@@ -317,10 +321,9 @@ namespace EEMod
                 NoiseSurfacing = GetEffect("Effects/NoiseSurfacing");
                 White = GetEffect("Effects/WhiteOutline");
 
-
                 Ref<Effect> hydrosDye = new Ref<Effect>(GetEffect("Effects/HydrosDye"));
                 GameShaders.Armor.BindShader(ModContent.ItemType<HydrosDye>(), new ArmorShaderData(hydrosDye, "HydrosDyeShader"));
-                Ref<Effect> aquamarineDye  = new Ref<Effect>(GetEffect("Effects/AquamarineDye"));
+                Ref<Effect> aquamarineDye = new Ref<Effect>(GetEffect("Effects/AquamarineDye"));
                 GameShaders.Armor.BindShader(ModContent.ItemType<HydrosDye>(), new ArmorShaderData(aquamarineDye, "AquamarineDyeShader"));
 
                 /*
@@ -349,9 +352,10 @@ namespace EEMod
         public static ModHotKey Train;
         private GameTime lastGameTime;
         public UserInterface EEInterface;
-        float sineInt;
-        bool IsTraining;
-        void UpdateNet()
+        private float sineInt;
+        private bool IsTraining;
+
+        private void UpdateNet()
         {
             //HandwritingCNN.Draw();
             if (Train.JustPressed)
@@ -367,6 +371,7 @@ namespace EEMod
                 }
             }
         }
+
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             sineInt += 0.003f;

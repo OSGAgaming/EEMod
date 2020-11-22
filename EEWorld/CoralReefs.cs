@@ -1,23 +1,17 @@
 ﻿using EEMod.ID;
 using EEMod.Tiles;
+using EEMod.Tiles.EmptyTileArrays;
 using EEMod.Tiles.Furniture;
 using EEMod.Tiles.Furniture.Coral;
-using EEMod.Tiles.Ores;
-using EEMod.Tiles.Walls;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.GameContent.Events;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.World.Generation;
 using EEMod.Tiles.Furniture.Coral.HangingCoral;
 using EEMod.Tiles.Furniture.Coral.WallCoral;
-using System.Diagnostics;
-using EEMod.Tiles.EmptyTileArrays;
+using EEMod.Tiles.Ores;
 using EEMod.VerletIntegration;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
 //using Microsoft.Office.Interop.Excel;
 
 namespace EEMod.EEWorld
@@ -177,7 +171,6 @@ namespace EEMod.EEWorld
                     {
                         for (int j = (int)startingPoint.Y; j < (int)startingPoint.Y + sizeY * 2; j++)
                         {
-
                             int noOfTiles = 0;
                             for (int k = -5; k < 5; k++)
                             {
@@ -258,15 +251,13 @@ namespace EEMod.EEWorld
                     }
                 }
                 break;
+
                 case MinibiomeID.CrystallineCaves:
                     break;
             }*/
 
             CreateNoise(ensureNoise, Main.rand.Next(30, 50), Main.rand.Next(20, 40), Main.rand.NextFloat(0.4f, 0.6f));
         }
-
-
-
 
         public static void MakeCrystal(int xPos, int yPos, int length, int width, int vertDir, int horDir, int type)
         {
@@ -292,6 +283,7 @@ namespace EEMod.EEWorld
                 for (int j = 42; j < Main.maxTilesY - 42; j++)
                 {
                     #region Surface Reefs
+
                     if (j < Main.maxTilesY / 10)
                     {
                         if (TileCheck2(i, j) == 2 && WorldGen.InWorld(i, j) && !Main.rand.NextBool(6)) //Surface Reefs
@@ -333,7 +325,8 @@ namespace EEMod.EEWorld
                             }
                         }
                     }
-                    #endregion
+
+                    #endregion Surface Reefs
 
                     else
                     {
@@ -353,6 +346,7 @@ namespace EEMod.EEWorld
                             switch (minibiome)
                             {
                                 #region Default
+
                                 case MinibiomeID.None: //Default
                                     if (!WorldGen.genRand.NextBool(6))
                                     {
@@ -388,6 +382,7 @@ namespace EEMod.EEWorld
                                                         break;
                                                 }
                                                 break;
+
                                             case 2:
                                             {
                                                 selection = WorldGen.genRand.Next(16);
@@ -550,9 +545,11 @@ namespace EEMod.EEWorld
                                         }
                                     }
                                     break;
-                                #endregion
+
+                                #endregion Default
 
                                 #region Kelp Forest
+
                                 case MinibiomeID.KelpForest: //Kelp Forest (Glowing Kelp/Greencoral)
                                     if (TileCheck2(i, j) == 2 && !WorldGen.genRand.NextBool(6))
                                     {
@@ -611,14 +608,16 @@ namespace EEMod.EEWorld
                                         ModContent.GetInstance<GlowHangCoral1TE>().Place(i, j + 1);
                                         WorldGen.PlaceTile(i, j + 1, ModContent.TileType<GlowHangCoral1>());
                                     }
-                                    else if(TileCheck2(i, j) == 1 && WorldGen.genRand.NextBool(15))
+                                    else if (TileCheck2(i, j) == 1 && WorldGen.genRand.NextBool(15))
                                     {
                                         VerletHelpers.AddStickChain(ref ModContent.GetInstance<EEMod>().verlet, new Vector2(i * 16, j * 16), Main.rand.Next(5, 15), 27);
                                     }
                                     break;
-                                #endregion
+
+                                #endregion Kelp Forest
 
                                 #region The Great Anemone
+
                                 case MinibiomeID.Anemone: //Anemone(A massive anemone throughout the minibiome that electrocutes the player on contact, coral fans)
                                     if (!WorldGen.genRand.NextBool(6))
                                     {
@@ -637,6 +636,7 @@ namespace EEMod.EEWorld
                                                         break;
                                                 }
                                                 break;
+
                                             case 3:
                                                 selection = WorldGen.genRand.Next(5);
                                                 switch (selection)
@@ -662,6 +662,7 @@ namespace EEMod.EEWorld
                                                         break;
                                                 }
                                                 break;
+
                                             case 4:
                                                 selection = WorldGen.genRand.Next(5);
                                                 switch (selection)
@@ -690,9 +691,11 @@ namespace EEMod.EEWorld
                                         }
                                     }
                                     break;
-                                #endregion
+
+                                #endregion The Great Anemone
 
                                 #region Jellyfish Caverns
+
                                 case MinibiomeID.JellyfishCaverns: //Jellyfish Caverns(More hanging coral/longer hanging coral)
                                     if (!WorldGen.genRand.NextBool(6))
                                     {
@@ -723,6 +726,7 @@ namespace EEMod.EEWorld
                                                         break;
                                                 }
                                                 break;
+
                                             case 2:
                                                 selection = WorldGen.genRand.Next(3);
                                                 switch (selection)
@@ -730,9 +734,11 @@ namespace EEMod.EEWorld
                                                     case 0:
                                                         WorldGen.PlaceTile(i, j - 2, ModContent.TileType<Floor1x2Coral>(), style: WorldGen.genRand.Next(7));
                                                         break;
+
                                                     case 1:
                                                         WorldGen.PlaceTile(i, j - 6, ModContent.TileType<Floor2x6Coral>(), style: WorldGen.genRand.Next(2));
                                                         break;
+
                                                     case 2:
                                                         WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor6x8Coral>());
                                                         break;
@@ -750,9 +756,11 @@ namespace EEMod.EEWorld
                                         break;
                                     }
                                     break;
-                                #endregion
+
+                                #endregion Jellyfish Caverns
 
                                 #region Bulbous Grove
+
                                 case MinibiomeID.BulbousGrove: //Bulbous Grove(Round/circular/bulbous coral/plants)
                                     if (WorldGen.genRand.NextBool())
                                     {
@@ -775,6 +783,7 @@ namespace EEMod.EEWorld
                                                         break;
                                                 }
                                                 break;
+
                                             case 2:
                                                 selection = WorldGen.genRand.Next(9);
                                                 switch (selection)
@@ -819,9 +828,11 @@ namespace EEMod.EEWorld
                                         }
                                     }
                                     break;
-                                #endregion
+
+                                #endregion Bulbous Grove
 
                                 #region Thermal Vents
+
                                 case MinibiomeID.ThermalVents: //Thermal Vents(Thermal Vents-Thermal Vents and larger coral, more coral stacks)
                                     if (!WorldGen.genRand.NextBool(6))
                                     {
@@ -858,6 +869,7 @@ namespace EEMod.EEWorld
                                                             break;
                                                     }
                                                     break;
+
                                                 case 2:
                                                     selection = WorldGen.genRand.Next(7);
                                                     switch (selection)
@@ -865,21 +877,27 @@ namespace EEMod.EEWorld
                                                         case 0:
                                                             WorldGen.PlaceTile(i, j - 2, ModContent.TileType<Floor1x2Coral>(), style: WorldGen.genRand.Next(7));
                                                             break;
+
                                                         case 1:
                                                             WorldGen.PlaceTile(i, j - 6, ModContent.TileType<Floor1x1Coral>(), style: WorldGen.genRand.Next(3));
                                                             break;
+
                                                         case 2:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor2x1Coral>(), style: WorldGen.genRand.Next(5));
                                                             break;
+
                                                         case 3:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor6x8Coral>());
                                                             break;
+
                                                         case 4:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor8x8Coral>());
                                                             break;
+
                                                         case 5:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor8x7Coral>());
                                                             break;
+
                                                         case 6:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor7x7Coral>());
                                                             break;
@@ -890,9 +908,11 @@ namespace EEMod.EEWorld
                                         break;
                                     }
                                     break;
-                                #endregion
+
+                                #endregion Thermal Vents
 
                                 #region Crystalline Caves
+
                                 case MinibiomeID.CrystallineCaves: //Crystalline Caves(Thinner, taller coral, crystals)
                                     if (!WorldGen.genRand.NextBool(5))
                                     {
@@ -902,7 +922,6 @@ namespace EEMod.EEWorld
                                         }
                                         else
                                         {
-
                                             if (Main.tileSolid[Framing.GetTileSafely(i, j).type])
                                             {
                                                 int width = 18;
@@ -949,6 +968,7 @@ namespace EEMod.EEWorld
                                                             break;
                                                     }
                                                     break;
+
                                                 case 1:
                                                     selection = WorldGen.genRand.Next(7);
                                                     switch (selection)
@@ -968,6 +988,7 @@ namespace EEMod.EEWorld
                                                         case 3:
                                                             WorldGen.PlaceTile(i, j + 1, ModContent.TileType<Hanging1x4Coral>());
                                                             break;
+
                                                         case 4:
                                                             if (CheckRangeRight(i, j, 2))
                                                             {
@@ -978,6 +999,7 @@ namespace EEMod.EEWorld
                                                                 }
                                                             }
                                                             break;
+
                                                         case 5:
                                                             if (CheckRangeRight(i, j, 1))
                                                             {
@@ -988,6 +1010,7 @@ namespace EEMod.EEWorld
                                                                 }
                                                             }
                                                             break;
+
                                                         case 6:
                                                             if (CheckRangeRight(i, j, 1))
                                                             {
@@ -1000,6 +1023,7 @@ namespace EEMod.EEWorld
                                                             break;
                                                     }
                                                     break;
+
                                                 case 2:
                                                     selection = WorldGen.genRand.Next(9);
                                                     switch (selection)
@@ -1007,12 +1031,15 @@ namespace EEMod.EEWorld
                                                         case 0:
                                                             WorldGen.PlaceTile(i, j - 2, ModContent.TileType<Floor1x2Coral>(), style: WorldGen.genRand.Next(7));
                                                             break;
+
                                                         case 1:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor2x6Coral>(), style: WorldGen.genRand.Next(2));
                                                             break;
+
                                                         case 2:
                                                             WorldGen.PlaceTile(i, j - 8, ModContent.TileType<Floor6x8Coral>());
                                                             break;
+
                                                         case 3:
                                                             if (CheckRangeRight(i, j, 4))
                                                             {
@@ -1023,6 +1050,7 @@ namespace EEMod.EEWorld
                                                                 }
                                                             }
                                                             break;
+
                                                         case 4:
                                                             int width = 5;
                                                             int height = 7;
@@ -1035,6 +1063,7 @@ namespace EEMod.EEWorld
                                                                 }
                                                             }
                                                             break;
+
                                                         case 5:
                                                             width = 2;
                                                             height = 2;
@@ -1047,6 +1076,7 @@ namespace EEMod.EEWorld
                                                                 }
                                                             }
                                                             break;
+
                                                         case 6:
                                                             width = 2;
                                                             height = 3;
@@ -1059,6 +1089,7 @@ namespace EEMod.EEWorld
                                                                 }
                                                             }
                                                             break;
+
                                                         case 7:
                                                             width = 4;
                                                             height = 3;
@@ -1078,7 +1109,8 @@ namespace EEMod.EEWorld
                                         break;
                                     }
                                     break;
-                                    #endregion
+
+                                    #endregion Crystalline Caves
                             }
                         }
                     }

@@ -1,39 +1,31 @@
-﻿using log4net;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace EEMod.MachineLearning
 {
     [Serializable]
     public class Perceptron : MLObject
     {
-        float[,] weights1;
-        float[,] weights2;
-        float[,] weights3;
-        float c;
-        int noOfLayers;
-        int noOfLayersSecond;
-        int noOfInputs;
-        int noOfLayersFinal;
-        float[] biases1;
-        float[] biases2;
-        float[] biases3;
-        float weightVariation = 0.1f;
-        float biasVariation = 0;
+        private float[,] weights1;
+        private float[,] weights2;
+        private float[,] weights3;
+        private float c;
+        private int noOfLayers;
+        private int noOfLayersSecond;
+        private int noOfInputs;
+        private int noOfLayersFinal;
+        private float[] biases1;
+        private float[] biases2;
+        private float[] biases3;
+        private float weightVariation = 0.1f;
+        private float biasVariation = 0;
         public List<float> firstHiddenLayer = new List<float>();
         public List<float> secondHiddenLayer = new List<float>();
         public float[] finalLayerHold;
         public List<float> outputLayer = new List<float>();
-        double e = 2.7182818284590452353602874713527;
+        private double e = 2.7182818284590452353602874713527;
 
         //[end]
 
@@ -87,6 +79,7 @@ namespace EEMod.MachineLearning
 
             //[end]
         }
+
         public List<float> FeedForward(float[] input)
         {
             List<float> activationArray = Sigmoid(input.ToList(), noOfLayers, weights1, biases1);
@@ -100,7 +93,7 @@ namespace EEMod.MachineLearning
             return finalLayer;
         }
 
-        List<float> Sigmoid(List<float> inputs, int NumberOfNeuronsNextLayer, float[,] weights, float[] biases)
+        private List<float> Sigmoid(List<float> inputs, int NumberOfNeuronsNextLayer, float[,] weights, float[] biases)
         {
             float[] secondLayerHolder = new float[NumberOfNeuronsNextLayer];
             List<float> secondLayer = new List<float>();
@@ -115,7 +108,8 @@ namespace EEMod.MachineLearning
             }
             return secondLayer;
         }
-        List<float> SoftMax(List<float> inputs, int NumberOfNeuronsNextLayer, float[,] weights, float[] biases)
+
+        private List<float> SoftMax(List<float> inputs, int NumberOfNeuronsNextLayer, float[,] weights, float[] biases)
         {
             float[] finalLayerHolder = new float[NumberOfNeuronsNextLayer];
             List<float> finalLayer = new List<float>();
@@ -147,6 +141,7 @@ namespace EEMod.MachineLearning
             }
             return error;
         }
+
         public float getIndexOfLargest(float[] array)
         {
             if (array == null || array.Length == 0) return -1; // null or empty
@@ -158,6 +153,7 @@ namespace EEMod.MachineLearning
             }
             return largest; // position of the first largest found
         }
+
         public void Train(List<float> finalLayer, float[] desired, float[] input, List<float> inputToSecond, List<float> inputToThird)
         {
             float[] error = new float[noOfLayersFinal];
@@ -194,7 +190,6 @@ namespace EEMod.MachineLearning
                     sigmaDerivative1[a] += weights2[c, a] * dActivate20[c];
                 }
             }
-
 
             //----------------------------------------------------------------------------
             for (int j = 0; j < noOfLayersFinal; j++)

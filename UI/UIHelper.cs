@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.UI;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Terraria.UI;
 
 namespace EEMod.UI
 {
@@ -15,11 +6,13 @@ namespace EEMod.UI
     {
         public UIState uistate;
         public UserInterface userInterface;
+
         public bool Visible
         {
             get => userInterface?.CurrentState != null;
             set => userInterface?.SetState(value ? uistate : null);
         }
+
         public UIHelper(UIState state, UserInterface userInterface, bool activate = false)
         {
             this.uistate = state;
@@ -27,6 +20,9 @@ namespace EEMod.UI
             if (activate)
                 state.Activate();
         }
-        private UIHelper() { }
+
+        private UIHelper()
+        {
+        }
     }
 }

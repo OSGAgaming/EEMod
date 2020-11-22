@@ -1,8 +1,5 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace EEMod.Projectiles
@@ -12,7 +9,9 @@ namespace EEMod.Projectiles
         public int CurrentCombo;
         public abstract int NumberOfCombinations { get; }
         public abstract int ComboProjectile { get; }
+
         public abstract void ComboChangeBehaviour();
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             ComboChangeBehaviour();

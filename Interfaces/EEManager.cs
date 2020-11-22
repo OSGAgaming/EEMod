@@ -1,17 +1,13 @@
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace EEMod
 {
-    public class ComponenetManager<T> where T : Entity,IComponent
+    public class ComponenetManager<T> where T : Entity, IComponent
     {
-        List<T> Objects = new List<T>();
+        private List<T> Objects = new List<T>();
+
         public void Update()
         {
             foreach (T TV in Objects)
@@ -19,6 +15,7 @@ namespace EEMod
                 TV.Update();
             }
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (T TV in Objects)
@@ -26,6 +23,7 @@ namespace EEMod
                 TV.Draw(spriteBatch);
             }
         }
+
         public void AddElement(T TV)
         {
             foreach (T TOV in Objects)
@@ -36,5 +34,4 @@ namespace EEMod
             Objects.Add(TV);
         }
     }
-
 }

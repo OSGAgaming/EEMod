@@ -2,30 +2,21 @@ using EEMod.Config;
 using EEMod.Effects;
 using EEMod.Extensions;
 using EEMod.ID;
-using EEMod.NPCs.Bosses.Kraken;
-using EEMod.Projectiles;
-using EEMod.Projectiles.Mage;
+using EEMod.Prim;
 using EEMod.Tiles;
 using EEMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Liquid;
-using Terraria.GameContent.UI.Elements;
-using Terraria.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.ModLoader;
-using Terraria.Social;
-using Terraria.UI;
-using EEMod.Prim;
 
 namespace EEMod
 {
@@ -44,8 +35,10 @@ namespace EEMod
         private Color _baseColor;
         private Texture2D _screenTexture;
         private Texture2D _texture2;
+
         //private Rectangle _screenFrame;//unused?
         private int _counter;
+
         private int _screenframes;
         private int _screenframeSpeed;
         private float alpha;
@@ -102,7 +95,7 @@ namespace EEMod
             {
                 throw new Exception("Could not modify draw water");
             }
-            // callvirt  instance bool Terraria.Tile::nactive() 
+            // callvirt  instance bool Terraria.Tile::nactive()
             // brfalse.s IL_01CB // after !Main.tileSolid[(int)Main.tile[j, i].type] || Main.tileSolidTop[(int)Main.tile[j, i].type]
             c.Index += 2;   // ldsfld    bool[] Terraria.Main::tileSolid
             c.Emit(OpCodes.Ldloc, 12); // i
@@ -493,7 +486,9 @@ namespace EEMod
                 Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
             }
         }
-        int screenLerp;
+
+        private int screenLerp;
+
         public void DrawSky()
         {
             switch (loadingChooseImage)
@@ -501,12 +496,15 @@ namespace EEMod
                 case 0:
                     _texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen1");
                     break;
+
                 case 1:
                     _texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen2");
                     break;
+
                 case 2:
                     _texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen3");
                     break;
+
                 default:
                     _texture2 = instance.GetTexture("LoadingScreenImages/LoadingScreen1");
                     break;

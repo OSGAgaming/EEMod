@@ -37,7 +37,6 @@ namespace EEMod.Tiles
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)
         {
-
         }
 
         public override void RandomUpdate(int i, int j)
@@ -50,7 +49,8 @@ namespace EEMod.Tiles
             }
         }
 
-        int b = Main.rand.Next(0, 9);
+        private int b = Main.rand.Next(0, 9);
+
         public override void AnimateTile(ref int frame, ref int frameCounter)
         {
             frameCounter++;
@@ -65,6 +65,7 @@ namespace EEMod.Tiles
                 frameCounter = 0;
             }
         }
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Framing.GetTileSafely(i, j + 1);
@@ -90,10 +91,8 @@ namespace EEMod.Tiles
             float dist = (end - pos).Length();
             Texture2D tex = EEMod.instance.GetTexture("Tiles/GreenKelpTile");
 
-
             int noOfFrames = 10;
             int frame = (int)((Main.time / 10f + j * i) % noOfFrames);
-
 
             if (Main.tileSolid[tile.type] && tile.active())
             {

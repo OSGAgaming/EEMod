@@ -1,10 +1,8 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.Graphics.Effects;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace EEMod.Projectiles.Runes
 {

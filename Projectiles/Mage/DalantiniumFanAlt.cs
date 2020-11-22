@@ -74,7 +74,6 @@ namespace EEMod.Projectiles.Mage
             {
                 projectile.velocity += (Main.player[projectile.owner].Center + Dist - projectile.Center) / 202f - projectile.velocity * 0.02f;
                 projectile.rotation = dist.ToRotation() + (float)Math.PI / 4f;
-
             }
             else if (projectile.ai[0] < secondPhase)
             {

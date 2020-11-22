@@ -1,18 +1,6 @@
-﻿using log4net;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Xml.Serialization;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace EEMod.MachineLearning
 {
@@ -20,7 +8,6 @@ namespace EEMod.MachineLearning
     {
         public void SerializeToXML<T>(T objects, string fileName)
         {
-
             XmlSerializer xs = new XmlSerializer(typeof(T));
 
             TextWriter txtWriter = new StreamWriter(fileName);
@@ -29,6 +16,7 @@ namespace EEMod.MachineLearning
 
             txtWriter.Close();
         }
+
         public void Serialize(object t, string path)
         {
             using (Stream stream = File.Open(path, FileMode.Create))
@@ -37,11 +25,13 @@ namespace EEMod.MachineLearning
                 bformatter.Serialize(stream, t);
             }
         }
+
         public void SerializeToJson(object t, string path)
         {
             // var json = new JavaScriptSerializer().Serialize(t);
         }
-        //Could explicitly return 2d array, 
+
+        //Could explicitly return 2d array,
         //or be casted from an object to be more dynamic
         public T Deserialize<T>(string path)
         {
@@ -51,6 +41,7 @@ namespace EEMod.MachineLearning
                 return (T)bformatter.Deserialize(stream);
             }
         }
+
         public void SerializeToXMLMDA<T>(T[,] objects, string fileName)
         {
             T[] To1DArray(T[,] input)
@@ -77,7 +68,6 @@ namespace EEMod.MachineLearning
 
             txtWriter.Close();
         }
-
 
         public T DeserializeToObject<T>(string fileName)
         {

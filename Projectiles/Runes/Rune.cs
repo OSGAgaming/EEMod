@@ -2,8 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Graphics.Effects;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace EEMod.Projectiles.Runes
@@ -37,6 +35,7 @@ namespace EEMod.Projectiles.Runes
 
                     projectile.velocity = new Vector2(0, (float)Math.Sin(projectile.ai[0] / 20));
                     break;
+
                 case 1:
                     projectile.alpha += 8;
                     break;

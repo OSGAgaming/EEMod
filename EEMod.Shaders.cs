@@ -17,6 +17,7 @@ namespace EEMod
         public static Effect WaterShader;
         public static Effect PrismShader;
         public static Effect TrailPractice;
+
         [LoadingMethod(LoadMode.Client)]
         internal static void ShaderLoading()
         {

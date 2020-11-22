@@ -38,12 +38,15 @@ namespace EEMod.Skies
                 case 0:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen1");
                     break;
+
                 case 1:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen2");
                     break;
+
                 case 2:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen3");
                     break;
+
                 default:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen1");
                     break;
@@ -108,12 +111,15 @@ namespace EEMod.Skies
                 case 0:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen1");
                     break;
+
                 case 1:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen2");
                     break;
+
                 case 2:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen3");
                     break;
+
                 default:
                     texture2 = EEMod.instance.GetTexture("LoadingScreenImages/LoadingScreen1");
                     break;

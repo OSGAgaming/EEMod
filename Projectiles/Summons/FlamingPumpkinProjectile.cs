@@ -1,9 +1,6 @@
-using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using EEMod.Buffs.Buffs;
 
 namespace EEMod.Projectiles.Summons
 {
@@ -34,7 +31,6 @@ namespace EEMod.Projectiles.Summons
             EEMod.Particles.Get("Main").SetSpawningModules(new SpawnRandomly(0.5f));
 
             Main.NewText(projectile.ai[0]);
-
 
             if (projectile.timeLeft > 120)
             {
@@ -80,9 +76,6 @@ namespace EEMod.Projectiles.Summons
                 projectile.velocity.Y += 0.2f;
             }
 
-
-
-
             Color lightColor = Color.White;
             switch (projectile.ai[0])
             {
@@ -90,10 +83,12 @@ namespace EEMod.Projectiles.Summons
                     lightColor = Color.Red;
                     EEMod.Particles.Get("Main").SpawnParticles(projectile.Center, new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)), 2, Color.Lerp(Color.DarkRed, Color.OrangeRed, Main.rand.NextFloat(0f, 1f)), new SlowDown(0.97f), new RotateVelocity(Main.rand.NextFloat(-.08f, .08f)), new RotateTexture(0.02f));
                     break;
+
                 case 1:
                     lightColor = Color.Orange;
                     EEMod.Particles.Get("Main").SpawnParticles(projectile.Center, new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)), 2, Color.Lerp(Color.OrangeRed, Color.Goldenrod, Main.rand.NextFloat(0f, 1f)), new SlowDown(0.97f), new RotateVelocity(Main.rand.NextFloat(-.08f, .08f)), new RotateTexture(0.02f));
                     break;
+
                 case 2:
                     lightColor = Color.Yellow;
                     EEMod.Particles.Get("Main").SpawnParticles(projectile.Center, new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)), 2, Color.Lerp(Color.Goldenrod, Color.LightYellow, Main.rand.NextFloat(0f, 1f)), new SlowDown(0.97f), new RotateVelocity(Main.rand.NextFloat(-.08f, .08f)), new RotateTexture(0.02f));
@@ -133,9 +128,11 @@ namespace EEMod.Projectiles.Summons
                             case 0:
                                 EEMod.Particles.Get("Main").SpawnParticles(projectile.Center + new Vector2(i - 9, (j - 6) / 2) * 2, Vector2.Normalize(projectile.Center - (projectile.Center - new Vector2(i - 9, j - 6))), 3, Color.Lerp(Color.DarkRed, Color.OrangeRed, Main.rand.NextFloat(0f, 1f)), new SlowDown(0.97f), new RotateVelocity(Main.rand.NextFloat(-.08f, .08f)), new RotateTexture(0.02f));
                                 break;
+
                             case 1:
                                 EEMod.Particles.Get("Main").SpawnParticles(projectile.Center + new Vector2(i - 9, (j - 6) / 2) * 2, Vector2.Normalize(projectile.Center - (projectile.Center - new Vector2(i - 9, j - 6))), 3, Color.Lerp(Color.OrangeRed, Color.Goldenrod, Main.rand.NextFloat(0f, 1f)), new SlowDown(0.97f), new RotateVelocity(Main.rand.NextFloat(-.08f, .08f)), new RotateTexture(0.02f));
                                 break;
+
                             case 2:
                                 EEMod.Particles.Get("Main").SpawnParticles(projectile.Center + new Vector2(i - 9, (j - 6) / 2) * 2, Vector2.Normalize(projectile.Center - (projectile.Center - new Vector2(i - 9, j - 6))), 3, Color.Lerp(Color.Goldenrod, Color.LightYellow, Main.rand.NextFloat(0f, 1f)), new SlowDown(0.97f), new RotateVelocity(Main.rand.NextFloat(-.08f, .08f)), new RotateTexture(0.02f));
                                 break;

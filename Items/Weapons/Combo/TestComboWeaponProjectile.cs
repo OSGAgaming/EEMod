@@ -1,8 +1,4 @@
 using EEMod.Projectiles;
-using EEMod.Projectiles.Mage;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace EEMod.Items.Weapons.Combo
 {
@@ -12,6 +8,7 @@ namespace EEMod.Items.Weapons.Combo
         {
             DisplayName.SetDefault("Test Combo Weapon");
         }
+
         public void Attack1()
         {
             projectile.Center = projOwner.Center;
@@ -19,6 +16,7 @@ namespace EEMod.Items.Weapons.Combo
             if (isFinished)
                 projectile.Kill();
         }
+
         public void Attack2()
         {
             projectile.Center = projOwner.Center;
@@ -26,6 +24,7 @@ namespace EEMod.Items.Weapons.Combo
             if (isFinished)
                 projectile.Kill();
         }
+
         public override void SetDefaults()
         {
             projectile.width = 42;

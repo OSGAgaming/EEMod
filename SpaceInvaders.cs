@@ -1,10 +1,8 @@
-using IL.Terraria.GameContent.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
-using Terraria.UI;
 
 namespace EEMod
 {
@@ -59,6 +57,7 @@ namespace EEMod
 
         public int lives = 2;
         public int[] lifeImages = new int[3];
+
         public override void Initialize()
         {
             Texture2D SAPlayer = EEMod.instance.GetTexture("EEGameAssets/SAPlayer");
@@ -82,7 +81,7 @@ namespace EEMod
             level = 1;
         }
 
-        void SpawnFormation()
+        private void SpawnFormation()
         {
             int legoYoda = Main.rand.Next(0, 4);
             for (int i = 0; i < 7; i++)
@@ -160,6 +159,7 @@ namespace EEMod
             if (gameActive)
             {
                 #region Player controls
+
                 if (Main.LocalPlayer.controlLeft)
                 {
                     elementArray[player].velocity = new Vector2(-3, 0);
@@ -185,7 +185,8 @@ namespace EEMod
                     shootCooldown = 20;
                     Main.PlaySound(SoundID.Item93);
                 }
-                #endregion
+
+                #endregion Player controls
 
                 time += level;
 

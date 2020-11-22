@@ -1,15 +1,4 @@
-﻿using log4net;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading;
-using Terraria;
-using Terraria.ModLoader;
+﻿using System;
 
 namespace EEMod.MachineLearning
 {
@@ -20,13 +9,22 @@ namespace EEMod.MachineLearning
         {
             OnInitialize();
         }
+
         public void Update()
         {
             OnUpdate();
         }
-        public virtual void OnInitialize() {; }
 
-        public virtual void OnUpdate() {; }
+        public virtual void OnInitialize()
+        {
+            ;
+        }
+
+        public virtual void OnUpdate()
+        {
+            ;
+        }
+
         public MLObject()
         {
             Initialize();

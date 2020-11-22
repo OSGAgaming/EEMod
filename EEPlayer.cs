@@ -45,6 +45,7 @@ namespace EEMod
 
         //Equipment booleans
         public bool hydroGear;
+
         public bool dragonScale;
         public bool lythenSet;
         public int lythenSetTimer;
@@ -83,10 +84,12 @@ namespace EEMod
 
         //Runes
         public byte[] hasGottenRuneBefore = new byte[7];
+
         public byte[] inPossesion = new byte[7];
 
         //Morality
         public static int moralScore;
+
         public int initialMoralScore;
 
         public readonly SubworldManager SM = new SubworldManager();
@@ -264,6 +267,7 @@ namespace EEMod
         public bool isHoldingGlider;
         public Vector2 currentAltarPos;
         public bool isInSubworld;
+
         public override void UpdateVanityAccessories()
         {
             if (hydroGear || dragonScale)
@@ -385,7 +389,9 @@ namespace EEMod
                     break;
             }
         }
+
         public bool isHangingOnVine;
+
         private void Moral()
         {
             moralScore = 0;
@@ -408,7 +414,6 @@ namespace EEMod
                 }
                 catch
                 {
-
                 }
                 for (int i = 0; i < arrayPoints.Length; i++)
                 {
@@ -647,6 +652,7 @@ namespace EEMod
             Main.spriteBatch.Draw(EEMod.instance.GetTexture("UI/InspectIcon"), (player.Center + new Vector2(0, (float)Math.Sin(inspectTimer) * 32)).ForDraw(), Color.White);
             inspectTimer += 0.5f;
         }
+
         public void UpdateVerletCollisions(int pRP, float velDamp, int fakeElevation, int newFeetPos, float gradientFunction)
         {
             foreach (Verlet.Stick stick in Verlet.stickPoints)
@@ -693,6 +699,7 @@ namespace EEMod
 
         public bool playingGame;
         public float seamapLightColor;
+
         public override void UpdateBiomeVisuals()
         {
             seamapLightColor = MathHelper.Clamp((isStorming ? 1 : 2 / 3f) + brightness, 0.333f, 2f);
@@ -1343,6 +1350,7 @@ namespace EEMod
         public struct Island
         {
             EEPlayer player => Main.LocalPlayer.GetModPlayer<EEPlayer>();
+
             public Island(Vector2 pos, Texture2D tex, string NameOfIsland, int frameCount = 1, int frameSpid = 2, bool canCollide = false, int startingFrame = 0)
             {
                 posX = (int)pos.X;
@@ -1431,7 +1439,6 @@ namespace EEMod
 
             public void Update()
             {
-
             }
         }
 
@@ -1474,7 +1481,6 @@ namespace EEMod
 
             public void Update()
             {
-
             }
         }
 

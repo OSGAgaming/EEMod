@@ -1,17 +1,12 @@
-using EEMod.Extensions;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace EEMod
 {
     public class TileVisualHandler : IComponentHandler<TileObjVisual>
     {
-        List<TileObjVisual> TileVisuals = new List<TileObjVisual>();
+        private List<TileObjVisual> TileVisuals = new List<TileObjVisual>();
+
         public void Update()
         {
             foreach (TileObjVisual TV in TileVisuals)
@@ -19,6 +14,7 @@ namespace EEMod
                 TV.Update();
             }
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (TileObjVisual TV in TileVisuals)

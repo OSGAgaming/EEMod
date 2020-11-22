@@ -1,9 +1,5 @@
 using Terraria;
-using Terraria.GameInput;
-using Terraria.Graphics.Effects;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
+
 namespace EEMod.ID
 {
     public class KeyID

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,7 +14,6 @@ namespace EEMod.Projectiles
 
         public virtual void ExtraAI()
         {
-
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)

@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace EEMod.Tiles.Furniture.Coral.HangingCoral
 {
@@ -37,7 +37,6 @@ namespace EEMod.Tiles.Furniture.Coral.HangingCoral
             AddMapEntry(new Color(0, 100, 200), name);
             dustType = DustID.Dirt;
         }
-
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

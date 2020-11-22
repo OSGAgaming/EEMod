@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,7 +8,7 @@ namespace EEMod.VerletIntegration
 {
     public static class VerletHelpers
     {
-        struct VineInfo
+        private struct VineInfo
         {
             public Vector2 position;
             public int numberOfChains;
@@ -18,6 +17,7 @@ namespace EEMod.VerletIntegration
             public string texturePath;
             public Texture2D glowmask => ModContent.GetInstance<EEMod>().GetTexture(glowmaskPath);
             public Texture2D texture => ModContent.GetInstance<EEMod>().GetTexture(texturePath);
+
             public VineInfo(Vector2 position, int numberOfChains, float lengthOfChains, string texturePath, string glowmaskPath)
             {
                 this.position = position;
@@ -27,6 +27,7 @@ namespace EEMod.VerletIntegration
                 this.texturePath = texturePath;
             }
         }
+
         public static HashSet<int> EndPointChains = new HashSet<int>();
         public static IList<Vector2> SwingableVines = new List<Vector2>();
 
@@ -64,6 +65,7 @@ namespace EEMod.VerletIntegration
                 }
             }
         }
+
         public static void AddStickChainNoAdd(ref Verlet verlet, Vector2 position, int numberOfChains, float lengthOfChains)
         {
             for (int i = 0; i < numberOfChains; i++)
@@ -94,10 +96,9 @@ namespace EEMod.VerletIntegration
                 }
             }
         }
+
         public static void LoadVines()
         {
-
         }
-
     }
 }

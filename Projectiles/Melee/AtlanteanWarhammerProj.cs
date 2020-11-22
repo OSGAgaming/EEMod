@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 
 namespace EEMod.Projectiles.Melee
@@ -27,6 +26,7 @@ namespace EEMod.Projectiles.Melee
             projectile.damage = 20;
             projectile.knockBack = 4.5f;
         }
+
         public override float rotationalCoverage => MathHelper.Pi;
         public override float RotationalOffset => MathHelper.PiOver2;
         public override float dirtSmashIntensity => 12;

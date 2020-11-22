@@ -1,10 +1,10 @@
+using EEMod.Extensions;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using Microsoft.Xna.Framework.Graphics;
-using EEMod.Extensions;
 
 namespace EEMod.NPCs.CoralReefs
 {
@@ -38,12 +38,14 @@ namespace EEMod.NPCs.CoralReefs
 
             npc.damage = 5;
         }
-        float counter;
+
+        private float counter;
         public int cap = 15;
         public Vector2[,,] lol1;
         public int noOfTentacles = 8;
-        float counter2;
+        private float counter2;
         public Color drawColour;
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             this.drawColour = drawColor;
@@ -53,6 +55,7 @@ namespace EEMod.NPCs.CoralReefs
             Main.spriteBatch.Draw(tex, new Rectangle((int)pos.X, (int)pos.Y, tex.Width + (int)(Math.Sin(counter2) * 2) - 5, tex.Height + (int)(Math.Cos(counter2) * 5) - 2), npc.frame, Color.Lerp(drawColor, Color.MediumPurple, (float)Math.Sin(counter2) * 0.2f), npc.rotation, npc.frame.Size() / 2, npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
         }
+
         public void UpdateJellyfishTesting()
         {
             npc.rotation = npc.velocity.X / 16f;
@@ -120,6 +123,7 @@ namespace EEMod.NPCs.CoralReefs
                 }
             }
         }
+
         public override void AI()
         {
             UpdateJellyfishTesting();

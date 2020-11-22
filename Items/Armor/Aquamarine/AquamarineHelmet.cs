@@ -1,4 +1,3 @@
-using EEMod.Items.Placeables.Ores;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,12 +29,10 @@ namespace EEMod.Items.Armor.Aquamarine
 
         public override void UpdateEquip(Player player)
         {
-            
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            
         }
     }
 }

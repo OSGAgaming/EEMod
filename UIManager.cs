@@ -1,23 +1,18 @@
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace EEMod
 {
     public class UIManager : IUpdateableGT
     {
-
         private readonly Dictionary<string, UserInterface> UIInterfaces = new Dictionary<string, UserInterface>();
         private readonly Dictionary<string, UIState> UIStates = new Dictionary<string, UIState>();
         private readonly Dictionary<UserInterface, UIState> Binds = new Dictionary<UserInterface, UIState>();
+
         public void AddUIState(string UIStateName, UIState UiState)
         {
             if (UIStates.ContainsKey(UIStateName))
@@ -39,6 +34,7 @@ namespace EEMod
                 BindInterfaceToState(UIStateName, Bind);
             }
         }
+
         public void Remove(string UIStateName)
         {
             if (!UIInterfaces.ContainsKey(UIStateName))
@@ -47,6 +43,7 @@ namespace EEMod
             }
             UIInterfaces.Remove(UIStateName);
         }
+
         public void SetState(string UIInterfaceName, string UIStateName)
         {
             if (!UIInterfaces.ContainsKey(UIInterfaceName) || !UIStates.ContainsKey(UIStateName))
@@ -55,6 +52,7 @@ namespace EEMod
             }
             UIInterfaces[UIInterfaceName].SetState(UIStates[UIStateName]);
         }
+
         public void RemoveState(string UIInterfaceName)
         {
             if (!UIInterfaces.ContainsKey(UIInterfaceName))
@@ -63,6 +61,7 @@ namespace EEMod
             }
             UIInterfaces[UIInterfaceName].SetState(null);
         }
+
         public void BindInterfaceToState(string UIInterfaceName, string UIStateName)
         {
             if (!UIInterfaces.ContainsKey(UIInterfaceName) || !UIStates.ContainsKey(UIStateName))
@@ -96,6 +95,7 @@ namespace EEMod
                 }
             }
         }
+
         public void Load()
         {
             for (int i = 0; i < UIStates.Count; i++)
@@ -103,7 +103,12 @@ namespace EEMod
                 UIStates.Values.ToArray()[i].OnActivate();
             }
         }
-        public void UnLoad() { UIInterfaces.Clear(); UIStates.Clear(); Binds.Clear(); }
+
+        public void UnLoad()
+        {
+            UIInterfaces.Clear(); UIStates.Clear(); Binds.Clear();
+        }
+
         public void Update(GameTime gameTime)
         {
             foreach (UserInterface item in UIInterfaces.Values)
@@ -114,6 +119,7 @@ namespace EEMod
                 }
             }
         }
+
         public void Draw(GameTime gameTime)
         {
             foreach (UserInterface item in UIInterfaces.Values)

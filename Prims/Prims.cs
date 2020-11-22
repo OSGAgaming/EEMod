@@ -1,19 +1,18 @@
-﻿using EEMod.Autoloading;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using Terraria;
-using System.Collections.Generic;
+﻿using EEMod.Effects;
 using EEMod.Extensions;
-using System.Linq;
-using System;
-using EEMod.Effects;
-using EEMod.Projectiles.Mage;
-using static Terraria.ModLoader.ModContent;
-using System.Reflection;
-using EEMod.Projectiles.Ranged;
-using EEMod.Projectiles.Melee;
 using EEMod.NPCs.CoralReefs;
+using EEMod.Projectiles.Mage;
+using EEMod.Projectiles.Melee;
+using EEMod.Projectiles.Ranged;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Terraria;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace EEMod
 {
@@ -23,8 +22,10 @@ namespace EEMod
         public interface ITrailShader
         {
             string ShaderPass { get; }
+
             void ApplyShader<T>(Effect effect, T trail, List<Vector2> positions, string ESP);
         }
+
         public void DrawTrails(SpriteBatch spriteBatch)
         {
             foreach (Trail trail in _trails)
@@ -37,17 +38,20 @@ namespace EEMod
                 verlet.DrawCape(_basicEffect, Main.graphics.GraphicsDevice);
             }
         }
+
         public void DrawProjectileTrails()
         {
             foreach (Trail trail in _trails)
             {
-                if(trail.isProjectile)
-                trail.Draw(_effect, _basicEffect, Main.graphics.GraphicsDevice);
+                if (trail.isProjectile)
+                    trail.Draw(_effect, _basicEffect, Main.graphics.GraphicsDevice);
             }
         }
+
         public class DefaultShader : ITrailShader
         {
             public string ShaderPass => "DefaultPass";
+
             public void ApplyShader<T>(Effect effect, T trail, List<Vector2> positions, string ESP)
             {
                 try
@@ -56,15 +60,16 @@ namespace EEMod
                 }
                 catch
                 {
-
                 }
                 effect.CurrentTechnique.Passes[ShaderPass].Apply();
             }
         }
+
         private Effect _effect;
         public static List<Trail> _trails = new List<Trail>();
         private List<VerletBuffer> _Verlets = new List<VerletBuffer>();
         private static BasicEffect _basicEffect;
+
         public void UpdateTrails()
         {
             for (int i = 0; i < _trails.Count; i++)
@@ -79,6 +84,7 @@ namespace EEMod
             }
             Dispose();
         }
+
         public Prims(Mod mod)
         {
             _trails = new List<Trail>();
@@ -86,17 +92,20 @@ namespace EEMod
             _basicEffect = new BasicEffect(Main.graphics.GraphicsDevice);
             _basicEffect.VertexColorEnabled = true;
         }
+
         public void CreateTrail(Projectile projectile = null)
         {
             Trail newTrail = new Trail(new RoundCap(), new DefaultShader(), projectile);
             newTrail.isProjectile = true;
             _trails.Add(newTrail);
         }
+
         public void CreateTrailWithNPC(Projectile projectile = null, NPC npc = null)
         {
             Trail newTrail = new Trail(new RoundCap(), new DefaultShader(), projectile, npc);
             _trails.Add(newTrail);
         }
+
         public void Dispose()
         {
             for (int i = 0; i < _trails.Count; i++)
@@ -162,14 +171,17 @@ namespace EEMod
                 }
             }
         }
+
         public void CreateVerlet()
         {
             VerletBuffer newTrail = new VerletBuffer();
             _Verlets.Add(newTrail);
         }
+
         public class VerletBuffer
         {
-            bool active = false;
+            private bool active = false;
+
             public void Update()
             {
                 if (lerpage >= 1)
@@ -178,7 +190,9 @@ namespace EEMod
                 }
                 lerpage += 0.01f;
             }
-            float lerpage;
+
+            private float lerpage;
+
             public void DrawCape(BasicEffect effect2, GraphicsDevice device)
             {
                 Vector2[] pointsArray = Main.LocalPlayer.GetModPlayer<EEPlayer>().arrayPoints;
@@ -291,6 +305,7 @@ namespace EEMod
                     device.DrawUserPrimitives(PrimitiveType.TriangleList, vertices, 0, pointsArray.Length * 2 - 3);
                 }
             }
+
             //Helper methods
             private Vector2 CurveNormal(List<Vector2> points, int index)
             {
@@ -308,26 +323,31 @@ namespace EEMod
                 return new Vector2(-vector.Y, vector.X);
             }
         }
+
         public delegate void DrawPrimDelegate(int noOfPoints);
+
         public delegate void UpdatePrimDelegate();
+
         public static Type[] types => Assembly.GetExecutingAssembly().GetTypes();
+
         public class Trail
         {
             public void Dispose()
             {
-
             }
+
             private ITrailShader _trailShader;
             public Projectile _projectile;
             public NPC npc;
             public List<Vector2> _points = new List<Vector2>();
             public bool active;
             public int lerper;
-            float Cap;
+            private float Cap;
             public bool isProjectile;
             public float width;
-            List<UpdatePrimDelegate> UpdateMethods = new List<UpdatePrimDelegate>();
-            void LythenPrimUpdates()
+            private List<UpdatePrimDelegate> UpdateMethods = new List<UpdatePrimDelegate>();
+
+            private void LythenPrimUpdates()
             {
                 if (_projectile.type == ProjectileType<LythenStaffProjectile>())
                 {
@@ -348,7 +368,8 @@ namespace EEMod
                     }
                 }
             }
-            void DalantiniumPrimUpdates()
+
+            private void DalantiniumPrimUpdates()
             {
                 if (_projectile.type == ProjectileType<DalantiniumFan>())
                 {
@@ -363,7 +384,8 @@ namespace EEMod
                     }
                 }
             }
-            void DalantiniumAltPrimUpdates()
+
+            private void DalantiniumAltPrimUpdates()
             {
                 if (_projectile.type == ProjectileType<DalantiniumFanAlt>())
                 {
@@ -378,7 +400,8 @@ namespace EEMod
                     }
                 }
             }
-            void AxeLightningPrimUpdates()
+
+            private void AxeLightningPrimUpdates()
             {
                 if (_projectile.type == ProjectileType<AxeLightning>())
                 {
@@ -394,7 +417,8 @@ namespace EEMod
                     }
                 }
             }
-            void PrismDaggerPrimUpdates()
+
+            private void PrismDaggerPrimUpdates()
             {
                 if (_projectile.type == ProjectileType<PrismDagger>())
                 {
@@ -410,7 +434,8 @@ namespace EEMod
                     }
                 }
             }
-            void DalantiniumSpikePrimUpdates()
+
+            private void DalantiniumSpikePrimUpdates()
             {
                 if (_projectile.type == ProjectileType<DalantiniumSpike>())
                 {
@@ -425,7 +450,8 @@ namespace EEMod
                     }
                 }
             }
-            void GliderUpdates()
+
+            private void GliderUpdates()
             {
                 _points.Add(Main.LocalPlayer.Center + new Vector2(0, -25));
                 active = true;
@@ -436,7 +462,8 @@ namespace EEMod
                     _points.RemoveAt(0);
                 }
             }
-            void TesterUpdates()
+
+            private void TesterUpdates()
             {
                 _points.Add(Main.MouseWorld);
                 active = true;
@@ -448,10 +475,10 @@ namespace EEMod
                 }
             }
 
-            void JellyFishUpdates()
+            private void JellyFishUpdates()
             {
-
             }
+
             public Trail(ITrailCap cap, ITrailShader shader, Projectile projectile, NPC npc = null)
             {
                 _trailShader = shader;
@@ -465,6 +492,7 @@ namespace EEMod
                 UpdateMethods.Add(PrismDaggerPrimUpdates);
                 this.npc = npc;
             }
+
             public void Update()
             {
                 if (_projectile == null)
@@ -487,6 +515,7 @@ namespace EEMod
                     JellyFishUpdates();
                 }
             }
+
             public void Draw(Effect effect, BasicEffect effect2, GraphicsDevice device)
             {
                 //PREPARATION
@@ -507,7 +536,7 @@ namespace EEMod
                     Matrix view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(width / 2, height / -2, 0) * Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(zoom.X, zoom.Y, 1f);
                     Matrix projection = Matrix.CreateOrthographic(width, height, 0, 1000);
                     effects.Parameters["WorldViewProjection"].SetValue(view * projection);
-                    _trailShader.ApplyShader(effects, this, _points,"MainPS");
+                    _trailShader.ApplyShader(effects, this, _points, "MainPS");
                 }
                 void PrepareBasicShader()
                 {
@@ -523,18 +552,18 @@ namespace EEMod
                         pass.Apply();
                     }
                 }
-                void MakePrimMidFade(int i,int Width, float alphaValue,Color baseColour = default,float fadeValue = 1,float sineFactor = 0)
+                void MakePrimMidFade(int i, int Width, float alphaValue, Color baseColour = default, float fadeValue = 1, float sineFactor = 0)
                 {
                     Color c = (baseColour == default ? Color.White : baseColour) * (i / Cap) * fadeValue;
                     Vector2 normal = CurveNormal(_points, i);
                     Vector2 normalAhead = CurveNormal(_points, i + 1);
                     float j = (Cap - (i * 0.9f)) / Cap;
                     float width = (i / Cap) * Width;
-                    float width2 = ((i+1) / Cap) * Width;
-                    Vector2 firstUp = _points[i] - normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f))* sineFactor;
+                    float width2 = ((i + 1) / Cap) * Width;
+                    Vector2 firstUp = _points[i] - normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f)) * sineFactor;
                     Vector2 firstDown = _points[i] + normal * width + new Vector2(0, (float)Math.Sin(lerper / 10f + i / 3f)) * sineFactor;
-                    Vector2 secondUp = _points[i + 1] - normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i+1) / 3f)) * sineFactor;
-                    Vector2 secondDown = _points[i + 1] + normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i+1) / 3f)) * sineFactor;
+                    Vector2 secondUp = _points[i + 1] - normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i + 1) / 3f)) * sineFactor;
+                    Vector2 secondDown = _points[i + 1] + normalAhead * width2 + new Vector2(0, (float)Math.Sin(lerper / 10f + (i + 1) / 3f)) * sineFactor;
 
                     AddVertex(firstDown, c * alphaValue, new Vector2((i / Cap), 1));
                     AddVertex(firstUp, c * alphaValue, new Vector2((i / Cap), 0));
@@ -608,7 +637,6 @@ namespace EEMod
                                 }
                                 else
                                 {
-
                                     if (i != tentacle[b][a].Count - 1)
                                     {
                                         //7,86,122
@@ -637,7 +665,6 @@ namespace EEMod
                                     }
                                     else
                                     {
-
                                     }
                                 }
                             }
@@ -667,14 +694,12 @@ namespace EEMod
                         }
                         else
                         {
-
                             if (i != _points.Count - 1)
                             {
                                 MakePrimMidFade(i, 5, 1f, Color.Red);
                             }
                             else
                             {
-
                             }
                         }
                     }
@@ -693,18 +718,15 @@ namespace EEMod
                     {
                         if (i == 0)
                         {
-
                         }
                         else
                         {
-
                             if (i != _points.Count - 1)
                             {
-                                MakePrimMidFade(i,5, 0.8f,default, Math.Abs(Main.LocalPlayer.velocity.X)/20f,1);
+                                MakePrimMidFade(i, 5, 0.8f, default, Math.Abs(Main.LocalPlayer.velocity.X) / 20f, 1);
                             }
                             else
                             {
-
                             }
                         }
                     }
@@ -719,18 +741,15 @@ namespace EEMod
                     {
                         if (i == 0)
                         {
-
                         }
                         else
                         {
-
                             if (i != _points.Count - 1)
                             {
                                 MakePrimMidFade(i, 20, 0.8f);
                             }
                             else
                             {
-
                             }
                         }
                     }
@@ -766,7 +785,6 @@ namespace EEMod
                             }
                             else
                             {
-
                             }
                         }
                     }
@@ -797,7 +815,7 @@ namespace EEMod
                         {
                             if (i != _points.Count - 1)
                             {
-                                widthVar = (float)Math.Sqrt(_points.Count - i)*width;
+                                widthVar = (float)Math.Sqrt(_points.Count - i) * width;
                                 Color base1 = new Color(7, 86, 122);
                                 Color base2 = new Color(255, 244, 173);
                                 Color c = Color.Lerp(Color.White, Color.Cyan, colorSin) * (1 - (i / (float)_points.Count));
@@ -821,7 +839,6 @@ namespace EEMod
                             }
                             else
                             {
-
                             }
                         }
                     }
@@ -853,7 +870,7 @@ namespace EEMod
                                 widthvar = (float)Math.Sqrt(i) * width;
                                 Color base1 = new Color(7, 86, 122);
                                 Color base2 = new Color(255, 244, 173);
-                                Color c = Main.hslToRgb((_projectile.ai[0] / 16.96f) + 0.46f, 1f, 0.7f) * ((i*3) / (float)_points.Count);
+                                Color c = Main.hslToRgb((_projectile.ai[0] / 16.96f) + 0.46f, 1f, 0.7f) * ((i * 3) / (float)_points.Count);
                                 Color cBT = Main.hslToRgb((_projectile.ai[0] / 16.96f) + 0.46f, 1f, 0.7f) * (((i + 1) * 3) / (float)_points.Count);
                                 Vector2 normal = CurveNormal(_points, i);
                                 Vector2 normalAhead = CurveNormal(_points, i + 1);
@@ -868,14 +885,12 @@ namespace EEMod
                                 AddVertex(secondDown, cBT * alphaValue, new Vector2(0));
                                 AddVertex(firstDown, c * alphaValue, new Vector2(0));
 
-
                                 AddVertex(secondUp, cBT * alphaValue, new Vector2(1));
                                 AddVertex(secondDown, cBT * alphaValue, new Vector2(0));
                                 AddVertex(firstUp, c * alphaValue, new Vector2(0));
                             }
                             else
                             {
-
                             }
                         }
                     }
@@ -904,7 +919,6 @@ namespace EEMod
                     {
                         PrismDaggerPrims.Invoke((int)Cap * 6 - 9);
                     }
-
                 }
                 if (npc != null)
                 {
@@ -916,6 +930,7 @@ namespace EEMod
                 GliderPrims.Invoke((int)Cap * 6 - 12);
                 TesterPrims.Invoke((int)Cap * 6 - 12);
             }
+
             //Helper methods
             private Vector2 CurveNormal(List<Vector2> points, int index)
             {
@@ -937,8 +952,5 @@ namespace EEMod
                 return new Vector2(-vector.Y, vector.X);
             }
         }
-
     }
 }
-
-

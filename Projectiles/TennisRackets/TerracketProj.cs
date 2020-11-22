@@ -1,11 +1,10 @@
+using EEMod.Items.TennisRackets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
-using EEMod.Items.TennisRackets;
-using System;
-using Terraria.ID;
 
 namespace EEMod.Projectiles.TennisRackets
 {
@@ -59,6 +58,7 @@ namespace EEMod.Projectiles.TennisRackets
         public int owner;
 
         private int d = 0;
+
         public override void AI()
         {
             d++;

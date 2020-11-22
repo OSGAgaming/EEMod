@@ -1,20 +1,20 @@
 using EEMod.Extensions;
-using EEMod.Seamap.SeamapAssets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static EEMod.EEMod;
+
 namespace EEMod.SeamapAssets
 {
     public class SeamapRender
     {
-        static EEPlayer modPlayer
+        private static EEPlayer modPlayer
         {
             get => Main.LocalPlayer.GetModPlayer<EEPlayer>();
         }
+
         public static void RenderShip()
         {
             Vector2 position = instance.position;
@@ -69,24 +69,28 @@ namespace EEMod.SeamapAssets
                         if (eePlayer.boatSpeed == 1)
                             frameNum = 2;
                         break;
+
                     case 2:
                         if (eePlayer.boatSpeed == 3)
                             frameNum = 9;
                         if (eePlayer.boatSpeed == 1)
                             frameNum = 8;
                         break;
+
                     case 3:
                         if (eePlayer.boatSpeed == 3)
                             frameNum = 5;
                         if (eePlayer.boatSpeed == 1)
                             frameNum = 4;
                         break;
+
                     case 4:
                         if (eePlayer.boatSpeed == 3)
                             frameNum = 7;
                         if (eePlayer.boatSpeed == 1)
                             frameNum = 6;
                         break;
+
                     case 5:
                         if (eePlayer.boatSpeed == 3)
                             frameNum = 11;
@@ -124,8 +128,10 @@ namespace EEMod.SeamapAssets
             Rectangle rect = new Rectangle(0, (int)(texture3.Height / 8 * ShipHelth), texture3.Width, texture3.Height / 8);
             Main.spriteBatch.Draw(texture3, new Vector2(Main.screenWidth - 175, 50), rect, Color.White, 0, texture3.TextureCenter(), 1, SpriteEffects.None, 0);
         }
-        int pog;
-        static int frame = 0;
+
+        private int pog;
+        private static int frame = 0;
+
         public static void Render()
         {
             RenderWater();
@@ -133,7 +139,8 @@ namespace EEMod.SeamapAssets
             RenderShip();
             RenderClouds();
         }
-        static void RenderClouds()
+
+        private static void RenderClouds()
         {
             frame++;
 
@@ -152,7 +159,7 @@ namespace EEMod.SeamapAssets
             }
         }
 
-        static void RenderIslands()
+        private static void RenderIslands()
         {
             for (int i = 0; i < modPlayer.SeaObject.Count; i++)
             {
@@ -213,7 +220,7 @@ namespace EEMod.SeamapAssets
             }
         }
 
-        static void RenderWater()
+        private static void RenderWater()
         {
             EEPlayer eePlayer = Main.LocalPlayer.GetModPlayer<EEPlayer>();
             Texture2D waterTexture = instance.GetTexture("Seamap/SeamapAssets/WaterBg");
@@ -236,6 +243,5 @@ namespace EEMod.SeamapAssets
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
         }
-
     }
 }

@@ -205,6 +205,5 @@ namespace EEMod.MachineLearning
               }
             }
     }
-
 }
 */

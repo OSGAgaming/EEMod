@@ -114,8 +114,10 @@ namespace EEMod.NPCs.Bosses.Akumo
         private bool isDashing = false;
         private bool isVortexing = false;
         private bool isCircling = false;
+
         //private bool isFeathering = false; // unused atm
         private readonly int nextAttackTime = 240;
+
         private readonly int spawnOffset = 1000;
         private int lengthOfAttack = 120;
         private readonly int endurance = 5;

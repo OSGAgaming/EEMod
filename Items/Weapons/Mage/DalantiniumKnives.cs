@@ -43,9 +43,10 @@ namespace EEMod.Items.Weapons.Mage
         {
             return Vector2.Zero;
         }
-        int powerUp;
-        int anim;
-        bool isInHand;
+
+        private int powerUp;
+        private int anim;
+        private bool isInHand;
 
         public override void HoldItem(Player player)
         {
@@ -54,6 +55,7 @@ namespace EEMod.Items.Weapons.Mage
             if (powerUp < 2000)
                 powerUp++;
         }
+
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             if (anim < 200)
@@ -64,6 +66,7 @@ namespace EEMod.Items.Weapons.Mage
             }
             return true;
         }
+
         public override void UpdateInventory(Player player)
         {
             if (!isInHand)
@@ -72,6 +75,7 @@ namespace EEMod.Items.Weapons.Mage
             }
             isInHand = false;
         }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             //Helpers.TexToDust("thonk",Main.MouseWorld,5,1,100);

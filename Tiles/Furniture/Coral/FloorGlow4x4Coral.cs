@@ -34,7 +34,6 @@ namespace EEMod.Tiles.Furniture.Coral
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

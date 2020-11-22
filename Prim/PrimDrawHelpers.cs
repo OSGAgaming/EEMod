@@ -1,19 +1,9 @@
-﻿using EEMod.Autoloading;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
+﻿using EEMod.Extensions;
 using Microsoft.Xna.Framework;
-using Terraria;
-using System.Collections.Generic;
-using EEMod.Extensions;
-using System.Linq;
+using Microsoft.Xna.Framework.Graphics;
 using System;
-using EEMod.Effects;
-using EEMod.Projectiles.Mage;
-using static Terraria.ModLoader.ModContent;
-using System.Reflection;
-using EEMod.Projectiles.Ranged;
-using EEMod.Projectiles.Melee;
-using EEMod.NPCs.CoralReefs;
+using System.Collections.Generic;
+using Terraria;
 
 namespace EEMod.Prim
 {
@@ -33,15 +23,18 @@ namespace EEMod.Prim
             }
             return Clockwise90(Vector2.Normalize(points[index + 1] - points[index - 1]));
         }
+
         protected static Vector2 Clockwise90(Vector2 vector)
         {
             return new Vector2(-vector.Y, vector.X);
         }
+
         protected static void AddVertex(Vector2 position, Color color, Vector2 uv, ref int currentIndex, ref VertexPositionColorTexture[] vertices)
         {
             if (currentIndex < vertices.Length)
                 vertices[currentIndex++] = new VertexPositionColorTexture(new Vector3(position.ForDraw(), 0f), color, uv);
         }
+
         protected void PrepareShader(Effect effects)
         {
             int width = _device.Viewport.Width;
@@ -52,6 +45,7 @@ namespace EEMod.Prim
             effects.Parameters["WorldViewProjection"].SetValue(view * projection);
             //_trailShader.ApplyShader(effects, this, _points, "MainPS");
         }
+
         protected void PrepareBasicShader()
         {
             int width = _device.Viewport.Width;
@@ -66,6 +60,7 @@ namespace EEMod.Prim
                 pass.Apply();
             }
         }
+
         protected void MakePrimMidFade(int i, int Width, float alphaValue, ref int currentIndex, ref VertexPositionColorTexture[] vertices, Color baseColour = default, float fadeValue = 1, float sineFactor = 0)
         {
             Color c = (baseColour == default ? Color.White : baseColour) * (i / _cap) * fadeValue;

@@ -1,35 +1,26 @@
-﻿using EEMod.Autoloading;
-using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using Terraria;
-using System.Collections.Generic;
-using EEMod.Extensions;
-using System.Linq;
 using System;
-using EEMod.Effects;
-using EEMod.Projectiles.Mage;
-using static Terraria.ModLoader.ModContent;
-using System.Reflection;
-using EEMod.Projectiles.Ranged;
-using EEMod.Projectiles.Melee;
-using EEMod.NPCs.CoralReefs;
+using System.Linq;
+using Terraria;
 
 namespace EEMod.Prim
 {
-    class AxeLightningPrimTrail : PrimTrail
+    internal class AxeLightningPrimTrail : PrimTrail
     {
         public AxeLightningPrimTrail(Projectile projectile)
         {
             _projectile = projectile;
             _points.Add(_projectile.position);
         }
+
         public override void SetDefaults()
         {
             _alphaValue = 0.7f;
             _width = 1;
             _cap = 80;
         }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (_noOfPoints <= 1) return;
@@ -78,13 +69,13 @@ namespace EEMod.Prim
                     }
                     else
                     {
-
                     }
                 }
             }
             PrepareBasicShader();
             _device.DrawUserPrimitives(PrimitiveType.TriangleList, vertices, 0, _noOfPoints / 3);
         }
+
         public override void OnUpdate()
         {
             _counter++;
@@ -103,6 +94,7 @@ namespace EEMod.Prim
             }
             base.Update();
         }
+
         public override void OnDestroy()
         {
             _width *= 0.9f;

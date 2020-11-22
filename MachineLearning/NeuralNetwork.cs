@@ -1,15 +1,5 @@
-﻿using log4net;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace EEMod.MachineLearning
 {
@@ -24,6 +14,7 @@ namespace EEMod.MachineLearning
         public Trainer[] objTrainer;
         public NeuronInterface Layers = new NeuronInterface();
         public int CurrentData;
+
         public void MoveToNext()
         {
             CurrentData += TrainStride;
@@ -33,33 +24,41 @@ namespace EEMod.MachineLearning
                 EpochNo++;
             }
         }
+
         public void SerliazeCurrentPerceptron() => Serializer.Serialize(MainPerceptron, PerceptronSavePath);
+
         public Perceptron DeserializeSavedPerceptron() => Serializer.Deserialize<Perceptron>(PerceptronSavePath);
 
         public void FeedForward()
         {
             Layers.finalLayer = MainPerceptron.FeedForward(objTrainer[CurrentData].kerneledInputs);
         }
+
         public float Error()
         {
             ERROR = MainPerceptron.getError(objTrainer[CurrentData].answer, Layers.finalLayer);
             return ERROR;
         }
+
         public void Train()
         {
             MainPerceptron.Train(Layers.finalLayer, objTrainer[CurrentData].answer, objTrainer[CurrentData].kerneledInputs, MainPerceptron.firstHiddenLayer, MainPerceptron.secondHiddenLayer);
         }
+
         internal List<int[,]> ConvolutionalFilters = new List<int[,]>();
+
         public virtual int IMAGEWIDTH
         {
             get;
             set;
         }
+
         public float ERROR
         {
             get;
             set;
         }
+
         public virtual int IMAGEHEIGHT
         {
             get;
@@ -71,31 +70,37 @@ namespace EEMod.MachineLearning
             get;
             set;
         }
+
         public virtual int UpdateSpeed { get; set; }
         public virtual int SIZEOFINPUTS { get; set; }
         public virtual int NumberOfClassifications { get; set; }
         public virtual int NumberOfKernels { get; set; }
         public virtual float LearningRate { get; set; }
+
         public virtual int sizeOfData
         {
             get;
             set;
         }
+
         internal int NoOfEpochs
         {
             get;
             private set;
         }
+
         public int BatchSize
         {
             get;
             private set;
         }
+
         public int BatchCount
         {
             get;
             set;
         }
+
         public float[] MaxPoolMultiDimensionalArray<T>(float[] array, int imageWidth, int imageHeight, int poolWidth, int poolHeight)
         {
             List<float> returningArray = new List<float>();
@@ -120,6 +125,7 @@ namespace EEMod.MachineLearning
             }
             return returningArray.ToArray();
         }
+
         public T[] Flatten<T>(float[][] MultiArray)
         {
             List<float> bufferArray = new List<float>();
@@ -132,6 +138,7 @@ namespace EEMod.MachineLearning
             }
             return bufferArray.ToArray() as T[];
         }
+
         public float[] KernelMultidimensionalArray3x3<T>(double[] array, int imageWidth, int imageHeight, int[] convolutionalFilter, int scalar) where T : struct
         {
             List<float> returningArray = new List<float>();

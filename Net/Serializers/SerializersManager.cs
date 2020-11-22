@@ -9,6 +9,7 @@ namespace EEMod.Net.Serializers
 {
 #pragma warning disable IDE0044 // readonly modifier
 #pragma warning disable IDE0028 // initialization
+
     public class SerializersManager : AutoloadTypeManager<NetObjSerializer>
     {
         [FieldInit]

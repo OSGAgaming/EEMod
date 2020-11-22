@@ -1,9 +1,9 @@
 using EEMod.Items.Placeables.Ores;
+using EEMod.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using EEMod.Projectiles.Ranged;
 
 namespace EEMod.Items.Weapons.Ranger
 {
@@ -40,7 +40,8 @@ namespace EEMod.Items.Weapons.Ranger
             return new Vector2(-3, 0);
         }
 
-        int chargeTime = 120;
+        private int chargeTime = 120;
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             if (chargeTime <= 0)
