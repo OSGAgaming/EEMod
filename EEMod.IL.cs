@@ -46,7 +46,7 @@ namespace EEMod
         public static string screenMessageText;
         public static string progressMessage;
         public static TrailManager trailManager;
-        public static PrimTrailHelper primTrailHelper = new PrimTrailHelper();
+        public static PrimTrailManager primitives;
         public static Prims prims;
         public float seed;
         public float speed;
@@ -81,7 +81,7 @@ namespace EEMod
                 throw new Exception();
             // before the stfld there will be an int on the stack
             c.Emit(OpCodes.Ldloc, 3); // tile
-            c.EmitDelegate<Func<bool, Tile, bool>>((orig, tile) => orig && tile.type == ModContent.TileType<EmptyTile>());
+            c.EmitDelegate<Func<bool, Tile, bool>>((orig, tile) => orig && tile.type != ModContent.TileType<EmptyTile>());
         }
 
         private void Main_oldDrawWater(ILContext il)
