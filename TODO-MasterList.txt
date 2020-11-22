@@ -1,1 +1,2 @@
 ﻿OOP-ify runes
+Obliterate enums, convert to const integers? (Or use a loader if we try to OOP-ify everthing)
