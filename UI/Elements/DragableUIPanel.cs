@@ -26,7 +26,7 @@ namespace EEMod.UI.Elements
         public override void MouseDown(UIMouseEvent evt)
         {
             base.MouseDown(evt);
-            var d = evt.MousePosition;
+            Vector2 d = evt.MousePosition;
             lastX = d.X;
             lastY = d.Y;
             dragging = true;

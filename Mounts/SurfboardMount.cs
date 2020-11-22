@@ -1,5 +1,5 @@
-using EEMod.Autoloading;
 using EEMod.Buffs.Buffs;
+using EEMod.Common.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

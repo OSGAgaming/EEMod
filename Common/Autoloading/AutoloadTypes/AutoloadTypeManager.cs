@@ -1,10 +1,10 @@
 ﻿using System;
 using Terraria.ModLoader;
 
-namespace EEMod.Autoloading.AutoloadTypes
+namespace EEMod.Common.Autoloading.AutoloadTypes
 {
     /// <summary>
-    /// Do not inherit from this class, use <seealso cref="AutoloadTypeManager{T}"/> instead
+    /// Do not inherit from this class, use <seealso cref="AutoloadTypeManager{T}"/> instead.
     /// </summary>
     public abstract class AutoloadTypeManager
     {
@@ -43,9 +43,7 @@ namespace EEMod.Autoloading.AutoloadTypes
         protected sealed override void EvaluateType(Type type)
         {
             if (type.IsSubclassOf(typeof(T)))
-            {
                 CreateInstance(type);
-            }
         }
     }
 }

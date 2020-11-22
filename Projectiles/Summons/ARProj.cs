@@ -125,7 +125,7 @@ namespace EEMod.Projectiles.Summons
                 int a = -1;
                 int b = 0;
 
-                for (var c = 0; c < 200; c++)
+                for (int c = 0; c < 200; c++)
                 {
                     // Vector2.Distance(Main.npc[c].Center, projectile.Center) < 300f
                     if (Main.npc[c].lifeMax >= b && Main.npc[c].lifeMax > 1 && !Main.npc[c].townNPC && !Main.npc[c].dontTakeDamage && Main.npc[c].active && Main.npc[c].WithinRange(projectile.Center, 300))

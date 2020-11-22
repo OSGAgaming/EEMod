@@ -31,7 +31,7 @@ namespace EEMod.Projectiles.Mage
                 projectile.ai[0]++;
                 if (projectile.ai[0] == 1)
                 {
-                    for (var a = 0; a < 50; a++)
+                    for (int a = 0; a < 50; a++)
                     {
                         Vector2 vector = new Vector2(0, 20).RotatedBy(Math.PI * 0.04 * a, default);
                         int index = Dust.NewDust(projectile.Center, 22, 22, DustID.SolarFlare, vector.X, vector.Y, 0, new Color(0, 255, 0), 1f);
@@ -52,7 +52,7 @@ namespace EEMod.Projectiles.Mage
             {
                 float rot = Main.rand.NextFloat(6.28f);
                 Vector2 position = target.Center + Vector2.One.RotatedBy(rot) * 300;
-                for (var a = 0; a < 50; a++)
+                for (int a = 0; a < 50; a++)
                 {
                     Vector2 vector = new Vector2(0, 20).RotatedBy(Math.PI * 0.04 * a, default);
                     int index = Dust.NewDust(projectile.Center, 22, 22, DustID.SolarFlare, vector.X, vector.Y, 0, new Color(0, 255, 0), 1f);

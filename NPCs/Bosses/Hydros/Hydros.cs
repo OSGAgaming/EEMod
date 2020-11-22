@@ -298,7 +298,7 @@ namespace EEMod.NPCs.Bosses.Hydros
                                 {
                                     for (int j = 0; j < 3; j++)
                                     {
-                                        for (var a = 0; a < 50; a++)
+                                        for (int a = 0; a < 50; a++)
                                         {
                                             Vector2 vector = new Vector2(0, 20).RotatedBy(Math.PI * 0.04 * a, default);
                                             int index = Dust.NewDust(potentialMinionArray[j], 22, 22, 113, vector.X, vector.Y, 0, Color.AliceBlue, .7f);

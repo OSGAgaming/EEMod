@@ -4,7 +4,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace EEMod.Autoloading.AutoloadTypes
+//namespace EEMod.Common.Autoloading.AutoloadTypes
 //{
 //    [AttributeUsage(AttributeTargets.Method)]
 //    public class MethodListenerAttribute : Attribute

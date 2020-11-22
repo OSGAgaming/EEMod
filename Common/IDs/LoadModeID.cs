@@ -1,6 +1,6 @@
-﻿namespace EEMod.Autoloading
+﻿namespace EEMod.Common.IDs
 {
-    internal enum LoadMode
+    public enum LoadModeID
     {
         Both,
         Client,

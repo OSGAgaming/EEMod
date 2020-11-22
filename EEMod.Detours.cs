@@ -220,7 +220,7 @@ namespace EEMod
         {
             foreach (int index in VerletHelpers.EndPointChains)
             {
-                var vec = Verlet.Points[index].point;
+                Vector2 vec = Verlet.Points[index].point;
                 if ((vec - Main.LocalPlayer.Center).LengthSquared() < 100 * 100)
                 {
                     float lerp = 1f - (vec - Main.LocalPlayer.Center).LengthSquared() / (100 * 100);

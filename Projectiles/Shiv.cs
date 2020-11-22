@@ -120,7 +120,7 @@ namespace EEMod.Projectiles
                     tile2.type != TileID.Trees)
                     {
                         Main.LocalPlayer.GetModPlayer<EEPlayer>().FixateCameraOn(projectile.Center, 16f, true, false, (int)(shakeIntensity * damageMultiplier));
-                        for (var i = 0; i < 20; i++)
+                        for (int i = 0; i < 20; i++)
                         {
                             int num = Dust.NewDust(projOwner.Center + new Vector2((i * 10) - 100, projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, -Math.Abs(i - 10), 6, default, 0.7f);
                             Main.dust[num].noGravity = false;
@@ -198,7 +198,7 @@ namespace EEMod.Projectiles
                             projectile.alpha = 255;
 
                             Main.LocalPlayer.GetModPlayer<EEPlayer>().FixateCameraOn(projectile.Center, 16f, true, false, (int)(shakeIntensity * damageMultiplier));
-                            for (var i = 0; i < 10; i++)
+                            for (int i = 0; i < 10; i++)
                             {
                                 int num = Dust.NewDust(projOwner.Center + new Vector2((i * 10) - 50, projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, -Math.Abs(i - 10) * 0.5f, 6, default, 0.7f);
                                 Main.dust[num].noGravity = false;

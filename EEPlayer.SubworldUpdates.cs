@@ -419,7 +419,7 @@ namespace EEMod
                     triggerSeaCutscene = true;
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        var netMessage = mod.GetPacket();
+                        ModPacket netMessage = mod.GetPacket();
                         netMessage.Write(triggerSeaCutscene);
                         netMessage.Send();
                     }

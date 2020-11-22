@@ -1,4 +1,4 @@
-﻿namespace EEMod.Autoloading.AutoloadTypes
+﻿namespace EEMod.Common.Autoloading.AutoloadTypes
 {
     /// <summary>
     /// Basically like a ModX/ModSystem<br />

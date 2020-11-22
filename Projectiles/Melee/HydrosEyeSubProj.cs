@@ -46,7 +46,7 @@ namespace EEMod.Projectiles.Melee
 
         public override void Kill(int timeLeft)
         {
-            for (var a = 0; a < 2; a++)
+            for (int a = 0; a < 2; a++)
             {
                 int index = Dust.NewDust(projectile.Center, 22, 22, 16, 0, 0);
                 Main.dust[index].noGravity = true;

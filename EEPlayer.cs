@@ -1302,7 +1302,7 @@ namespace EEMod
 
             if (clone.EEPosition != EEMod.instance.position)
             {
-                var packet = mod.GetPacket();
+                ModPacket packet = mod.GetPacket();
                 packet.Write(triggerSeaCutscene);
                 packet.WriteVector2(EEPosition);
                 packet.Send();

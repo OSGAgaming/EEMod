@@ -1,4 +1,4 @@
-﻿using EEMod.Autoloading;
+﻿using EEMod.Common.Autoloading;
 using EEMod.Common.IDs;
 using EEMod.Common.Managers;
 using EEMod.Extensions;
@@ -200,7 +200,7 @@ namespace EEMod
 
                             if (Inspect.JustPressed && delays == 0)
                             {
-                                var modp = Main.LocalPlayer.GetModPlayer<EEPlayer>();
+                                EEPlayer modp = Main.LocalPlayer.GetModPlayer<EEPlayer>();
                                 if (!modp.isPickingUp)
                                     npc.ai[1] = Main.myPlayer;
                                 modp.isPickingUp = !modp.isPickingUp;
@@ -407,7 +407,7 @@ namespace EEMod
             {
                 for (int i = 0; i < layers.Count; i++)
                 {
-                    var layer = layers[i];
+                    GameInterfaceLayer layer = layers[i];
                     //Remove Resource bars
                     if (layer.Name.Contains("Vanilla: Resource Bars") || layer.Name.Contains("Vanilla: Info Accessories Bar"))
                     {
@@ -417,8 +417,8 @@ namespace EEMod
             }
 
             // EEPlayer modPlayer = Main.LocalPlayer.GetModPlayer<EEPlayer>();
-            var textLayer = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
-            var computerState = new LegacyGameInterfaceLayer("EE: UI",
+            int textLayer = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
+            LegacyGameInterfaceLayer computerState = new LegacyGameInterfaceLayer("EE: UI",
             delegate
             {
                 Ascension();
@@ -470,7 +470,7 @@ namespace EEMod
         public void DrawCR()
         {
             EEPlayer modPlayer = Main.LocalPlayer.GetModPlayer<EEPlayer>();
-            var Bubbles = modPlayer.bubbles;
+            List<BubbleClass> Bubbles = modPlayer.bubbles;
             for (int i = 0; i < Bubbles.Count; i++)
             {
                 Color drawColour = Lighting.GetColor((int)Bubbles[i].Position.X / 16, (int)Bubbles[i].Position.Y / 16);

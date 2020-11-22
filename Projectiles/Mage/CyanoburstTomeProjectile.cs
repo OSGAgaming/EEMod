@@ -38,7 +38,7 @@ namespace EEMod.Projectiles.Mage
             double rad = deg * (Math.PI / 180);
             projectile.velocity.X -= (float)Math.Cos(rad) * firstVel.X;
             projectile.velocity.Y += (float)Math.Cos(rad) * firstVel.Y;
-            for (var i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.GreenBlood, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-1f, 1f), 6, new Color(0, 255, 0, 255), 1);
                 Main.dust[num].noGravity = true;

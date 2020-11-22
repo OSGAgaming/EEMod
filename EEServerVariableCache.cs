@@ -1,4 +1,4 @@
-﻿using EEMod.Autoloading;
+﻿using EEMod.Common.Autoloading;
 using EEMod.Net;
 using EEMod.Net.Serializers;
 using Microsoft.Xna.Framework;

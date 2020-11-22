@@ -1,4 +1,4 @@
-﻿using EEMod.Autoloading.AutoloadTypes;
+﻿using EEMod.Common.Autoloading.AutoloadTypes;
 using System;
 using System.IO;
 

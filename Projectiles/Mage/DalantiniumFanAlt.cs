@@ -107,7 +107,7 @@ namespace EEMod.Projectiles.Mage
                 if (projectile.ai[0] == thirdPhase - 5)
                 {
                     projectile.Kill();
-                    for (var i = 0; i < 40; i++)
+                    for (int i = 0; i < 40; i++)
                     {
                         int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, 219, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-2f, -1f), 6, default, projectile.scale);
                         Main.dust[num].noGravity = true;

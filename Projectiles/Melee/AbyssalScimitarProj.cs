@@ -35,7 +35,7 @@ namespace EEMod.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            for (var i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 // int num = Dust.NewDust(target.Center, 2, 2, 182, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f), 6, Color.Red, 1);
                 // Main.dust[num].noGravity = false;

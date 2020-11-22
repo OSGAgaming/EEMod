@@ -1,4 +1,5 @@
 ﻿using EEMod.Autoloading;
+using EEMod.Common.IDs;
 using EEMod.NPCs.Bosses.Akumo;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -18,7 +19,7 @@ namespace EEMod
         public static Effect PrismShader;
         public static Effect TrailPractice;
 
-        [LoadingMethod(LoadMode.Client)]
+        [LoadingMethod(LoadModeID.Client)]
         internal static void ShaderLoading()
         {
             PrismShader = instance.GetEffect("Effects/PrismShader");

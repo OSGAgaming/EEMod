@@ -137,7 +137,7 @@ namespace EEMod.Projectiles.Melee
                     }
                 }
             }
-            for (var a = 0; a < 50; a++)
+            for (int a = 0; a < 50; a++)
             {
                 Vector2 vector = new Vector2(0, 20).RotatedBy(Math.PI * 0.04) * a;
                 int index = Dust.NewDust(projectile.Center, 1, 1, DustID.Fire, vector.X, vector.Y, 0, default, 1f);

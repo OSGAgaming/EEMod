@@ -76,7 +76,7 @@ namespace EEMod.Projectiles    //We need this to basically indicate the folder w
 
         public override void Kill(int timeLeft)
         {
-            for (var i = 0; i < 20; i++)
+            for (int i = 0; i < 20; i++)
             {
                 int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, 64, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-1f, 1f), 6, new Color(255, 255, 153, 255), 2f);
                 Main.dust[num].noGravity = true;

@@ -77,7 +77,7 @@ namespace EEMod.NPCs.Bosses.Kraken    //We need this to basically indicate the f
                 }
             }
             Main.PlaySound(SoundID.Item27, projectile.position);
-            for (var i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Blood, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-4f, 4f), 6, Color.Black, 2);
             }

@@ -144,15 +144,15 @@ namespace EEMod.SeamapAssets
         {
             frame++;
 
-            var OceanElements = EEPlayer.OceanMapElements;
+            System.Collections.Generic.List<EEPlayer.IOceanMapElement> OceanElements = EEPlayer.OceanMapElements;
             for (int i = 0; i < OceanElements.Count; i++)
             {
-                var element = OceanElements[i];
+                EEPlayer.IOceanMapElement element = OceanElements[i];
                 element.Draw(Main.spriteBatch);
             }
             for (int i = 0; i < modPlayer.seagulls.Count; i++)
             {
-                var element = modPlayer.seagulls[i];
+                SeagullsClass element = modPlayer.seagulls[i];
                 element.frameCounter++;
                 element.Position += new Vector2(0, -0.5f);
                 element.Draw(instance.GetTexture("Seamap/SeamapAssets/Seagulls"), 9, 5);

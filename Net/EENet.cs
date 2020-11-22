@@ -70,7 +70,7 @@ namespace EEMod.Net
 
         private static void WriteObject(ModPacket packet, object obj)
         {
-            var serializer = SerializersManager.GetTypeSerializer(obj.GetType());
+            NetObjSerializer serializer = SerializersManager.GetTypeSerializer(obj.GetType());
             if (serializer is null)
             {
                 throw new ArgumentException($"The type of {nameof(obj)}, {obj.GetType().Name} could not be found");

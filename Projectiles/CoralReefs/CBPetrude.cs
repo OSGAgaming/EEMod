@@ -59,7 +59,7 @@ namespace EEMod.Projectiles.CoralReefs
 
         public override void Kill(int timeLeft)
         {
-            for (var a = 0; a < 5; a++)
+            for (int a = 0; a < 5; a++)
             {
                 Vector2 vector = new Vector2(0, 10).RotatedBy(Math.PI * 0.4 * a, default);
                 int index = Dust.NewDust(projectile.Center, 22, 22, DustID.BlueCrystalShard, vector.X, vector.Y, 0, Color.Blue, 1f);

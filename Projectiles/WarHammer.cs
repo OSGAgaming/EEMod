@@ -79,7 +79,7 @@ namespace EEMod.Projectiles
                     if (projectile.ai[0] == 2)
                     {
                         projectile.damage = (int)(projectile.damage * damageMultiplier);
-                        for (var i = 0; i < 20; i++)
+                        for (int i = 0; i < 20; i++)
                         {
                             int num = Dust.NewDust(projOwner.Center + new Vector2(projectile.width / 2 * projOwner.direction, projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, Main.rand.NextFloat(-dirtSmashIntensity, -1f), 6, new Color(255, 217, 184, 255), 1);
                             Main.dust[num].noGravity = true;
@@ -116,7 +116,7 @@ namespace EEMod.Projectiles
                     projectile.ai[0]++;
                     if (projectile.ai[0] == 1)
                     {
-                        for (var i = 0; i < 20; i++)
+                        for (int i = 0; i < 20; i++)
                         {
                             int num = Dust.NewDust(projOwner.Center + new Vector2(projectile.width / 2 * projOwner.direction, projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, Main.rand.NextFloat(-dirtSmashIntensity, -1f), 6, new Color(255, 217, 184, 255), 1);
                             Main.dust[num].noGravity = true;

@@ -7,7 +7,7 @@ namespace EEMod.Net.Serializers
     {
         public static void Write<T>(this BinaryWriter writer, T value)
         {
-            var serializer = SerializersManager.GetTypeSerializer<T>();
+            NetObjSerializer<T> serializer = SerializersManager.GetTypeSerializer<T>();
             if (serializer is null)
             {
                 throw new ArgumentException($"Serializer for the type '{typeof(T).Name}' not found");
@@ -18,7 +18,7 @@ namespace EEMod.Net.Serializers
 
         public static T Read<T>(this BinaryReader reader)
         {
-            var serializer = SerializersManager.GetTypeSerializer<T>();
+            NetObjSerializer<T> serializer = SerializersManager.GetTypeSerializer<T>();
             if (serializer is null)
             {
                 throw new ArgumentException($"Serializer for the type '{typeof(T).Name}' not found");

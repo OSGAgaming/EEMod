@@ -1,6 +1,7 @@
-﻿using System;
+﻿using EEMod.Common.IDs;
+using System;
 
-namespace EEMod.Autoloading
+namespace EEMod.Common.Autoloading
 {
     /// <summary>
     /// Apply this to fields for instantiating them during <see cref="EEMod.Load"/><br />
@@ -43,7 +44,7 @@ namespace EEMod.Autoloading
 #pragma warning disable CS0649 // default value
 
         // TODO
-        internal LoadMode loadMode; // fields instantiating and method calling
+        internal LoadModeID loadMode; // fields instantiating and method calling
     }
 
     internal enum FieldInitType

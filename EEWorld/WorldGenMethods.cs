@@ -91,7 +91,7 @@ namespace EEMod.EEWorld
             {
                 LightStates = tag.GetByteArray("LightStates");
             }
-            var downed = new List<string>();
+            List<string> downed = new List<string>();
             if (eocFlag)
             {
                 downed.Add("eocFlag");
@@ -694,8 +694,8 @@ namespace EEMod.EEWorld
             WorldGen.PlaceTile((int)startingPos.X + 2 - 2, (int)startingPos.Y + 3 - 3, TileID.SandStoneSlab);
             if (water)
             {
-                var tile = Framing.GetTileSafely((int)startingPos.X - 2, (int)startingPos.Y - 3);
-                var tile1 = Framing.GetTileSafely((int)startingPos.X - 2 + 4, (int)startingPos.Y - 3);
+                Tile tile = Framing.GetTileSafely((int)startingPos.X - 2, (int)startingPos.Y - 3);
+                Tile tile1 = Framing.GetTileSafely((int)startingPos.X - 2 + 4, (int)startingPos.Y - 3);
                 tile.halfBrick(true);
                 tile1.halfBrick(true);
             }
@@ -704,19 +704,19 @@ namespace EEMod.EEWorld
 
         private static void MakePillarWalls(Vector2 startingPos, int height)
         {
-            var tile1 = Framing.GetTileSafely((int)startingPos.X + 1, (int)startingPos.Y);
-            var tile2 = Framing.GetTileSafely((int)startingPos.X + 0, (int)startingPos.Y);
-            var tile3 = Framing.GetTileSafely((int)startingPos.X + -1, (int)startingPos.Y);
-            var tile4 = Framing.GetTileSafely((int)startingPos.X + 1, (int)startingPos.Y + height + 1);
-            var tile5 = Framing.GetTileSafely((int)startingPos.X + 0, (int)startingPos.Y + height + 1);
-            var tile6 = Framing.GetTileSafely((int)startingPos.X + -1, (int)startingPos.Y + height + 1);
+            Tile tile1 = Framing.GetTileSafely((int)startingPos.X + 1, (int)startingPos.Y);
+            Tile tile2 = Framing.GetTileSafely((int)startingPos.X + 0, (int)startingPos.Y);
+            Tile tile3 = Framing.GetTileSafely((int)startingPos.X + -1, (int)startingPos.Y);
+            Tile tile4 = Framing.GetTileSafely((int)startingPos.X + 1, (int)startingPos.Y + height + 1);
+            Tile tile5 = Framing.GetTileSafely((int)startingPos.X + 0, (int)startingPos.Y + height + 1);
+            Tile tile6 = Framing.GetTileSafely((int)startingPos.X + -1, (int)startingPos.Y + height + 1);
             if (tile1.active() && tile2.active() && tile3.active() && tile4.active() && tile5.active() && tile6.active())
             {
                 for (int i = -1; i < 2; i++)
                 {
                     for (int j = 0; j < height; j++)
                     {
-                        var tile = Framing.GetTileSafely((int)startingPos.X + i, (int)startingPos.Y + j);
+                        Tile tile = Framing.GetTileSafely((int)startingPos.X + i, (int)startingPos.Y + j);
                         WorldGen.PlaceWall((int)startingPos.X + i, (int)startingPos.Y + j, WallID.StoneSlab);
                         tile.wallColor(28);
                     }
@@ -749,8 +749,8 @@ namespace EEMod.EEWorld
         {
             if (leftOrRight == 0)
             {
-                var tile = Framing.GetTileSafely((int)startingPos.X - 1, (int)startingPos.Y);
-                var tile1 = Framing.GetTileSafely((int)startingPos.X, (int)startingPos.Y);
+                Tile tile = Framing.GetTileSafely((int)startingPos.X - 1, (int)startingPos.Y);
+                Tile tile1 = Framing.GetTileSafely((int)startingPos.X, (int)startingPos.Y);
                 if (tile.active() && !tile1.active())
                 {
                     for (int i = 0; i < length; i++)
@@ -762,8 +762,8 @@ namespace EEMod.EEWorld
             }
             if (leftOrRight == 1)
             {
-                var tile = Framing.GetTileSafely((int)startingPos.X + 1, (int)startingPos.Y);
-                var tile1 = Framing.GetTileSafely((int)startingPos.X, (int)startingPos.Y);
+                Tile tile = Framing.GetTileSafely((int)startingPos.X + 1, (int)startingPos.Y);
+                Tile tile1 = Framing.GetTileSafely((int)startingPos.X, (int)startingPos.Y);
                 if (tile.active() && !tile1.active())
                 {
                     for (int i = 0; i < length; i++)
@@ -780,11 +780,11 @@ namespace EEMod.EEWorld
             int RoomPosX = (int)startingPos.X;
             int RoomPosY = (int)startingPos.Y;
 
-            for (var x = 0; x < TowerTiles.GetLength(1); x++)
+            for (int x = 0; x < TowerTiles.GetLength(1); x++)
             {
-                for (var y = 0; y < TowerTiles.GetLength(0); y++)
+                for (int y = 0; y < TowerTiles.GetLength(0); y++)
                 {
-                    var tile = Framing.GetTileSafely(RoomPosX + x, RoomPosY - y);
+                    Tile tile = Framing.GetTileSafely(RoomPosX + x, RoomPosY - y);
                     switch (TowerTiles[TowerTiles.GetLength(0) - 1 - y, x])
                     {
                         case 0:

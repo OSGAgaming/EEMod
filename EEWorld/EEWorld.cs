@@ -1,4 +1,4 @@
-using EEMod.Autoloading;
+using EEMod.Common.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

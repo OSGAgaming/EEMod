@@ -102,7 +102,7 @@ namespace EEMod.Tiles.EmptyTileArrays
         public static void Remove(Vector2 position)
         {
             EmptyTileEntityPairs.Remove(Convert(position));
-            foreach (var item in EmptyTilePairs.Where(kvp => kvp.Value == Convert(position)).ToList())
+            foreach (KeyValuePair<Vector2, Vector2> item in EmptyTilePairs.Where(kvp => kvp.Value == Convert(position)).ToList())
             {
                 //WorldGen.KillTile((int)item.Key.X,(int)item.Key.Y);
                 EmptyTilePairs.Remove(item.Key);

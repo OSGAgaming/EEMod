@@ -1,5 +1,5 @@
 ﻿using EEMod.Autoloading;
-using EEMod.Autoloading.AutoloadTypes;
+using EEMod.Common.Autoloading.AutoloadTypes;
 using EEMod.Extensions;
 using System;
 using System.Collections.Concurrent;
@@ -29,7 +29,7 @@ namespace EEMod.Net.Serializers
 
         public static void AddSerializer(Type fortype, NetObjSerializer serializer, SerializerPriority priority = SerializerPriority.Medium)
         {
-            if (serializers.TryGetValue(fortype, out var existingSerializer))
+            if (serializers.TryGetValue(fortype, out SerializerInfo existingSerializer))
             {
                 existingSerializer.AddSerializer(priority, serializer);
             }
@@ -41,7 +41,7 @@ namespace EEMod.Net.Serializers
 
         public static void AddSerializer<T>(NetObjSerializer<T> serializer, SerializerPriority priority) => AddSerializer(typeof(T), serializer, priority);
 
-        public static NetObjSerializer GetTypeSerializer(Type fortype) => serializers.TryGetValue(fortype, out var serializer) ? serializer.GetHighestPrioritySerializer() : null;
+        public static NetObjSerializer GetTypeSerializer(Type fortype) => serializers.TryGetValue(fortype, out SerializerInfo serializer) ? serializer.GetHighestPrioritySerializer() : null;
 
         public static NetObjSerializer<T> GetTypeSerializer<T>() => (NetObjSerializer<T>)GetTypeSerializer(typeof(T));
 
@@ -55,7 +55,7 @@ namespace EEMod.Net.Serializers
             public void AddSerializer(SerializerPriority priority, NetObjSerializer serializer)
             {
                 serializers.Add(priority, serializer);
-                foreach (var s in serializers)
+                foreach (KeyValuePair<SerializerPriority, NetObjSerializer> s in serializers)
                 {
                     if (s.Key > priority)
                     {
