@@ -9,7 +9,7 @@ using Terraria.GameContent.UI.States;
 using Terraria.Utilities;
 using Terraria.World.Generation;
 
-namespace EEMod.Worldbuilding
+namespace EEMod.Common.Worldbuilding
 {
     public class EEWorldGenerator
     {

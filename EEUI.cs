@@ -24,7 +24,7 @@ namespace EEMod
 
         public void UnloadUI()
         {
-            UI.UnLoad();
+            UI.Unload();
         }
 
         public override void UpdateUI(GameTime gameTime)

@@ -1,4 +1,5 @@
 ﻿using EEMod.Autoloading;
+using EEMod.Content.UI;
 using EEMod.Extensions;
 using EEMod.ID;
 using EEMod.Items.Dyes;
