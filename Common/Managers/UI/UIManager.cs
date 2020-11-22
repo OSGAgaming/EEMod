@@ -5,7 +5,7 @@ using System.Linq;
 using Terraria;
 using Terraria.UI;
 
-namespace EEMod.Content.UI
+namespace EEMod.Common.Managers
 {
     public class UIManager : IUpdateableGT
     {
