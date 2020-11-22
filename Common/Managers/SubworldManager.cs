@@ -139,7 +139,7 @@ namespace EEMod.Common.Managers
             catch (Exception e)
             {
                 ModContent.GetInstance<EEMod>().Logger.Warn($"[Unhandled Exception] {e.Message}" +
-                    $"\n{e.StackTrace}")
+                    $"\n{e.StackTrace}");
             }
 
             if (Main.netMode == NetmodeID.SinglePlayer)
