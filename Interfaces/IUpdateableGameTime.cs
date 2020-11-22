@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 
 namespace EEMod
 {
-    public interface IUpdateableGT
+    public interface IUpdateableGameTime
     {
         void Update(GameTime gameTime);
     }

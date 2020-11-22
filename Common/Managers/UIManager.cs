@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace EEMod.Common.Managers
 {
-    public class UIManager : IUpdateableGT
+    public class UIManager : IUpdateableGameTime
     {
         private readonly Dictionary<string, UserInterface> _uiInterfaces = new Dictionary<string, UserInterface>();
         private readonly Dictionary<string, UIState> _uiStates = new Dictionary<string, UIState>();
