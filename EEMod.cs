@@ -32,9 +32,7 @@ namespace EEMod
     {
         public static EEMod instance;
 
-        public override void PostSetupContent()
-        {
-        }
+        public static SubworldManager SubworldManager;
 
         public static Texture2D ScTex;
 
@@ -336,6 +334,7 @@ namespace EEMod
             LoadDetours();
             Particles = new ParticleZoneHandler();
             Particles.AddZone("Main", 40000);
+            SubworldManager = new SubworldManager();
         }
 
         public static bool isSaving = false;

@@ -1,6 +1,7 @@
 using EEMod.Autoloading;
 using EEMod.Buffs.Buffs;
 using EEMod.Common.IDs;
+using EEMod.Common.Managers;
 using EEMod.Config;
 using EEMod.Extensions;
 using EEMod.Items.Fish;
