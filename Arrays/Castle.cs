@@ -1,25 +1,21 @@
 using Terraria.ID;
-using static EEMod.Arrays.EEWorld.CastleArrayVals;
 
 namespace EEMod.Arrays
 {
     public partial class EEWorld
     {
-        internal static class CastleArrayVals
-        {
-            internal const ushort A = TileID.BlueDungeonBrick;
-            internal const ushort B = WallID.BlueDungeonUnsafe;
-            internal const ushort C = WallID.BlueDungeonTileUnsafe;
-            internal const ushort D = TileID.Banners;
-            internal const ushort E = TileID.HangingLanterns;
-            internal const ushort F = TileID.Trees;
-            internal const ushort G = TileID.Books;
-            internal const ushort H = TileID.Platforms;
-            internal const ushort I = TileID.Grass;
-            internal const ushort J = TileID.Switches;
-            internal const ushort K = WallID.DirtUnsafe;
-            internal const ushort L = TileID.OpenDoor;
-        }
+        public const ushort A = TileID.BlueDungeonBrick;
+        public const ushort B = WallID.BlueDungeonUnsafe;
+        public const ushort C = WallID.BlueDungeonTileUnsafe;
+        public const ushort D = TileID.Banners;
+        public const ushort E = TileID.HangingLanterns;
+        public const ushort F = TileID.Trees;
+        public const ushort G = TileID.Books;
+        public const ushort H = TileID.Platforms;
+        public const ushort I = TileID.Grass;
+        public const ushort J = TileID.Switches;
+        public const ushort K = WallID.DirtUnsafe;
+        public const ushort L = TileID.OpenDoor;
 
         public static int[,,] Castle = new int[,,]
         {
