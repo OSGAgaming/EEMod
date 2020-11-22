@@ -1,7 +1,7 @@
+using EEMod.Common.IDs;
 using EEMod.Config;
 using EEMod.Effects;
 using EEMod.Extensions;
-using EEMod.ID;
 using EEMod.Prim;
 using EEMod.Tiles;
 using EEMod.Tiles.Furniture;

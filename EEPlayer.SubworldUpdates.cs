@@ -1,6 +1,6 @@
 using EEMod.Buffs.Debuffs;
+using EEMod.Common.IDs;
 using EEMod.Config;
-using EEMod.ID;
 using EEMod.NPCs;
 using EEMod.NPCs.Bosses.Akumo;
 using EEMod.NPCs.Bosses.Hydros;

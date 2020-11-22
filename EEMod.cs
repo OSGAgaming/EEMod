@@ -1,7 +1,7 @@
 ﻿using EEMod.Autoloading;
+using EEMod.Common.IDs;
 using EEMod.Common.Managers;
 using EEMod.Extensions;
-using EEMod.ID;
 using EEMod.Items.Dyes;
 using EEMod.Net;
 using EEMod.NPCs.CoralReefs;

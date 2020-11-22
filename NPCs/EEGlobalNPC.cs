@@ -1,4 +1,4 @@
-using EEMod.ID;
+using EEMod.Common.IDs;
 using EEMod.Items.Materials;
 using EEMod.Items.Weapons.Mage;
 using EEMod.Items.Weapons.Melee;

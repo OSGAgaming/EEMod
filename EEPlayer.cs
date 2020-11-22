@@ -1,8 +1,8 @@
 using EEMod.Autoloading;
 using EEMod.Buffs.Buffs;
+using EEMod.Common.IDs;
 using EEMod.Config;
 using EEMod.Extensions;
-using EEMod.ID;
 using EEMod.Items.Fish;
 using EEMod.Projectiles;
 using EEMod.Projectiles.Armor;
@@ -880,17 +880,17 @@ namespace EEMod
             {
                 if (hasGottenRuneBefore[i] == 1)
                 {
-                    RuneData.TryGetValue(i, out states[(int)StateID.RetrievedButNotEquiped]);
+                    RuneData.TryGetValue(i, out states[(int)RuneStateID.RetrievedButNotEquiped]);
                     if (inPossesion[i] == 1)
                     {
-                        RuneData.TryGetValue(i, out states[(int)StateID.Equiped]);
+                        RuneData.TryGetValue(i, out states[(int)RuneStateID.Equiped]);
                     }
                 }
                 else
                 {
-                    RuneData.TryGetValue(i, out states[(int)StateID.Nothing]);
+                    RuneData.TryGetValue(i, out states[(int)RuneStateID.Nothing]);
                 }
-                if (RuneData[i] == states[(int)StateID.Equiped])
+                if (RuneData[i] == states[(int)RuneStateID.Equiped])
                 {
                     switch ((RuneID)i)
                     {
@@ -998,7 +998,7 @@ namespace EEMod
                 }
             }
             //synergies
-            if (RuneData[(int)RuneID.SandRune] == states[(int)StateID.Equiped])
+            if (RuneData[(int)RuneID.SandRune] == states[(int)RuneStateID.Equiped])
             {
             }
         }

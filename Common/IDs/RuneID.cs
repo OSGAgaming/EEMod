@@ -1,4 +1,4 @@
-namespace EEMod.ID
+namespace EEMod.Common.IDs
 {
     public enum RuneID
     {

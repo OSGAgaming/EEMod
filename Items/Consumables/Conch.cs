@@ -1,4 +1,4 @@
-using EEMod.ID;
+using EEMod.Common.IDs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

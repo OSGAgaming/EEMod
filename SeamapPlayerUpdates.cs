@@ -1,5 +1,5 @@
+using EEMod.Common.IDs;
 using EEMod.Extensions;
-using EEMod.ID;
 using EEMod.Net;
 using EEMod.Seamap.SeamapAssets;
 using Microsoft.Xna.Framework;

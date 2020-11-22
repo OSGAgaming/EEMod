@@ -1,3 +1,4 @@
+using EEMod.Common.IDs;
 using EEMod.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -19,17 +20,10 @@ namespace EEMod
 {
     public class SubworldManager
     {
-        internal enum EEServerState : byte
-        {
-            None,
-            SinglePlayer,
-            MultiPlayer
-        }
-
         private static string EEPath;
         private static WorldGenerator _generator;
 
-        internal static EEServerState serverState = EEServerState.None;
+        internal static EEServerStateID serverState = EEServerStateID.None;
 
         public static Process EEServer = new Process();
         public static int lastSeed;
@@ -199,7 +193,7 @@ namespace EEMod
                 Main.UpdateSundial();
 
                 Main.menuMode = 0;
-                serverState = EEServerState.SinglePlayer;
+                serverState = EEServerStateID.Singleplayer;
             }
             else
             {
@@ -210,7 +204,7 @@ namespace EEMod
                 Main.UpdateSundial();
 
                 Main.menuMode = 889;
-                serverState = EEServerState.MultiPlayer;
+                serverState = EEServerStateID.Multiplayer;
             }
             if (threadContext != null)
             {
@@ -319,7 +313,7 @@ namespace EEMod
                 return;
             }*/
 
-            if (serverState == EEServerState.SinglePlayer)
+            if (serverState == EEServerStateID.Singleplayer)
             {
                 WorldGen.playWorld();
             }

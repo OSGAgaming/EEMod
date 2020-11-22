@@ -1,4 +1,4 @@
-﻿using EEMod.ID;
+﻿using EEMod.Common.IDs;
 using EEMod.Tiles;
 
 //using Microsoft.Office.Interop.Excel;

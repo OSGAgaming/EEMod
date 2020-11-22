@@ -1,6 +1,6 @@
-namespace EEMod.ID
+namespace EEMod.Common.IDs
 {
-    public enum StateID
+    public enum RuneStateID
     {
         Nothing,
         RetrievedButNotEquiped,
