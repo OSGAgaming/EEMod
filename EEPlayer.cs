@@ -429,13 +429,13 @@ namespace EEMod
                     SeamapPlayerShip.localship.position = new Vector2(1700, 900);
                     SeamapPlayerShip.localship.shipHelth = SeamapPlayerShip.ShipHelthMax;
                 }
-                SeaObject.Clear();
+                SeamapObjects.SeaObject.Clear();
                 MoralFirstFrame();
                 displacmentX = 0;
                 displacmentY = 0;
                 startingText = false;
                 Particles.Clear();
-                OceanMapElements.Clear();
+                SeamapObjects.OceanMapElements.Clear();
                 isCameraFixating = false;
             }
         }

@@ -14,36 +14,36 @@ namespace EEMod.Seamap.SeamapContent
             Player player = Main.LocalPlayer;
             EEPlayer eePlayer = Main.LocalPlayer.GetModPlayer<EEPlayer>();
             //TODO: Refactor integrating lighting system into Islands
-            for (int i = 0; i < eePlayer.SeaObject.Count; i++)
+            for (int i = 0; i < SeamapObjects.SeaObject.Count; i++)
             {
                 if (i != 5 && i != 4 && i != 6 && i != 7 && i != 0 && i != 2 && i != 1 && i != 7 && i != 8)
                 {
-                    Lighting.AddLight(eePlayer.SeaObject[i].posToScreen, .4f, .4f, .4f);
+                    Lighting.AddLight(SeamapObjects.SeaObject[i].posToScreen, .4f, .4f, .4f);
                 }
 
                 if (i == 1)
                 {
-                    Lighting.AddLight(eePlayer.SeaObject[i].posToScreen, .15f, .15f, .15f);
+                    Lighting.AddLight(SeamapObjects.SeaObject[i].posToScreen, .15f, .15f, .15f);
                 }
 
                 if (i == 2)
                 {
-                    Lighting.AddLight(eePlayer.SeaObject[i].posToScreen, .4f, .4f, .4f);
+                    Lighting.AddLight(SeamapObjects.SeaObject[i].posToScreen, .4f, .4f, .4f);
                 }
 
                 if (i == 4)
                 {
-                    Lighting.AddLight(eePlayer.SeaObject[i].posToScreen, .15f, .15f, .15f);
+                    Lighting.AddLight(SeamapObjects.SeaObject[i].posToScreen, .15f, .15f, .15f);
                 }
 
                 if (i == 7)
                 {
-                    Lighting.AddLight(eePlayer.SeaObject[i].posToScreen, .4f, .4f, .4f);
+                    Lighting.AddLight(SeamapObjects.SeaObject[i].posToScreen, .4f, .4f, .4f);
                 }
 
                 if (i == 0)
                 {
-                    Lighting.AddLight(eePlayer.SeaObject[i].posToScreen, .4f, .4f, .4f);
+                    Lighting.AddLight(SeamapObjects.SeaObject[i].posToScreen, .4f, .4f, .4f);
                 }
             }
             SeamapPlayerShip ship = SeamapPlayerShip.localship;
