@@ -600,7 +600,8 @@ namespace EEMod
                 player.position = player.oldPosition;
                 if (markerPlacer > 1)
                 {
-                    Main.screenPosition += new Vector2(0, offSea);
+                    //Main.screenPosition += new Vector2(0, offSea);
+                    SeamapPlayerShip.localship.ModifyScreenPosition(ref Main.screenPosition);
                 }
             }
             if (cutSceneTriggerTimer > 0 && triggerSeaCutscene)

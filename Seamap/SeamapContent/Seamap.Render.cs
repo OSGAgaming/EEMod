@@ -18,7 +18,7 @@ namespace EEMod.Seamap.SeamapContent
 
         public static void RenderShip()
         {
-            Vector2 position = SeamapPlayerShip.localship.position;
+            Vector2 position = SeamapPlayerShip.localship.position.ForDraw();
 
             float intenstityLightning = SeamapPlayerShip.localship.intenstityLightning;
             Vector2 currentLightningPos = SeamapPlayerShip.localship.currentLightningPos;
@@ -141,8 +141,9 @@ namespace EEMod.Seamap.SeamapContent
         static int frame = 0;
         public static void Render()
         {
+            SpriteBatch spriteBatch = Main.spriteBatch;
             RenderWater(); //Layer 0
-            RenderIslands(); //Layer 1
+            RenderIslands(spriteBatch); //Layer 1
             RenderShip(); //Layer 2
             RenderClouds(); //Layer 3
         }
@@ -170,73 +171,76 @@ namespace EEMod.Seamap.SeamapContent
             #endregion
         }
 
-        static void RenderIslands()
+        static void RenderIslands(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < SeamapObjects.SeaObject.Count; i++)
+            for(int i = 0; i < SeamapObjects.SeaObject.Count; i++)
             {
-                SeaEntity current = SeamapObjects.SeaObject[i];
-
-                Vector2 currentPos = current.posToScreen.ForDraw();
-                Color drawColour = Lighting.GetColor((int)(current.posToScreen.X / 16f), (int)(current.posToScreen.Y / 16f)) * Main.LocalPlayer.GetModPlayer<EEPlayer>().seamapLightColor;
-                drawColour.A = 255;
-
-                #region Making the anchor move if the object can be departed to
-                if (current.isColliding)
-                {
-                    if (SeamapPlayerShip.localship.anchorLerp[i] < 1)
-                        SeamapPlayerShip.localship.anchorLerp[i] += 0.02f;
-                }
-                else
-                {
-                    if (SeamapPlayerShip.localship.anchorLerp[i] > 0)
-                        SeamapPlayerShip.localship.anchorLerp[i] -= 0.02f;
-                }
-                #endregion
-
-                //Main.spriteBatch.Draw(instance.GetTexture("Seamap/SeamapAssets/Anchor"), currentPos + new Vector2(0, (float)Math.Sin(instance.markerPlacer / 20f)) * 4 + new Vector2(current.texture.Width / 2f - instance.GetTexture("Seamap/SeamapAssets/Anchor").Width / 2f, -80), drawColour * instance.anchorLerp[i]);
-
-                #region Incrementing the frame of the object
-                if (current.frameSpeed > 0)
-                {
-                    if (frame % current.frameSpeed == 0)
-                    {
-                        SeamapObjects.SeaObjectFrames[i]++;
-                        if (SeamapObjects.SeaObjectFrames[i] > current.frames - 1)
-                            SeamapObjects.SeaObjectFrames[i] = 0;
-                    }
-                }
-                #endregion
-
-                #region Drawing the object
-                if (modPlayer.quickOpeningFloat > 0.01f)
-                {
-                    float lerp = 1 - (modPlayer.quickOpeningFloat / 10f);
-                    if (i > 4 && i < 8 || i == 11)
-                    {
-                        float score = currentPos.X + currentPos.Y;
-                        Vector2 pos = currentPos + new Vector2(0, (float)Math.Sin(score + SeamapPlayerShip.localship.markerPlacer / 40f)) * 4;
-                        Main.spriteBatch.Draw(current.texture, new Rectangle((int)pos.X, (int)pos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * lerp);
-                    }
-                    else
-                    {
-                        Main.spriteBatch.Draw(current.texture, new Rectangle((int)currentPos.X, (int)currentPos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * lerp);
-                    }
-                }
-                else
-                {
-                    if (i > 4 && i < 8 || i == 11)
-                    {
-                        float score = currentPos.X + currentPos.Y;
-                        Vector2 pos = currentPos + new Vector2(0, (float)Math.Sin(score + SeamapPlayerShip.localship.markerPlacer / 40f)) * 4;
-                        Main.spriteBatch.Draw(current.texture, new Rectangle((int)pos.X, (int)pos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * (1 - (modPlayer.cutSceneTriggerTimer / 180f)));
-                    }
-                    else
-                    {
-                        Main.spriteBatch.Draw(current.texture, new Rectangle((int)currentPos.X, (int)currentPos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * (1 - (modPlayer.cutSceneTriggerTimer / 180f)));
-                    }
-                }
-                #endregion
+                var current = SeamapObjects.SeaObject[i];
+                current.Draw(spriteBatch);
+                current.Update();
             }
+            //for (int i = 0; i < SeamapObjects.SeaObject.Count; i++)
+            //{
+                //var current = SeamapObjects.SeaObject[i];
+
+
+                //#region Making the anchor move if the object can be departed to
+                //if (current.isColliding)
+                //{
+                //    if (SeamapPlayerShip.localship.anchorLerp[i] < 1)
+                //        SeamapPlayerShip.localship.anchorLerp[i] += 0.02f;
+                //}
+                //else
+                //{
+                //    if (SeamapPlayerShip.localship.anchorLerp[i] > 0)
+                //        SeamapPlayerShip.localship.anchorLerp[i] -= 0.02f;
+                //}
+                //#endregion
+
+                ////Main.spriteBatch.Draw(instance.GetTexture("Seamap/SeamapAssets/Anchor"), currentPos + new Vector2(0, (float)Math.Sin(instance.markerPlacer / 20f)) * 4 + new Vector2(current.texture.Width / 2f - instance.GetTexture("Seamap/SeamapAssets/Anchor").Width / 2f, -80), drawColour * instance.anchorLerp[i]);
+
+                //#region Incrementing the frame of the object
+                //if (current.frameSpeed > 0)
+                //{
+                //    if (frame % current.frameSpeed == 0)
+                //    {
+                //        SeamapObjects.SeaObjectFrames[i]++;
+                //        if (SeamapObjects.SeaObjectFrames[i] > current.frames - 1)
+                //            SeamapObjects.SeaObjectFrames[i] = 0;
+                //    }
+                //}
+                //#endregion
+
+                //#region Drawing the object
+                //if (modPlayer.quickOpeningFloat > 0.01f)
+                //{
+                //    float lerp = 1 - (modPlayer.quickOpeningFloat / 10f);
+                //    if (i > 4 && i < 8 || i == 11)
+                //    {
+                //        float score = currentPos.X + currentPos.Y;
+                //        Vector2 pos = currentPos + new Vector2(0, (float)Math.Sin(score + SeamapPlayerShip.localship.markerPlacer / 40f)) * 4;
+                //        Main.spriteBatch.Draw(current.texture, new Rectangle((int)pos.X, (int)pos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * lerp);
+                //    }
+                //    else
+                //    {
+                //        Main.spriteBatch.Draw(current.texture, new Rectangle((int)currentPos.X, (int)currentPos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * lerp);
+                //    }
+                //}
+                //else
+                //{
+                //    if (i > 4 && i < 8 || i == 11)
+                //    {
+                //        float score = currentPos.X + currentPos.Y;
+                //        Vector2 pos = currentPos + new Vector2(0, (float)Math.Sin(score + SeamapPlayerShip.localship.markerPlacer / 40f)) * 4;
+                //        Main.spriteBatch.Draw(current.texture, new Rectangle((int)pos.X, (int)pos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * (1 - (modPlayer.cutSceneTriggerTimer / 180f)));
+                //    }
+                //    else
+                //    {
+                //        Main.spriteBatch.Draw(current.texture, new Rectangle((int)currentPos.X, (int)currentPos.Y, current.texture.Width, current.texture.Height / current.frames), new Rectangle(0, SeamapObjects.SeaObjectFrames[i] * (current.texture.Height / current.frames), current.texture.Width, (current.texture.Height / current.frames)), drawColour * (1 - (modPlayer.cutSceneTriggerTimer / 180f)));
+                //    }
+                //}
+                //#endregion
+            //}
         }
 
         #region Seamap water
