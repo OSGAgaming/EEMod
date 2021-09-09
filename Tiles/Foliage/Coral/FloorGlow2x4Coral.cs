@@ -29,7 +29,7 @@ namespace EEMod.Tiles.Foliage.Coral
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            Helpers.DrawTileGlowmask(mod.GetTexture("Tiles/Foliage/Coral/FloorGlow2x4CoralGlow"), i, j);
+            Helpers.DrawTileGlowmask(Mod.Assets.Request<Texture2D>("Tiles/Foliage/Coral/FloorGlow2x4CoralGlow").Value, i, j);
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

@@ -17,7 +17,7 @@ namespace EEMod.Projectiles
             Projectile.width = 36;       //projectile width
             Projectile.height = 46;  //projectile height
             Projectile.friendly = true;      //make that the projectile will not damage you
-            Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
+            // Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
             Projectile.penetrate = -1;      //how many npc will penetrate
             Projectile.alpha = 255;                               //how many time this projectile has before disepire
             Projectile.light = 0;    // projectile light

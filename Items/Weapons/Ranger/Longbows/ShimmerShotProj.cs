@@ -9,6 +9,7 @@ using EEMod.Prim;
 using EEMod.Items.Weapons.Ranger;
 using EEMod.Extensions;
 using Terraria.ID;
+using Terraria.Audio;
 
 namespace EEMod.Items.Weapons.Ranger.Longbows
 {
@@ -31,8 +32,8 @@ namespace EEMod.Items.Weapons.Ranger.Longbows
 
             Projectile.hide = true;
             Projectile.ownerHitCheck = true;
-            Projectile.melee = true;
-            Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Melee;
+            // Projectile.tileCollide = false;
             Projectile.friendly = true;
             Projectile.damage = 20;
             Projectile.knockBack = 4.5f;
@@ -62,7 +63,7 @@ namespace EEMod.Items.Weapons.Ranger.Longbows
                 if(Projectile.frame >= 3)
                 {
                     whiteFlash = 1f;
-                    Main.PlaySound(SoundID.NPCDeath7, Projectile.Center);
+                    SoundEngine.PlaySound(SoundID.NPCDeath7, Projectile.Center);
                 }
             }
 
@@ -136,7 +137,7 @@ namespace EEMod.Items.Weapons.Ranger.Longbows
             if(whiteFlash > 0)
             {
                 Rectangle rect = new Rectangle(0, 0, 46, 72);
-                Main.spriteBatch.Draw(mod.GetTexture("Items/Weapons/Ranger/Longbows/ShimmerShotProjGlow"), new Rectangle((int)Projectile.Center.ForDraw().X, (int)Projectile.Center.ForDraw().Y, 46, 72), rect, Color.White * whiteFlash * ((255 - Projectile.alpha) / 255f), Projectile.rotation, rect.Size() / 2f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Items/Weapons/Ranger/Longbows/ShimmerShotProjGlow").Value, new Rectangle((int)Projectile.Center.ForDraw().X, (int)Projectile.Center.ForDraw().Y, 46, 72), rect, Color.White * whiteFlash * ((255 - Projectile.alpha) / 255f), Projectile.rotation, rect.Size() / 2f, SpriteEffects.None, 0f);
             }
         }
     }

@@ -19,7 +19,7 @@ namespace EEMod.Projectiles.Runes
             Projectile.height = 136;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 100000;
             Projectile.ignoreWater = true;

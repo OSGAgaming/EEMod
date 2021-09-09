@@ -74,8 +74,8 @@ namespace EEMod.Items.Accessories.InterstellarKelpBud
             Projectile.tileCollide = true;
             Projectile.width = 12;
             Projectile.height = 10;
-            Projectile.friendly = false;
-            Projectile.hostile = false;
+            // Projectile.friendly = false;
+            // Projectile.hostile = false;
             Projectile.hide = true;
             Projectile.timeLeft = 1240;
         }
@@ -98,20 +98,20 @@ namespace EEMod.Items.Accessories.InterstellarKelpBud
         {
             if (Projectile.ai[0] < 120)
             {
-                Texture2D tex = ModContent.GetTexture("EEMod/Items/Accessories/InterstellarKelpBud/KelpBudProjectile");
+                Texture2D tex = ModContent.Request<Texture2D>("EEMod/Items/Accessories/InterstellarKelpBud/KelpBudProjectile");
                 Main.spriteBatch.Draw(tex, Projectile.position + new Vector2(0, 10) - Main.screenPosition, tex.Bounds, Lighting.GetColor((int)Projectile.Center.X / 16, (int)Projectile.Center.Y / 16) * (1 - (Projectile.alpha / 255f)), 0f, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             }
             else if (Projectile.ai[0] >= 60 && Projectile.ai[0] < 180)
             {
-                Texture2D tex = ModContent.GetTexture("EEMod/Items/Accessories/InterstellarKelpBud/InterstellarKelpBudMid");
+                Texture2D tex = ModContent.Request<Texture2D>("EEMod/Items/Accessories/InterstellarKelpBud/InterstellarKelpBudMid");
                 Main.spriteBatch.Draw(tex, Projectile.position + new Vector2(0, 8) - Main.screenPosition, tex.Bounds, Lighting.GetColor((int)Projectile.Center.X / 16, (int)Projectile.Center.Y / 16) * (1 - (Projectile.alpha / 255f)), 0f, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
             }
             else
             {
-                Texture2D tex = ModContent.GetTexture("EEMod/Items/Accessories/InterstellarKelpBud/InterstellarKelpBudBig");
+                Texture2D tex = ModContent.Request<Texture2D>("EEMod/Items/Accessories/InterstellarKelpBud/InterstellarKelpBudBig");
                 Main.spriteBatch.Draw(tex, Projectile.position + new Vector2(0, 4) - Main.screenPosition, tex.Bounds, Lighting.GetColor((int)Projectile.Center.X / 16, (int)Projectile.Center.Y / 16) * (1 - (Projectile.alpha / 255f)), 0f, tex.Bounds.Size() / 2, 1f, SpriteEffects.None, 0f);
 
-                Texture2D ringTex = ModContent.GetTexture("EEMod/Textures/InverseMask");
+                Texture2D ringTex = ModContent.Request<Texture2D>("EEMod/Textures/InverseMask");
 
                 float ringScale = (MathHelper.Clamp((float)Math.Sqrt((Projectile.ai[0] - 180) / 60f), 0f, 1f) + ((Projectile.ai[0] >= 270) ? (float)(Math.Sin(Main.GameUpdateCount / 60f) / 35f) : 0)) * MathHelper.Clamp((float)Math.Sqrt((1160 - Projectile.ai[0]) / 40f), 0f, 1f);
 
@@ -133,7 +133,7 @@ namespace EEMod.Items.Accessories.InterstellarKelpBud
 
                     if (!Main.tile[(int)tileLocation.X, (int)tileLocation.Y].active())
                     {
-                        EEMod.MainParticles.SpawnParticles(location, Vector2.Zero, mod.GetTexture("Particles/BigPlusSign"), 30, Main.rand.NextFloat(1f, 1.5f), chosen, new SetMask(ModContent.GetInstance<EEMod>().GetTexture("Textures/RadialGradient"), 0.6f));
+                        EEMod.MainParticles.SpawnParticles(location, Vector2.Zero, Mod.Assets.Request<Texture2D>("Particles/BigPlusSign").Value, 30, Main.rand.NextFloat(1f, 1.5f), chosen, new SetMask(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/RadialGradient").Value, 0.6f));
                     }
                 }
 
@@ -143,7 +143,7 @@ namespace EEMod.Items.Accessories.InterstellarKelpBud
                 }
                 else
                 {
-                    Main.player[Projectile.owner].GetModPlayer<KelpBudPlayer>().inKelpRing = false;
+                    // Main.player[Projectile.owner].GetModPlayer<KelpBudPlayer>().inKelpRing = false;
                 }
 
                 Lighting.AddLight(Projectile.Center, Color.Gold.ToVector3() * ringScale / 2f);
@@ -172,7 +172,7 @@ namespace EEMod.Items.Accessories.InterstellarKelpBud
 
         public override void Kill(int timeLeft)
         {
-            Main.player[Projectile.owner].GetModPlayer<KelpBudPlayer>().inKelpRing = false;
+            // Main.player[Projectile.owner].GetModPlayer<KelpBudPlayer>().inKelpRing = false;
         }
     }
 }

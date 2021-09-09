@@ -16,12 +16,12 @@ namespace EEMod.Items.TennisRackets
 
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.HoldingOut;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.shootSpeed = 1f;
             Item.rare = ItemRarityID.Orange;
             Item.width = 20;
             Item.height = 20;
-            Item.noMelee = false;
+            // Item.noMelee = false;
             Item.damage = 20;
             Item.useTime = 10;
             Item.useAnimation = 10;

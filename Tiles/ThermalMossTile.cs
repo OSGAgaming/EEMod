@@ -41,7 +41,7 @@ namespace EEMod.Tiles
                     ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos, j * 16), Chosen, 0f, Color.Lerp(Color.Yellow, Color.LightYellow, ((i + j + a * 3) % 4) / 4f), false, true, true));
                 else
                 {
-                    ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos - ModContent.GetInstance<EEMod>().GetTexture(Chosen).Width, j * 16), Chosen, 0f, Color.Lerp(Color.Yellow, Color.LightYellow, ((i + j + a * 3) % 4) / 4f), true, true, true));
+                    ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos - ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>(Chosen).Value.Width, j * 16), Chosen, 0f, Color.Lerp(Color.Yellow, Color.LightYellow, ((i + j + a * 3) % 4) / 4f), true, true, true));
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace EEMod.Tiles
                 zero = Vector2.Zero;
             }
             Vector2 position = new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero;
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("Tiles/ThermalMossTileGlow");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Tiles/ThermalMossTileGlow").Value;
             Rectangle rect = new Rectangle(frameX, frameY, 16, 16);
             //Main.spriteBatch.Draw(texture, position, rect, Lighting.GetColor(i,j), 0f, default, 1f, SpriteEffects.None, 0f);
             //Main.spriteBatch.Draw(texture, position, rect, color, 0f, default, 1f, SpriteEffects.None, 0f);

@@ -124,9 +124,9 @@ namespace EEMod.Items.Weapons.Melee.Shivs
                         for (var i = 0; i < 20; i++)
                         {
                             int num = Dust.NewDust(projOwner.Center + new Vector2((i * 10) - 100, Projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, -Math.Abs(i - 10), 6, default, 0.7f);
-                            Main.dust[num].noGravity = false;
+                            // Main.dust[num].noGravity = false;
                             Main.dust[num].velocity.X *= 0.7f;
-                            Main.dust[num].noLight = false;
+                            // Main.dust[num].noLight = false;
                         }
                         if (perc < 0.2f)
                         {
@@ -202,9 +202,9 @@ namespace EEMod.Items.Weapons.Melee.Shivs
                             for (var i = 0; i < 10; i++)
                             {
                                 int num = Dust.NewDust(projOwner.Center + new Vector2((i * 10) - 50, Projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, -Math.Abs(i - 10) * 0.5f, 6, default, 0.7f);
-                                Main.dust[num].noGravity = false;
+                                // Main.dust[num].noGravity = false;
                                 Main.dust[num].velocity.X *= 0.7f;
-                                Main.dust[num].noLight = false;
+                                // Main.dust[num].noLight = false;
                             }
                         }
                     }

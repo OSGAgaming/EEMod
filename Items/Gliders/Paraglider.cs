@@ -32,7 +32,7 @@ namespace EEMod.Items.Gliders
         int updraftCooldown;
         public override void UpdateInventory(Player player)
         {
-            Main.LocalPlayer.GetModPlayer<EEPlayer>().isHoldingGlider = false;
+            // Main.LocalPlayer.GetModPlayer<EEPlayer>().isHoldingGlider = false;
         }
         public override void HoldStyle(Player player)
         {

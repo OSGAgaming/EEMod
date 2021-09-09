@@ -22,7 +22,7 @@ namespace EEMod.Items.Weapons.Mage
         public override void SetDefaults()
         {
             Item.damage = 57;
-            Item.magic = true;
+            Item.DamageType = DamageClass.Magic;
             Item.noMelee = true;
             Item.knockBack = 1f;
             Item.value = Item.sellPrice(0, 0, 21);
@@ -32,7 +32,7 @@ namespace EEMod.Items.Weapons.Mage
             Item.rare = ItemRarityID.Orange;
             Item.width = 20;
             Item.height = 20;
-            Item.useStyle = ItemUseStyleID.HoldingOut;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<SceptorLaser>();
             Item.shootSpeed = 6f;

@@ -270,7 +270,7 @@ namespace EEMod
             {
                 return;
             }
-            projectile.tileCollide = false;
+            // projectile.tileCollide = false;
             projectile.alpha = 255;
             projectile.position.X = projectile.Center.X;
             projectile.position.Y = projectile.Center.Y;

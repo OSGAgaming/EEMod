@@ -11,7 +11,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 using System.Diagnostics;
 //using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;

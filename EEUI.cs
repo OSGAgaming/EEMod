@@ -18,7 +18,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace EEMod
 {

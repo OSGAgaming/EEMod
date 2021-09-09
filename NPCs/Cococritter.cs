@@ -19,8 +19,8 @@ namespace EEMod.NPCs
             NPC.HitSound = SoundID.NPCHit25;
             NPC.DeathSound = SoundID.NPCDeath28;
             NPC.lifeMax = 5;
-            NPC.lavaImmune = false;
-            NPC.noTileCollide = false;
+            // NPC.lavaImmune = false;
+            // NPC.noTileCollide = false;
             NPC.height = 29;
             NPC.width = 24;
         }

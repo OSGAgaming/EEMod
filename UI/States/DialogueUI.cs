@@ -72,9 +72,9 @@ namespace EEMod.UI.States
 	{
 		public Texture2D Texture;
 		public Color ThemeColor;
-		public DialogueBox() : base(ModContent.GetTexture("EEMod/UI/DialogueBoxBackground"))
+		public DialogueBox() : base(ModContent.Request<Texture2D>("EEMod/UI/DialogueBoxBackground"))
 		{
-			Texture = ModContent.GetTexture("EEMod/UI/DialogueBoxBackground");
+			Texture = ModContent.Request<Texture2D>("EEMod/UI/DialogueBoxBackground");
 			ThemeColor = Color.LightBlue;
 			SetVisibility(0.9f, 0.9f);
 		}

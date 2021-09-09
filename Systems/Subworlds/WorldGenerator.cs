@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent.UI.States;
 using Terraria.Localization;
 using Terraria.Utilities;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace LinuxMod.Core.Subworlds
 {

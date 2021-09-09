@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
+using Terraria.Audio;
 
 namespace CustomSlot {
     //Ported from https://github.com/abluescarab/tModLoader-CustomSlot
@@ -203,7 +204,7 @@ namespace CustomSlot {
         private void SwapWithPartner() {
             // modified from vanilla code
             Utils.Swap(ref Item, ref Partner.Item);
-            Main.PlaySound(SoundID.Grab);
+            SoundEngine.PlaySound(SoundID.Grab);
             Recipe.FindRecipes();
 
             if(Item.stack <= 0) return;
@@ -246,7 +247,7 @@ namespace CustomSlot {
                     Main.hoverItemName = Language.GetTextValue(slot.ItemVisible ? "LegacyInterface.59" : "LegacyInterface.60");
 
                     if(Main.mouseLeftRelease && Main.mouseLeft) {
-                        Main.PlaySound(SoundID.MenuTick);
+                        SoundEngine.PlaySound(SoundID.MenuTick);
                         slot.ItemVisible = !slot.ItemVisible;
                     }
                     Recalculate();

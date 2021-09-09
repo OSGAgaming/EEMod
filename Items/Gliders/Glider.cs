@@ -31,7 +31,7 @@ namespace EEMod.Items.Gliders
         int lerpage;
         public override void UpdateInventory(Player player)
         {
-            player.GetModPlayer<EEPlayer>().isHoldingGlider = false;
+            // player.GetModPlayer<EEPlayer>().isHoldingGlider = false;
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static EEMod.EEMod;
+using Terraria.Audio;
 namespace EEMod.Seamap.SeamapContent
 {
     public partial class Seamap
@@ -60,7 +61,7 @@ namespace EEMod.Seamap.SeamapContent
                             Projectile.NewProjectile(ship.position + Main.screenPosition, -Vector2.Normalize(ship.position + Main.screenPosition - Main.MouseWorld) * 4, ModContent.ProjectileType<FriendlyLuminiteCannonball>(), 0, 0);
                             break;
                     }
-                    Main.PlaySound(SoundID.Item61);
+                    SoundEngine.PlaySound(SoundID.Item61);
                     ship.cannonDelay = 60;
                 }
                 ship.cannonDelay--;

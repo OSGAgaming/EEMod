@@ -29,7 +29,7 @@ namespace EEMod.NPCs.CoralReefs.MechanicalReefs
             NPC.noGravity = true;
             NPC.npcSlots = 1f;
             NPC.buffImmune[BuffID.Confused] = true;
-            NPC.lavaImmune = false;
+            // NPC.lavaImmune = false;
             NPC.behindTiles = true;
             NPC.dontTakeDamage = true;
             NPC.friendly = true;
@@ -62,7 +62,7 @@ float x0, float x1, float x2, float x3)
         {
             if (head != null && head.active && head.modNPC != null && head.modNPC is Ball)
             {
-                Texture2D neckTex2D = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/MechanicalReefs/DreadmineChain");
+                Texture2D neckTex2D = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/MechanicalReefs/DreadmineChain").Value;
                 Vector2 neckOrigin = NPC.Center;
                 Vector2 connector = ifYouReallyWantToo;
                 float chainsPerUse = 0.05f;

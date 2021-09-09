@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace EEMod.Systems.EEGame
 {
@@ -235,11 +236,11 @@ namespace EEMod.Systems.EEGame
                         if (GE != null && GE.collides && GE.elementRect.Intersects(elementRect) && GE.tag == "SABolt" && GE.elementActive == true)
                         {
                             elementActive = false;
-                            GE.elementActive = false;
+                            // GE.elementActive = false;
                             collides = false;
                             velocity.Y = 2;
                             velocity.X = Main.rand.NextFloat(-0.5f, 0.5f);
-                            Main.PlaySound(SoundID.NPCHit4);
+                            SoundEngine.PlaySound(SoundID.NPCHit4);
                             ai[0] = 0;
                             ai[2] = 1;
                         }

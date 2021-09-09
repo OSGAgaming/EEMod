@@ -27,12 +27,12 @@ namespace EEMod.Items.Weapons.Mage
             Item.autoReuse = true;
             Item.crit = 3;
             Item.noMelee = true;
-            Item.magic = true;
+            Item.DamageType = DamageClass.Magic;
             Item.shoot = ModContent.ProjectileType<LythenStaffProjectile>();
             Item.shootSpeed = 16f;
             Item.mana = 5;
             Item.UseSound = SoundID.Item8;
-            Item.useStyle = ItemUseStyleID.HoldingOut;
+            Item.useStyle = ItemUseStyleID.Shoot;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -53,11 +53,7 @@ namespace EEMod.Items.Weapons.Mage
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LythenBar>(), 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LythenBar>(), 12).AddTile(TileID.Anvils).Register();
         }
 
         public override bool CanUseItem(Player player)

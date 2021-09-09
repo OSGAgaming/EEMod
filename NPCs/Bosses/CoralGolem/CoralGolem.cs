@@ -32,7 +32,7 @@ namespace EEMod.NPCs.Bosses.CoralGolem
         {
             NPC.boss = true;
             NPC.lavaImmune = true;
-            NPC.friendly = false;
+            // NPC.friendly = false;
             NPC.noGravity = true;
             NPC.aiStyle = -1;
             NPC.lifeMax = 50000;
@@ -59,7 +59,7 @@ namespace EEMod.NPCs.Bosses.CoralGolem
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("NPCs/Bosses/CoralGolem/CoralGolemGlow"), NPC.Center - Main.screenPosition + new Vector2(0, 4), NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
+            spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/CoralGolem/CoralGolemGlow").Value, NPC.Center - Main.screenPosition + new Vector2(0, 4), NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         }
     }
 }

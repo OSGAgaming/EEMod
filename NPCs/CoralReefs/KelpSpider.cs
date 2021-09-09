@@ -27,12 +27,12 @@ namespace EEMod.NPCs.CoralReefs
 
             NPC.width = 84;
             NPC.height = 53;
-            NPC.noGravity = false;
+            // NPC.noGravity = false;
             NPC.knockBackResist = 0f;
 
             NPC.npcSlots = 1f;
             NPC.buffImmune[BuffID.Confused] = true;
-            NPC.lavaImmune = false;
+            // NPC.lavaImmune = false;
             banner = NPC.type;
             NPC.behindTiles = true;
             //bannerItem = ModContent.ItemType<Items.Banners.ClamBanner>();
@@ -54,9 +54,9 @@ namespace EEMod.NPCs.CoralReefs
         {
             NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
-            Texture2D UpperLegTex = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/KelpSpiderLegUpper");
-            Texture2D LowerLegTex = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/KelpSpiderLegLower");
-            Texture2D KelpSpiderBody = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/KelpSpiderBody");
+            Texture2D UpperLegTex = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/KelpSpiderLegUpper").Value;
+            Texture2D LowerLegTex = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/KelpSpiderLegLower").Value;
+            Texture2D KelpSpiderBody = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/KelpSpiderBody").Value;
             float rotation = (player.Center - NPC.Center).ToRotation() + (float)Math.PI;
             bool cond = (rotation > 0 && rotation < Math.PI / 2f) || rotation > (float)Math.PI * 1.5f;
             for (int i = 0; i < numberOfLegs; i++)

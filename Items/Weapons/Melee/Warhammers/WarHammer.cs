@@ -84,7 +84,7 @@ namespace EEMod.Items.Weapons.Melee.Warhammers
                             int num = Dust.NewDust(projOwner.Center + new Vector2(Projectile.width / 2 * projOwner.direction, Projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, Main.rand.NextFloat(-dirtSmashIntensity, -1f), 6, new Color(255, 217, 184, 255), 1);
                             Main.dust[num].noGravity = true;
                             Main.dust[num].velocity.X *= 0.7f;
-                            Main.dust[num].noLight = false;
+                            // Main.dust[num].noLight = false;
                         }
                     }
                     Projectile.ai[0]++;
@@ -121,7 +121,7 @@ namespace EEMod.Items.Weapons.Melee.Warhammers
                             int num = Dust.NewDust(projOwner.Center + new Vector2(Projectile.width / 2 * projOwner.direction, Projectile.height / 2f - 16), 2, 2, DustID.Dirt, 0, Main.rand.NextFloat(-dirtSmashIntensity, -1f), 6, new Color(255, 217, 184, 255), 1);
                             Main.dust[num].noGravity = true;
                             Main.dust[num].velocity.X *= 0.7f;
-                            Main.dust[num].noLight = false;
+                            // Main.dust[num].noLight = false;
                         }
                     }
 

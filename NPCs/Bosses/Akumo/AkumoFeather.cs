@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace EEMod.NPCs.Bosses.Akumo
 {
@@ -18,11 +19,11 @@ namespace EEMod.NPCs.Bosses.Akumo
         {
             Projectile.width = 44;
             Projectile.height = 18;
-            Projectile.friendly = false;
+            // Projectile.friendly = false;
             Projectile.hostile = true;
-            Projectile.ranged = true;
+            Projectile.DamageType = DamageClass.Ranged;
             Projectile.ignoreWater = true;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.timeLeft = 800;
         }
 
@@ -59,14 +60,14 @@ namespace EEMod.NPCs.Bosses.Akumo
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/Bosses/Akumo/AkumoFeather");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Akumo/AkumoFeather").Value;
             AfterImage.DrawAfterimage(spriteBatch, texture, 0, Projectile, 1.5f, 1f, 2, false, 0f, 0f, new Color(lightColor.R, lightColor.G, lightColor.B, 150));
             return true;
         }
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, Projectile.position);
             for (int i = 0; i < 20; i++)
             {
                 int index2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.LavaBubbles, 0.0f, 0.0f, 100, new Color(), 1f);

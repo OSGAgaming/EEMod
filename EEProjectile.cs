@@ -10,6 +10,6 @@ namespace EEMod
 {
     public abstract class EEProjectile : ModProjectile
     {
-        public Projectile Projectile => base.projectile; // for 1.4 port
+        public Projectile Projectile => base.Projectile; // for 1.4 port
     }
 }

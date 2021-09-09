@@ -12,10 +12,10 @@ namespace EEMod.Backgrounds
 
         public override void FillTextureArray(int[] textureSlots)
         {
-            textureSlots[0] = mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
-            textureSlots[1] = mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
-            textureSlots[2] = mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
-            textureSlots[3] = mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
+            textureSlots[0] = Mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
+            textureSlots[1] = Mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
+            textureSlots[2] = Mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
+            textureSlots[3] = Mod.GetBackgroundSlot("Backgrounds/CoralReefsUnderground");
         }
     }
 }

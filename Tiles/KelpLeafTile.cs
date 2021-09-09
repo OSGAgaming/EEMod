@@ -72,7 +72,7 @@ namespace EEMod.Tiles
                     ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos, j * 16), Chosen, 0f, Color.Lerp(Color.LightGreen, Color.Green, ((i + j + a * 3) % 4) / 4f), false));
                 else
                 {
-                    ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos - ModContent.GetInstance<EEMod>().GetTexture(Chosen).Width, j * 16), Chosen, 0f, Color.Lerp(Color.LightGreen, Color.Green, ((i + j + a * 3) % 4) / 4f), true));
+                    ModContent.GetInstance<EEMod>().TVH.AddElement(new Leaf(new Vector2(pos - ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>(Chosen).Value.Width, j * 16), Chosen, 0f, Color.Lerp(Color.LightGreen, Color.Green, ((i + j + a * 3) % 4) / 4f), true));
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace EEMod.Tiles
                 zero = Vector2.Zero;
             }
             Vector2 position = new Vector2(i * 16, j * 16).ForDraw() + zero;
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("Tiles/KelpLeafTile");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Tiles/KelpLeafTile").Value;
             Rectangle rect = new Rectangle(frameX, frameY, 16, 16);
             Point tp = Main.LocalPlayer.position.ToTileCoordinates();
             if (tp.Y > j - 4 && tp.Y < j && tp.X > i - 1 && tp.X < i + 1)

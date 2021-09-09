@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace EEMod.Tiles.Furniture.Chests
 {
@@ -29,7 +30,7 @@ namespace EEMod.Tiles.Furniture.Chests
             TileObjectData.newTile.HookCheck = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.FindEmptyChest), -1, 0, true);
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.AfterPlacement_Hook), -1, 0, false);
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.LavaDeath = false;
+            // TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
@@ -81,7 +82,7 @@ namespace EEMod.Tiles.Furniture.Chests
         {
             Player player = Main.LocalPlayer;
             Tile tile = Framing.GetTileSafely(i, j);
-            Main.mouseRightRelease = false;
+            // Main.mouseRightRelease = false;
             int left = i;
             int top = j;
             if (tile.frameX % 36 != 0)
@@ -94,21 +95,21 @@ namespace EEMod.Tiles.Furniture.Chests
             }
             if (player.sign >= 0)
             {
-                Main.PlaySound(SoundID.MenuClose);
+                SoundEngine.PlaySound(SoundID.MenuClose);
                 player.sign = -1;
-                Main.editSign = false;
+                // Main.editSign = false;
                 Main.npcChatText = "";
             }
             if (Main.editChest)
             {
-                Main.PlaySound(SoundID.MenuTick);
-                Main.editChest = false;
+                SoundEngine.PlaySound(SoundID.MenuTick);
+                // Main.editChest = false;
                 Main.npcChatText = "";
             }
             if (player.editedChestName)
             {
                 NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f, 0f, 0f, 0, 0, 0);
-                player.editedChestName = false;
+                // player.editedChestName = false;
             }
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -116,7 +117,7 @@ namespace EEMod.Tiles.Furniture.Chests
                 {
                     player.chest = -1;
                     Recipe.FindRecipes();
-                    Main.PlaySound(SoundID.MenuClose);
+                    SoundEngine.PlaySound(SoundID.MenuClose);
                 }
                 else
                 {
@@ -133,16 +134,16 @@ namespace EEMod.Tiles.Furniture.Chests
                     if (chest == player.chest)
                     {
                         player.chest = -1;
-                        Main.PlaySound(SoundID.MenuClose);
+                        SoundEngine.PlaySound(SoundID.MenuClose);
                     }
                     else
                     {
                         player.chest = chest;
                         Main.playerInventory = true;
-                        Main.recBigList = false;
+                        // Main.recBigList = false;
                         player.chestX = left;
                         player.chestY = top;
-                        Main.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
+                        SoundEngine.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
                     }
                     Recipe.FindRecipes();
                 }
@@ -168,9 +169,9 @@ namespace EEMod.Tiles.Furniture.Chests
             player.showItemIcon2 = -1;
             if (chest < 0)
             {
-#pragma warning disable CS0618 // El tipo o el miembro están obsoletos
+#pragma warning disable CS0618 // El tipo o el miembro estÃ¡n obsoletos
                 player.showItemIconText = Lang.chestType[0].Value; // TODO: Change to Language.GetText
-#pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+#pragma warning restore CS0618 // El tipo o el miembro estÃ¡n obsoletos
             }
             else
             {
@@ -191,7 +192,7 @@ namespace EEMod.Tiles.Furniture.Chests
             Player player = Main.LocalPlayer;
             if (player.showItemIconText == "")
             {
-                player.showItemIcon = false;
+                // player.showItemIcon = false;
                 player.showItemIcon2 = 0;
             }
         }

@@ -22,7 +22,7 @@ namespace EEMod.Projectiles.Enemy
             Projectile.timeLeft = 1200;
             Projectile.penetrate = 1;
             Projectile.hostile = true;
-            Projectile.friendly = false;
+            // Projectile.friendly = false;
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
             Projectile.scale = 1f;
@@ -67,7 +67,7 @@ namespace EEMod.Projectiles.Enemy
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("Projectiles/Enemy/MechanicalMissileGlow"), Projectile.Center - Main.screenPosition, Projectile.getRect(), Color.White, Projectile.rotation, Projectile.getRect().Size() / 2, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
+            Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Projectiles/Enemy/MechanicalMissileGlow").Value, Projectile.Center - Main.screenPosition, Projectile.getRect(), Color.White, Projectile.rotation, Projectile.getRect().Size() / 2, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

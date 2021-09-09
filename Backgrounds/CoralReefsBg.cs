@@ -35,17 +35,17 @@ namespace EEMod.Backgrounds
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
-            return mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceClose");
+            return Mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceClose");
         }
 
         public override int ChooseMiddleTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceMid");
+            return Mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceMid");
         }
 
         public override int ChooseFarTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceFar");
+            return Mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceFar");
         }
 
         /* public override bool PreDrawCloseBackground(SpriteBatch spriteBatch)

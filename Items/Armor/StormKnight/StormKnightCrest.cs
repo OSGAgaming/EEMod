@@ -35,7 +35,7 @@ namespace EEMod.Items.Armor.StormKnight
 
         public override void UpdateEquip(Player player)
         {
-            player.meleeDamage += 0.05f;
+            player.GetDamage(DamageClass.Melee) += 0.05f;
         }
 
         public override void UpdateArmorSet(Player player)
@@ -50,11 +50,7 @@ namespace EEMod.Items.Armor.StormKnight
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LythenBar>(), 11);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LythenBar>(), 11).AddTile(TileID.Anvils).Register();
         }
     }
 

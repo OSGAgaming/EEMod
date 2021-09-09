@@ -34,7 +34,7 @@ namespace EEMod.NPCs.CoralReefs
             NPC.aiStyle = 67;
 
             NPC.lavaImmune = true;
-            NPC.noTileCollide = false;
+            // NPC.noTileCollide = false;
             //bannerItem = ModContent.ItemType<Items.Banners.GiantSquidBanner>();
         }
 
@@ -75,7 +75,7 @@ namespace EEMod.NPCs.CoralReefs
         }
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GrebyserGlow"), NPC.Center - Main.screenPosition + new Vector2(0, 4), NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
+            Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GrebyserGlow").Value, NPC.Center - Main.screenPosition + new Vector2(0, 4), NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         }
     }
     public class GrebyserFlare : EEProjectile
@@ -91,7 +91,7 @@ namespace EEMod.NPCs.CoralReefs
 			Projectile.width = 6;
 			Projectile.height = 11;
 			Projectile.aiStyle = 1;
-			Projectile.friendly = false;
+			// Projectile.friendly = false;
 			Projectile.hostile = true;
 			Projectile.penetrate = 5;
 			Projectile.timeLeft = 600;

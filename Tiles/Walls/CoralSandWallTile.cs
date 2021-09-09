@@ -8,7 +8,7 @@ namespace EEMod.Tiles.Walls
 {
     public class CoralSandWallTile : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(67, 47, 155));
 

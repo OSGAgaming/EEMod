@@ -24,7 +24,7 @@ namespace EEMod.Projectiles
             Projectile.alpha = 0;
             Projectile.timeLeft = 600;
             Projectile.penetrate = -1;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
@@ -43,7 +43,7 @@ namespace EEMod.Projectiles
 
         public void Bounce(ModProjectile modProj, Vector2 oldVelocity, float bouncyness = 1f)
         {
-            Projectile projectile = modProj.projectile;
+            Projectile projectile = modProj.Projectile;
             if (projectile.velocity.X != oldVelocity.X)
             {
                 projectile.velocity.X = -oldVelocity.X * bouncyness;
@@ -108,7 +108,7 @@ namespace EEMod.Projectiles
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Player chosenPlayer = Main.player[GetPlayer(Projectile.Center)];
-            Texture2D volleyArrow = mod.GetTexture("Projectiles/VolleyballArrow");
+            Texture2D volleyArrow = Mod.Assets.Request<Texture2D>("Projectiles/VolleyballArrow").Value;
             Main.spriteBatch.Draw(volleyArrow, Projectile.Center - Main.screenPosition, new Rectangle(0, volleyArrow.Height / frames * (11 - frame), volleyArrow.Width, volleyArrow.Height / frames), Color.White * ree, new Vector2(mouseHitBoxVec.X - chosenPlayer.Center.X, mouseHitBoxVec.Y - chosenPlayer.Center.Y).ToRotation() + MathHelper.PiOver2, new Rectangle(0, 0, volleyArrow.Width, volleyArrow.Height).Size() / 2, 1, SpriteEffects.None, 0);
             Vector2 drawOrigin = new Vector2(Main.projectileTexture[Projectile.type].Width * 0.5f, Projectile.height * 0.5f);
             float velocitylength = Projectile.velocity.Length();
@@ -177,7 +177,7 @@ namespace EEMod.Projectiles
                             Dust dust = Dust.NewDustPerfect(Projectile.Center + offset, DustID.Smoke, offset * 0.5f);
                             dust.noGravity = true;
                             dust.velocity *= 0.96f;
-                            dust.noLight = false;
+                            // dust.noLight = false;
                         }
                     }
                     Projectile.netUpdate = true;

@@ -54,7 +54,7 @@ namespace EEMod.Items.Weapons.Ranger.Longbows
                     Dust dust = Dust.NewDustPerfect(Projectile.Center + offset, 113, offset * 0.5f);
                     dust.noGravity = true;
                     dust.velocity *= 0.94f;
-                    dust.noLight = false;
+                    // dust.noLight = false;
                 }
                 vanillaFlag = true;
                 Projectile.ai[1] = 1;

@@ -18,7 +18,7 @@ namespace EEMod.NPCs.Friendly
         public override bool Autoload(ref string name)
         {
             name = "Sailor";
-            return mod.Properties.Autoload;
+            return Mod.Properties.Autoload;
         }
 
         public override void SetStaticDefaults()

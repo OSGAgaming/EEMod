@@ -2,6 +2,7 @@ using EEMod.UI.States;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace EEMod.Items
 {
@@ -15,7 +16,7 @@ namespace EEMod.Items
 
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.HoldingUp;
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = 22;
             Item.useAnimation = 22;
             Item.width = 20;
@@ -24,7 +25,7 @@ namespace EEMod.Items
             Item.value = Item.buyPrice(0, 0, 18, 0);
             Item.rare = ItemRarityID.Orange;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (EEMod.UI.IsActive("EEInterfacee"))
             {

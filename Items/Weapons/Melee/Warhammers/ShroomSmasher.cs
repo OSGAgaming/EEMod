@@ -17,7 +17,7 @@ namespace EEMod.Items.Weapons.Melee.Warhammers
         public override void SetDefaults()
         {
             Item.damage = 20;
-            Item.useStyle = ItemUseStyleID.HoldingOut;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.useAnimation = 60;
             Item.useTime = 60;
             Item.shootSpeed = 16f;
@@ -28,10 +28,10 @@ namespace EEMod.Items.Weapons.Melee.Warhammers
             Item.rare = ItemRarityID.Purple;
             Item.value = Item.sellPrice(silver: 10);
 
-            Item.melee = true;
+            Item.DamageType = DamageClass.Melee;
             Item.noMelee = true;
             Item.noUseGraphic = true;
-            Item.autoReuse = false;
+            // Item.autoReuse = false;
 
             Item.UseSound = SoundID.Item1;
             Item.shoot = ModContent.ProjectileType<HydrofluoricWarhammerProj>();

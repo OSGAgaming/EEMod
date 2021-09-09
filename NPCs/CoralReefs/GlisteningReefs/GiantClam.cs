@@ -24,12 +24,12 @@ namespace EEMod.NPCs.CoralReefs.GlisteningReefs
 
             NPC.width = 84;
             NPC.height = 53;
-            NPC.noGravity = false;
+            // NPC.noGravity = false;
             NPC.knockBackResist = 0f;
 
             NPC.npcSlots = 1f;
             NPC.buffImmune[BuffID.Confused] = true;
-            NPC.lavaImmune = false;
+            // NPC.lavaImmune = false;
             banner = NPC.type;
             //bannerItem = ModContent.ItemType<Items.Banners.ClamBanner>();
             NPC.value = Item.sellPrice(0, 0, 0, 75);

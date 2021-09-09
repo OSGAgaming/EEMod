@@ -10,6 +10,6 @@ namespace EEMod
 {
     public abstract class EENPC : ModNPC
     {
-        public NPC NPC => base.npc; // for 1.4 port
+        public NPC NPC => base.NPC; // for 1.4 port
     }
 }

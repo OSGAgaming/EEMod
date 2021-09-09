@@ -87,7 +87,7 @@ namespace EEMod
         public Prims(Mod mod)
         {
             _trails = new List<Trail>();
-            _effect = mod.GetEffect("Effects/trailShaders");
+            _effect = mod.Assets.Request<Effect>("Effects/trailShaders").Value;
             _basicEffect = new BasicEffect(Main.graphics.GraphicsDevice);
             _basicEffect.VertexColorEnabled = true;
         }

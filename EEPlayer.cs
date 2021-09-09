@@ -231,20 +231,20 @@ namespace EEMod
                     opac = 100;
                 }
 
-                if(player.Center.Y <= 3000)
+                if(Player.Center.Y <= 3000)
                 {
-                    player.ZoneBeach = true;
+                    Player.ZoneBeach = true;
                 }
                 else
                 {
-                    player.ZoneBeach = false;
+                    // player.ZoneBeach = false;
                 }
 
                 reefMinibiome = MinibiomeID.None;
 
                 for (int k = 0; k < CoralReefs.Minibiomes.Count; k++)
                 {
-                    Vector2 playerPos = player.Center / 16;
+                    Vector2 playerPos = Player.Center / 16;
                     Vector2 minibiomePos = CoralReefs.Minibiomes[k].Center.ToVector2();
 
                     if (OvalCheck((int)minibiomePos.X, (int)minibiomePos.Y, (int)playerPos.X, (int)playerPos.Y, CoralReefs.Minibiomes[k].Size.X / 2, CoralReefs.Minibiomes[k].Size.Y / 2))
@@ -277,15 +277,15 @@ namespace EEMod
         {
             if (hydroGear || dragonScale)
             {
-                player.accFlipper = true;
+                Player.accFlipper = true;
             }
 
             if (hydroGear)
             {
-                player.accDivingHelm = true;
+                Player.accDivingHelm = true;
             }
 
-            if (dragonScale && player.wet && PlayerInput.Triggers.JustPressed.Jump)
+            if (dragonScale && Player.wet && PlayerInput.Triggers.JustPressed.Jump)
             {
                 if (dur <= 0)
                 {
@@ -397,7 +397,7 @@ namespace EEMod
                 quickOpeningFloat = 20;
                 EEMod.AscentionHandler = 0;
                 EEMod.startingTextHandler = 0;
-                EEMod.isAscending = false;
+                // EEMod.isAscending = false;
                 EEMod.AscentionHandler = 0;
                 isSaving = false;
                 godMode = false;
@@ -407,7 +407,7 @@ namespace EEMod
                 noU = false;
                 triggerSeaCutscene = false;
                 cutSceneTriggerTimer = 0;
-                position = player.Center;
+                position = Player.Center;
                 importantCutscene = false;
                 speedOfPan = 0;
                 subTextAlpha = 0;
@@ -479,8 +479,8 @@ namespace EEMod
         {
             isCameraFixating = false;
             isCameraShaking = false;
-            fixatingPoint.X = player.Center.X;
-            fixatingPoint.Y = player.Center.Y;
+            fixatingPoint.X = Player.Center.X;
+            fixatingPoint.Y = Player.Center.Y;
         }
 
         public override void ModifyScreenPosition()
@@ -502,8 +502,8 @@ namespace EEMod
                 {
                     displacmentX -= (displacmentX - (200 * 16)) / 32f;
                     displacmentY -= (displacmentY - (110 * 16)) / 32f;
-                    Main.screenPosition += new Vector2(displacmentX - player.Center.X, displacmentY - player.Center.Y);
-                    player.position = player.oldPosition;
+                    Main.screenPosition += new Vector2(displacmentX - Player.Center.X, displacmentY - Player.Center.Y);
+                    Player.position = Player.oldPosition;
                 }
                 else
                 {
@@ -511,11 +511,11 @@ namespace EEMod
                     Filters.Scene[RippleShader].GetShader().UseOpacity(timerForCutscene);
                     if (Main.netMode != NetmodeID.Server && !Filters.Scene[RippleShader].IsActive())
                     {
-                        Filters.Scene.Activate(RippleShader, player.Center).GetShader().UseOpacity(timerForCutscene);
+                        Filters.Scene.Activate(RippleShader, Player.Center).GetShader().UseOpacity(timerForCutscene);
                     }
-                    Main.screenPosition += new Vector2(displacmentX - player.Center.X, displacmentY - player.Center.Y);
-                    displacmentX -= (displacmentX - player.Center.X) / 16f;
-                    displacmentY -= (displacmentY - player.Center.Y) / 16f;
+                    Main.screenPosition += new Vector2(displacmentX - Player.Center.X, displacmentY - Player.Center.Y);
+                    displacmentX -= (displacmentX - Player.Center.X) / 16f;
+                    displacmentY -= (displacmentY - Player.Center.Y) / 16f;
                     timerForCutscene += 10;
                     if (timerForCutscene > 1000)
                     {
@@ -555,11 +555,11 @@ namespace EEMod
 
             if (Main.worldName != KeyID.Sea && Main.ActiveWorldFileData.Name != KeyID.Cutscene1 && EEModConfigClient.Instance.CamMoveBool)
             {
-                if (player.velocity.X > 1)
+                if (Player.velocity.X > 1)
                 {
                     displacmentX += disSpeed;
                 }
-                else if (player.velocity.X < -1)
+                else if (Player.velocity.X < -1)
                 {
                     displacmentX -= disSpeed;
                 }
@@ -567,11 +567,11 @@ namespace EEMod
                 {
                     displacmentX -= displacmentX / 16f;
                 }
-                if (player.velocity.Y > 1)
+                if (Player.velocity.Y > 1)
                 {
                     displacmentY += disSpeed / 2;
                 }
-                else if (player.velocity.Y < -1)
+                else if (Player.velocity.Y < -1)
                 {
                     displacmentY -= disSpeed / 2;
                 }
@@ -586,7 +586,7 @@ namespace EEMod
 
             if (Main.worldName == KeyID.Sea)
             {
-                player.position = player.oldPosition;
+                Player.position = Player.oldPosition;
                 if (seamapUpdateCount > 1)
                 {
                     //Main.screenPosition += new Vector2(0, offSea);
@@ -604,8 +604,8 @@ namespace EEMod
             }
             if (isCameraFixating)
             {
-                displacmentX += (fixatingPoint.X - player.Center.X - displacmentX) / fixatingSpeedInv;
-                displacmentY += (fixatingPoint.Y - player.Center.Y - displacmentY) / fixatingSpeedInv;
+                displacmentX += (fixatingPoint.X - Player.Center.X - displacmentX) / fixatingSpeedInv;
+                displacmentY += (fixatingPoint.Y - Player.Center.Y - displacmentY) / fixatingSpeedInv;
                 Main.screenPosition += new Vector2(displacmentX, displacmentY);
             }
             else if (Main.ActiveWorldFileData.Name != KeyID.Cutscene1 && Math.Abs(displacmentX + displacmentY) > 0.01f)
@@ -626,20 +626,20 @@ namespace EEMod
             }
         }
 
-        Vector2 mainPoint => new Vector2(player.Center.X, player.position.Y);
+        Vector2 mainPoint => new Vector2(Player.Center.X, Player.position.Y);
 
         private float inspectTimer = 0;
 
         public void InspectObject()
         {
-            Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("UI/InspectIcon"), (player.Center + new Vector2(0, (float)Math.Sin(inspectTimer) * 32)).ForDraw(), Color.White);
+            Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("UI/InspectIcon").Value, (Player.Center + new Vector2(0, (float)Math.Sin(inspectTimer) * 32)).ForDraw(), Color.White);
             inspectTimer += 0.5f;
         }
         public void UpdateVerletCollisions(int pRP, float velDamp, int fakeElevation, int newFeetPos, float gradientFunction)
         {
             foreach (Verlet.Stick stick in Verlet.stickPoints)
             {
-                Rectangle pRect = new Rectangle((int)player.position.X - pRP, (int)player.position.Y - pRP, player.width + pRP, player.height + pRP);
+                Rectangle pRect = new Rectangle((int)Player.position.X - pRP, (int)Player.position.Y - pRP, Player.width + pRP, Player.height + pRP);
                 Vector2 Vec1 = Verlet.Points[stick.a].point;
                 Vector2 Vec2 = Verlet.Points[stick.b].point;
                 int Y = Vec1.Y < Vec2.Y ? (int)Vec1.Y : (int)Vec2.Y;
@@ -650,29 +650,29 @@ namespace EEMod
                 Rectangle vRect = new Rectangle(X - pRP, Y - pRP, X1 - X + pRP, Y1 - Y + pRP);
                 if (pRect.Intersects(vRect))
                 {
-                    float perc = (player.Center.X - Vec1.X) / (Vec2.X - Vec1.X);
+                    float perc = (Player.Center.X - Vec1.X) / (Vec2.X - Vec1.X);
                     float yTarget = Vec1.Y + (Vec2.Y - Vec1.Y) * perc + fakeElevation;
-                    float feetPos = player.position.Y + player.height;
+                    float feetPos = Player.position.Y + Player.height;
                     float grad = (Vec2.Y - Vec1.Y) / (Vec2.X - Vec1.X);
                     grad *= gradientFunction;
-                    if (feetPos - 5 - player.velocity.Y < yTarget && feetPos > yTarget)
+                    if (feetPos - 5 - Player.velocity.Y < yTarget && feetPos > yTarget)
                     {
-                        player.velocity.Y = 0;
-                        player.gravity = 0f;
-                        player.position.Y = yTarget - (newFeetPos - grad * player.direction * Math.Abs(player.velocity.X / velDamp));
-                        player.bodyFrameCounter += Math.Abs(velocity.X) * 0.5f;
-                        while (player.bodyFrameCounter > 8.0)
+                        Player.velocity.Y = 0;
+                        Player.gravity = 0f;
+                        Player.position.Y = yTarget - (newFeetPos - grad * Player.direction * Math.Abs(Player.velocity.X / velDamp));
+                        Player.bodyFrameCounter += Math.Abs(velocity.X) * 0.5f;
+                        while (Player.bodyFrameCounter > 8.0)
                         {
-                            player.bodyFrameCounter -= 8.0;
-                            player.bodyFrame.Y += player.bodyFrame.Height;
+                            Player.bodyFrameCounter -= 8.0;
+                            Player.bodyFrame.Y += Player.bodyFrame.Height;
                         }
-                        if (player.bodyFrame.Y < player.bodyFrame.Height * 7)
+                        if (Player.bodyFrame.Y < Player.bodyFrame.Height * 7)
                         {
-                            player.bodyFrame.Y = player.bodyFrame.Height * 19;
+                            Player.bodyFrame.Y = Player.bodyFrame.Height * 19;
                         }
-                        else if (player.bodyFrame.Y > player.bodyFrame.Height * 19)
+                        else if (Player.bodyFrame.Y > Player.bodyFrame.Height * 19)
                         {
-                            player.bodyFrame.Y = player.bodyFrame.Height * 7;
+                            Player.bodyFrame.Y = Player.bodyFrame.Height * 7;
                         }
                     }
                 }
@@ -687,30 +687,30 @@ namespace EEMod
             {
                 if (isLight)
                 {
-                    player.gravity = 0;
+                    Player.gravity = 0;
 
-                    if (Math.Abs(player.velocity.X) <= 0.01) aquamarineVel.X = -aquamarineVel.X * 1.25f;
+                    if (Math.Abs(Player.velocity.X) <= 0.01) aquamarineVel.X = -aquamarineVel.X * 1.25f;
 
-                    if (Math.Abs(player.velocity.Y) <= 0.01) aquamarineVel.Y = -aquamarineVel.Y * 1.25f;
+                    if (Math.Abs(Player.velocity.Y) <= 0.01) aquamarineVel.Y = -aquamarineVel.Y * 1.25f;
 
-                    player.velocity = aquamarineVel;
+                    Player.velocity = aquamarineVel;
 
                     aquamarineCooldown++;
-                    if (aquamarineCooldown >= 600 || (player.controlUp && aquamarineCooldown >= 30))
+                    if (aquamarineCooldown >= 600 || (Player.controlUp && aquamarineCooldown >= 30))
                     {
                         isLight = false;
                         aquamarineCooldown = 30;
-                        player.gravity = 1;
+                        Player.gravity = 1;
                     }
                 }
                 else
                 {
                     aquamarineCooldown--;
-                    if(player.controlUp && aquamarineCooldown <= 0)
+                    if(Player.controlUp && aquamarineCooldown <= 0)
                     {
                         isLight = true;
 
-                        aquamarineVel = Vector2.Normalize(Main.MouseWorld - player.Center) * 24;
+                        aquamarineVel = Vector2.Normalize(Main.MouseWorld - Player.Center) * 24;
                     }
                 }
             }
@@ -732,17 +732,17 @@ namespace EEMod
             EEMod.MainParticles.SetSpawningModules(new SpawnRandomly(0.03f));
             EEPlayer eeplayer = Main.LocalPlayer.GetModPlayer<EEPlayer>();
             if (eeplayer.reefMinibiome == MinibiomeID.AquamarineCaverns)
-                EEMod.MainParticles.SpawnParticleDownUp(Main.LocalPlayer, -Vector2.UnitY * 3, null, Color.Lerp(new Color(78, 125, 224), new Color(107, 2, 81), Main.rand.NextFloat(0, 1)), GetInstance<EEMod>().GetTexture("Textures/RadialGradient"), new SimpleBrownianMotion(0.2f), new AfterImageTrail(0.5f), new RotateVelocity(Main.rand.NextFloat(-0.002f, 0.002f)), new SetLightingBlend(true));
+                EEMod.MainParticles.SpawnParticleDownUp(Main.LocalPlayer, -Vector2.UnitY * 3, null, Color.Lerp(new Color(78, 125, 224), new Color(107, 2, 81), Main.rand.NextFloat(0, 1)), GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/RadialGradient").Value, new SimpleBrownianMotion(0.2f), new AfterImageTrail(0.5f), new RotateVelocity(Main.rand.NextFloat(-0.002f, 0.002f)), new SetLightingBlend(true));
 
             EEMod.MainParticles.SetSpawningModules(new SpawnRandomly(0.08f));
             if (eeplayer.reefMinibiome == MinibiomeID.KelpForest)
             {
                 float gottenParalax = Main.rand.NextFloat(1, 1.5f);
-                EEMod.MainParticles.SpawnParticleDownUp(Main.LocalPlayer, -Vector2.UnitY * 3, GetInstance<EEMod>().GetTexture("Particles/ForegroundParticles/KelpLeaf"), gottenParalax, 1 - (gottenParalax - 1)/1.2f, new RotateVelocity(Main.rand.NextFloat(-0.002f, 0.002f)), new RotateTexture(0.03f), new SetLightingBlend(true), new SetAnimData(6, 5));
+                EEMod.MainParticles.SpawnParticleDownUp(Main.LocalPlayer, -Vector2.UnitY * 3, GetInstance<EEMod>().Assets.Request<Texture2D>("Particles/ForegroundParticles/KelpLeaf").Value, gottenParalax, 1 - (gottenParalax - 1)/1.2f, new RotateVelocity(Main.rand.NextFloat(-0.002f, 0.002f)), new RotateTexture(0.03f), new SetLightingBlend(true), new SetAnimData(6, 5));
             }
             if (playingGame)
             {
-                player.velocity = Vector2.Zero;
+                Player.velocity = Vector2.Zero;
             }
             //UpdateVerletCollisions(1, 3f, 10, 54, 1.6f);
             if (isWearingCape)
@@ -750,9 +750,9 @@ namespace EEMod
                 UpdateArrayPoints();
             }
             thermalHealingTimer--;
-            if (player.HasBuff(BuffType<ThermalHealing>()) && thermalHealingTimer <= 0)
+            if (Player.HasBuff(BuffType<ThermalHealing>()) && thermalHealingTimer <= 0)
             {
-                player.statLife++;
+                Player.statLife++;
                 thermalHealingTimer = 30;
             }
             UpdateRunes();
@@ -765,9 +765,9 @@ namespace EEMod
                 if (bubbleTimer <= 0)
                 {
                     bubbleTimer = 6;
-                    if (player.wet)
+                    if (Player.wet)
                     {
-                        Projectile.NewProjectile(new Vector2(player.Center.X + bubbleLen - 16, player.Center.Y - bubbleColumn), new Vector2(0, -1), ProjectileType<WaterDragonsBubble>(), 5, 0, Owner: player.whoAmI);
+                        Projectile.NewProjectile(new Vector2(Player.Center.X + bubbleLen - 16, Player.Center.Y - bubbleColumn), new Vector2(0, -1), ProjectileType<WaterDragonsBubble>(), 5, 0, Owner: Player.whoAmI);
                     }
 
                     bubbleLen = Main.rand.Next(-16, 17);
@@ -776,13 +776,13 @@ namespace EEMod
                 dur--;
             }
 
-            EEMod.isSaving = false;
+            // EEMod.isSaving = false;
             if (Main.worldName != KeyID.Sea)
             {
                 if (triggerSeaCutscene && cutSceneTriggerTimer <= 500)
                 {
                     cutSceneTriggerTimer += 2;
-                    player.position = player.oldPosition;
+                    Player.position = Player.oldPosition;
                 }
                 if (godMode)
                 {
@@ -845,14 +845,14 @@ namespace EEMod
             float propagtionSpeedWTRvelY = 4;
             float basePosFluncStatic = 5f;
             float basePosFlunc = 3f;
-            propagation += (Math.Abs(player.velocity.X / 2f) * 0.015f) + 0.1f;
+            propagation += (Math.Abs(Player.velocity.X / 2f) * 0.015f) + 0.1f;
             for (int i = 0; i < acc; i++)
             {
                 float prop = (float)Math.Sin(propagation + (i * propagtionSpeedWTRdisX / acc));
-                Vector2 basePos = new Vector2(mainPoint.X + (i * displaceX) + (Math.Abs(player.velocity.X / basePosFluncStatic) * i), mainPoint.Y + (i * displaceY) + 20);
-                float dist = player.position.Y + yDis - basePos.Y + prop / acc * Math.Abs(-Math.Abs(player.velocity.X) - (i / acc));
-                float amp = Math.Abs(player.velocity.X * basePosFlunc) * (i * basePosFlunc / acc) + 1f;
-                float goTo = Math.Abs(dist * (Math.Abs(player.velocity.X) * upwardDrag)) + (player.velocity.Y / propagtionSpeedWTRvelY * i);
+                Vector2 basePos = new Vector2(mainPoint.X + (i * displaceX) + (Math.Abs(Player.velocity.X / basePosFluncStatic) * i), mainPoint.Y + (i * displaceY) + 20);
+                float dist = Player.position.Y + yDis - basePos.Y + prop / acc * Math.Abs(-Math.Abs(Player.velocity.X) - (i / acc));
+                float amp = Math.Abs(Player.velocity.X * basePosFlunc) * (i * basePosFlunc / acc) + 1f;
+                float goTo = Math.Abs(dist * (Math.Abs(Player.velocity.X) * upwardDrag)) + (Player.velocity.Y / propagtionSpeedWTRvelY * i);
                 float disClamp = (goTo - dis[i]) / smoothStepSpeed;
                 disClamp = MathHelper.Clamp(disClamp, -1.7f, 15);
                 dis[i] += disClamp;
@@ -865,10 +865,10 @@ namespace EEMod
                     arrayPoints[i] = new Vector2(basePos.X, basePos.Y + prop / acc * amp - dis[i] + i * 2);
                 }
 
-                if (player.direction == 1)
+                if (Player.direction == 1)
                 {
-                    float distX = arrayPoints[i].X - player.Center.X;
-                    arrayPoints[i].X = player.Center.X - distX;
+                    float distX = arrayPoints[i].X - Player.Center.X;
+                    arrayPoints[i].X = Player.Center.X - distX;
                 }
                 int tracker = 0;
                 if (i != 0)
@@ -935,7 +935,7 @@ namespace EEMod
                             {
                                 if (bubbleRuneBubble == 0)
                                 {
-                                    bubbleRuneBubble = Projectile.NewProjectile(player.Center, Vector2.Zero, ProjectileType<BubblingWatersBubble>(), 0, 0, Main.myPlayer);
+                                    bubbleRuneBubble = Projectile.NewProjectile(Player.Center, Vector2.Zero, ProjectileType<BubblingWatersBubble>(), 0, 0, Main.myPlayer);
                                 }
                                 else
                                 {
@@ -945,15 +945,15 @@ namespace EEMod
                             }
                             else
                             {
-                                if (player.wet)
+                                if (Player.wet)
                                 {
-                                    player.gravity = 0;
-                                    if (player.controlUp)
-                                        player.gravity = -0.2f;
-                                    if (player.controlDown)
-                                        player.gravity = 0.1f;
-                                    if (!player.controlUp && !player.controlDown)
-                                        player.gravity = -0.1f;
+                                    Player.gravity = 0;
+                                    if (Player.controlUp)
+                                        Player.gravity = -0.2f;
+                                    if (Player.controlDown)
+                                        Player.gravity = 0.1f;
+                                    if (!Player.controlUp && !Player.controlDown)
+                                        Player.gravity = -0.1f;
                                 }
                             }
                             break;
@@ -991,11 +991,11 @@ namespace EEMod
                                 NPC npc = Main.npc[j];
                                 if (!npc.active)
                                     continue;
-                                if (Vector2.Distance(npc.Center, player.Center) <= 256)
+                                if (Vector2.Distance(npc.Center, Player.Center) <= 256)
                                 {
                                     npc.AddBuff(BuffID.Slow, 30);
 
-                                    Texture2D tex = mod.GetTexture("EEMod/Projectiles/Runes/PermafrostSnowflake");
+                                    Texture2D tex = Mod.Assets.Request<Texture2D>("EEMod/Projectiles/Runes/PermafrostSnowflake").Value;
                                     Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
                                     Main.spriteBatch.Draw(tex, new Vector2(npc.Center.X, npc.Center.Y - npc.height / 2 - 32), tex.Bounds, Color.White, 0, tex.Bounds.Size() / 2, 1, SpriteEffects.None, 0);
                                     Main.spriteBatch.End();
@@ -1016,12 +1016,12 @@ namespace EEMod
                         {
                             if (EEMod.RuneSpecial.JustPressed && runeCooldown == 0)
                             {
-                                player.velocity -= new Vector2((player.Center.X - Main.MouseWorld.X) / 32, 16 * (Main.MouseWorld.Y > player.Center.Y ? -1 : 1));
+                                Player.velocity -= new Vector2((Player.Center.X - Main.MouseWorld.X) / 32, 16 * (Main.MouseWorld.Y > Player.Center.Y ? -1 : 1));
                                 runeCooldown = 300;
                             }
                             else
                             {
-                                player.dash = 3;
+                                Player.dash = 3;
                             }
 
                             break;
@@ -1041,9 +1041,9 @@ namespace EEMod
             if (hydrofluoricSet)
             {
                 hydrofluoricSetTimer++;
-                if (hydrofluoricSetTimer >= 30 && player.velocity != Vector2.Zero)
+                if (hydrofluoricSetTimer >= 30 && Player.velocity != Vector2.Zero)
                 {
-                    Projectile.NewProjectile(player.Center, player.velocity / 2, ProjectileType<CorrosiveBubble>(), 20, 0f);
+                    Projectile.NewProjectile(Player.Center, Player.velocity / 2, ProjectileType<CorrosiveBubble>(), 20, 0f);
                     hydrofluoricSetTimer = 0;
                 }
             }
@@ -1066,7 +1066,7 @@ namespace EEMod
                     }
                     if (closest != null)
                     {
-                        Projectile.NewProjectile(closest.Center, Vector2.Zero, ProjectileType<CyanoburstTomeKelp>(), 10, 0f, Owner: player.whoAmI);
+                        Projectile.NewProjectile(closest.Center, Vector2.Zero, ProjectileType<CyanoburstTomeKelp>(), 10, 0f, Owner: Player.whoAmI);
                     }
 
                     lythenSetTimer = 0;
@@ -1075,7 +1075,7 @@ namespace EEMod
 
             if (hydriteSet)
             {
-                player.gills = true;
+                Player.gills = true;
             }
         }
 
@@ -1110,7 +1110,7 @@ namespace EEMod
                     //Leaving zipline
                     eEPlayer.PylonBegin = default;
                     eEPlayer.PylonEnd = default;
-                    eEPlayer.ridingZipline = false;
+                    // eEPlayer.ridingZipline = false;
                     zipMultiplier = 1;
                 }
                 else
@@ -1125,7 +1125,7 @@ namespace EEMod
 
         public void UpdatePowerLevel()
         {
-            if (player.controlUseItem)
+            if (Player.controlUseItem)
             {
                 powerLevel += 0.2f;
                 if (powerLevel > maxPowerLevel)
@@ -1143,7 +1143,7 @@ namespace EEMod
         {
             if (ZoneCoralReefs)
             {
-                return ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceClose");
+                return ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceClose").Value;
             }
             return null;
         }
@@ -1212,8 +1212,8 @@ namespace EEMod
 
                 if (getRand == 1)
                 {
-                    player.statLife += healSet;
-                    player.HealEffect(healSet);
+                    Player.statLife += healSet;
+                    Player.HealEffect(healSet);
                 }
             }
             if (isQuartzRangedOn && item.ranged)
@@ -1355,7 +1355,7 @@ namespace EEMod
             {
                 for (int i = 0; i < layers.Count; i++)
                 {
-                    layers[i].visible = false;
+                    // layers[i].visible = false;
                 }
             }
 
@@ -1380,7 +1380,7 @@ namespace EEMod
             {
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-                Main.spriteBatch.Draw(GetTexture("EEMod/Projectiles/Nice"), player.Center.ForDraw(), new Rectangle(0, 0, 174, 174), Color.White * 0.75f, Main.GameUpdateCount / 300f, new Rectangle(0, 0, 174, 174).Size() / 2, 0.5f, SpriteEffects.None, default);
+                Main.spriteBatch.Draw(GetTexture("EEMod/Projectiles/Nice"), Player.Center.ForDraw(), new Rectangle(0, 0, 174, 174), Color.White * 0.75f, Main.GameUpdateCount / 300f, new Rectangle(0, 0, 174, 174).Size() / 2, 0.5f, SpriteEffects.None, default);
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             }

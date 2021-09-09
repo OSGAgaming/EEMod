@@ -187,9 +187,9 @@ namespace EEMod.Items.Armor.Kelpweaver
         
         private static void DrawNewLeg(Vector2 position, Player player, float rot, bool canShoot, int quadrant)
         {
-            Texture2D arm = ModContent.GetTexture("EEMod/Items/Armor/Kelpweaver/KelpweaverArm");
-            Texture2D glow = ModContent.GetTexture("EEMod/Items/Armor/Kelpweaver/KelpweaverArmGlow");
-            Texture2D pistol = ModContent.GetTexture("EEMod/Items/Armor/Kelpweaver/KelpweaverPistol");
+            Texture2D arm = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverArm");
+            Texture2D glow = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverArmGlow");
+            Texture2D pistol = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverPistol");
 
             Color lightColor = Lighting.GetColor((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f));
             SpriteEffects dir = rot > 3.14f ? SpriteEffects.None : SpriteEffects.FlipHorizontally;

@@ -251,7 +251,7 @@ namespace EEMod
             {
                 Vector2 pos = Bubbles[i].Position + new Vector2(Main.LocalPlayer.Center.X * Bubbles[i].paralax, 0);
                 Color drawColour = Lighting.GetColor((int)pos.X / 16, (int)pos.Y / 16).MultiplyRGB(new Color(Bubbles[i].alpha, Bubbles[i].alpha, Bubbles[i].alpha));
-                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("Particles/ForegroundParticles/Bob1"), pos.ForDraw(), null, drawColour * Bubbles[i].alpha, Bubbles[i].Velocity.ToRotation() + Bubbles[i].rotation, Vector2.Zero, Bubbles[i].scale, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Particles/ForegroundParticles/Bob1").Value, pos.ForDraw(), null, drawColour * Bubbles[i].alpha, Bubbles[i].Velocity.ToRotation() + Bubbles[i].rotation, Vector2.Zero, Bubbles[i].scale, SpriteEffects.None, 0);
             }
         }
 
@@ -337,9 +337,9 @@ namespace EEMod
 
                 if (bgAlpha > 0)
                 {
-                    Texture2D tex = ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceFar");
-                    Texture2D tex2 = ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceMid");
-                    Texture2D tex3 = ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceClose");
+                    Texture2D tex = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceFar").Value;
+                    Texture2D tex2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceMid").Value;
+                    Texture2D tex3 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceClose").Value;
                     LightingBuffer.Instance.Draw(Main.spriteBatch);
 
                     Vector2 chunk1 = Main.LocalPlayer.Center.ParalaxXY(new Vector2(0.8f, 0.3f)) / tex.Size();
@@ -525,11 +525,11 @@ namespace EEMod
 
                 Seamap.SeamapContent.SeamapPlayerShip.localship.velocity = Vector2.Zero;
                 Main.numClouds = 0;
-                Main.logo2Texture = ModContent.GetInstance<EEMod>().GetTexture("Empty");
-                Main.logoTexture = ModContent.GetInstance<EEMod>().GetTexture("Empty");
-                Main.sun2Texture = ModContent.GetInstance<EEMod>().GetTexture("Empty");
-                Main.sun3Texture = ModContent.GetInstance<EEMod>().GetTexture("Empty");
-                Main.sunTexture = ModContent.GetInstance<EEMod>().GetTexture("Empty");
+                Main.logo2Texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
+                Main.logoTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
+                Main.sun2Texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
+                Main.sun3Texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
+                Main.sunTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
 
                 if (SkyManager.Instance["EEMod:SavingCutscene"] != null)
                 {
@@ -891,11 +891,11 @@ namespace EEMod
                         SkyManager.Instance.Deactivate("EEMod:SavingCutscene", new object[0]);
                     }
 
-                    Main.logo2Texture = ModContent.GetTexture("Terraria/Logo2");
-                    Main.logoTexture = ModContent.GetTexture("Terraria/Logo");
-                    Main.sun2Texture = ModContent.GetTexture("Terraria/Sun2");
-                    Main.sun3Texture = ModContent.GetTexture("Terraria/Sun3");
-                    Main.sunTexture = ModContent.GetTexture("Terraria/Sun");
+                    Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2");
+                    Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo");
+                    Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2");
+                    Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3");
+                    Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
                 }
             }
         }
@@ -916,14 +916,14 @@ namespace EEMod
                     SkyManager.Instance.Deactivate("EEMod:SavingCutscene", new object[0]);
                 }
 
-                Main.logo2Texture = ModContent.GetTexture("Terraria/Logo2");
-                Main.logoTexture = ModContent.GetTexture("Terraria/Logo");
-                Main.sun2Texture = ModContent.GetTexture("Terraria/Sun2");
-                Main.sun3Texture = ModContent.GetTexture("Terraria/Sun3");
-                Main.sunTexture = ModContent.GetTexture("Terraria/Sun");
+                Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2");
+                Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo");
+                Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2");
+                Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3");
+                Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
             }
 
-            Main.sunTexture = ModContent.GetTexture("Terraria/Sun");
+            Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
 
             orig(self, gameTime);
         }

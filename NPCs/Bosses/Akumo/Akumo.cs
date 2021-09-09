@@ -5,6 +5,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace EEMod.NPCs.Bosses.Akumo
 {
@@ -28,7 +29,7 @@ namespace EEMod.NPCs.Bosses.Akumo
         {
             NPC.boss = true;
             NPC.lavaImmune = true;
-            NPC.friendly = false;
+            // NPC.friendly = false;
             NPC.noGravity = true;
             NPC.aiStyle = -1;
             NPC.lifeMax = 50000;
@@ -65,7 +66,7 @@ namespace EEMod.NPCs.Bosses.Akumo
             }
             if (NPC.frame.Y == frameHeight * 2)
             {
-                Main.PlaySound(SoundID.Item32);
+                SoundEngine.PlaySound(SoundID.Item32);
             }
             if (NPC.frame.Y >= frameHeight * 8)
             {
@@ -406,7 +407,7 @@ namespace EEMod.NPCs.Bosses.Akumo
                     int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Fire, 0f, 0f, 0, default, 2);
                     Main.dust[num7].position.X = player.Center.X - 1000 + (i * 20);
                     Main.dust[num7].position.Y = player.Center.Y - 700;
-                    Main.dust[num7].noGravity = false;
+                    // Main.dust[num7].noGravity = false;
                 }
                 for (int i = 0; i < 2; i++)
                 {
@@ -426,13 +427,13 @@ namespace EEMod.NPCs.Bosses.Akumo
                         int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Fire, 0f, 0f, 0, default, 2);
                         Main.dust[num7].position.X = player.Center.X - 1000 + (i * 20);
                         Main.dust[num7].position.Y = player.Center.Y - 700;
-                        Main.dust[num7].noGravity = false;
+                        // Main.dust[num7].noGravity = false;
                     }
                 }
                 if (NPC.ai[0] == nextAttackTime + 200 && NPC.ai[0] <= nextAttackTime + 360)
                 {
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(3));
+                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
+                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(3));
                 }
                 if (NPC.ai[0] == nextAttackTime + 230)
                 {
@@ -469,7 +470,7 @@ namespace EEMod.NPCs.Bosses.Akumo
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/Bosses/Akumo/Akumo");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Akumo/Akumo").Value;
             //Main.spriteBatch.End();
             //Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             //Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
@@ -480,8 +481,8 @@ namespace EEMod.NPCs.Bosses.Akumo
             {
                 if (NPC.ai[0] == 1)
                 {
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(1.5f));
+                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
+                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(1.5f));
                 }
                 spriteBatch.Draw(texture, NPC.Center - Main.screenPosition, NPC.frame, drawColor * alpha, NPC.rotation, NPC.frame.Size() / 2, scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             }

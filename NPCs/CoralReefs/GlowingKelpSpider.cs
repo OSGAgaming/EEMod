@@ -27,12 +27,12 @@ namespace EEMod.NPCs.CoralReefs
 
             NPC.width = 84;
             NPC.height = 53;
-            NPC.noGravity = false;
+            // NPC.noGravity = false;
             NPC.knockBackResist = 0f;
 
             NPC.npcSlots = 1f;
             NPC.buffImmune[BuffID.Confused] = true;
-            NPC.lavaImmune = false;
+            // NPC.lavaImmune = false;
             banner = NPC.type;
             NPC.behindTiles = true;
             //bannerItem = ModContent.ItemType<Items.Banners.ClamBanner>();
@@ -54,12 +54,12 @@ namespace EEMod.NPCs.CoralReefs
         {
             NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
-            Texture2D UpperLegTex = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlowingKelpSpiderLegUpper");
-            Texture2D LowerLegTex = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlowingKelpSpiderLegLower");
-            Texture2D KelpSpiderBody = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlowingKelpSpiderBody");
-            Texture2D UpperLegTexGlow = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlowingKelpSpiderLegUpperGlow");
-            Texture2D LowerLegTexGlow = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlowingKelpSpiderLegLowerGlow");
-            Texture2D KelpSpiderBodyGlow = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlowingKelpSpiderBodyGlow");
+            Texture2D UpperLegTex = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlowingKelpSpiderLegUpper").Value;
+            Texture2D LowerLegTex = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlowingKelpSpiderLegLower").Value;
+            Texture2D KelpSpiderBody = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlowingKelpSpiderBody").Value;
+            Texture2D UpperLegTexGlow = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlowingKelpSpiderLegUpperGlow").Value;
+            Texture2D LowerLegTexGlow = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlowingKelpSpiderLegLowerGlow").Value;
+            Texture2D KelpSpiderBodyGlow = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlowingKelpSpiderBodyGlow").Value;
             float rotation = (player.Center - NPC.Center).ToRotation() + (float)Math.PI;
             bool cond = (rotation > 0 && rotation < Math.PI / 2f) || rotation > (float)Math.PI * 1.5f;
             float lerpCache = Math.Abs((float)Math.Sin(NPC.ai[1] / 200f));

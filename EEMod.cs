@@ -28,7 +28,7 @@ using Terraria.ID;
 using Terraria.Localization; // :sadge:
 using Terraria.ModLoader;
 using Terraria.UI;// l a g
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace EEMod
 {
@@ -188,11 +188,11 @@ namespace EEMod
             AutoloadingManager.UnloadManager(this);
             Noise2DShift = null;
             //BufferPool.ClearBuffers();
-            Main.logo2Texture = ModContent.GetTexture("Terraria/Logo2");
-            Main.logoTexture = ModContent.GetTexture("Terraria/Logo");
-            Main.sun2Texture = ModContent.GetTexture("Terraria/Sun2");
-            Main.sun3Texture = ModContent.GetTexture("Terraria/Sun3");
-            Main.sunTexture = ModContent.GetTexture("Terraria/Sun");
+            Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2");
+            Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo");
+            Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2");
+            Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3");
+            Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

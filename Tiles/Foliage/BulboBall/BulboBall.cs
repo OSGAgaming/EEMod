@@ -28,7 +28,7 @@ namespace EEMod.Tiles.Foliage.BulboBall
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.Direction = TileObjectDirection.None;
-            TileObjectData.newTile.LavaDeath = false;
+            // TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
 
             ModTranslation name = CreateMapEntryName();
@@ -91,14 +91,14 @@ namespace EEMod.Tiles.Foliage.BulboBall
 
                     Lighting.AddLight(new Vector2(i * 16, j * 16) + new Vector2(64, 16), Color.Gold.ToVector3() * 0.75f * 0.5f);
 
-                    spriteBatch.Draw(ModContent.GetTexture("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall"), new Vector2(i * 16, j * 16) + new Vector2(0, -32) + zero - Main.screenPosition, new Rectangle(0, 0, 128, 64), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall"), new Vector2(i * 16, j * 16) + new Vector2(0, -32) + zero - Main.screenPosition, new Rectangle(0, 0, 128, 64), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                 }
                 else
                 {
                     if (peaked) ballHeight += (float)Math.Sin((Main.GameUpdateCount / 80f) + (j - i)) * 0.5f;
 
-                    Texture2D vineTex = ModContent.GetTexture("EEMod/Textures/BigVineVert");
-                    Texture2D vineTexGlow = ModContent.GetTexture("EEMod/Textures/BigVineVertGlow");
+                    Texture2D vineTex = ModContent.Request<Texture2D>("EEMod/Textures/BigVineVert");
+                    Texture2D vineTexGlow = ModContent.Request<Texture2D>("EEMod/Textures/BigVineVertGlow");
                     Vector2 bezierOrig = new Vector2(i * 16, j * 16) + zero;
 
                     Vector2 bulboBallPos = new Vector2(i * 16, j * 16) + new Vector2(64, 32 - ballHeight);
@@ -114,8 +114,8 @@ namespace EEMod.Tiles.Foliage.BulboBall
 
 
 
-                    spriteBatch.Draw(ModContent.GetTexture("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall"), bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
-                    spriteBatch.Draw(ModContent.GetTexture("EEMod/Tiles/Foliage/BulboBall/GoldBulboBallGlow"), bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall"), bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBallGlow"), bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
 
 
 
@@ -123,10 +123,10 @@ namespace EEMod.Tiles.Foliage.BulboBall
 
                     EEMod.MainParticles.SetSpawningModules(new SpawnRandomly(0.3f));
 
-                    if(peaked) Helpers.DrawParticlesAlongBezier(bezierOrig + new Vector2(24, 32) - zero, bezierOrig + new Vector2(48, -ballHeight) - zero, bezierOrig + new Vector2(32, -16) - zero, 0.0025f, chosen, 0.0003f, new SlowDown(0.98f), new RotateTexture(0.02f), new SetMask(ModContent.GetInstance<EEMod>().GetTexture("Textures/RadialGradient"), 0.6f), new AfterImageTrail(0.96f), new RotateVelocity(Main.rand.NextFloat(-0.01f, 0.01f)), new SetLighting(chosen.ToVector3(), 0.3f));
-                    if (peaked) Helpers.DrawParticlesAlongBezier(bezierOrig + new Vector2(104, 32) - zero, bezierOrig + new Vector2(80, -ballHeight) - zero, bezierOrig + new Vector2(96, -16) - zero, 0.0025f, chosen, 0.0003f, new RotateTexture(0.02f), new SetMask(ModContent.GetInstance<EEMod>().GetTexture("Textures/RadialGradient"), 0.6f), new AfterImageTrail(0.96f), new RotateVelocity(Main.rand.NextFloat(-0.01f, 0.01f)), new SetLighting(chosen.ToVector3(), 0.3f));
+                    if(peaked) Helpers.DrawParticlesAlongBezier(bezierOrig + new Vector2(24, 32) - zero, bezierOrig + new Vector2(48, -ballHeight) - zero, bezierOrig + new Vector2(32, -16) - zero, 0.0025f, chosen, 0.0003f, new SlowDown(0.98f), new RotateTexture(0.02f), new SetMask(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/RadialGradient").Value, 0.6f), new AfterImageTrail(0.96f), new RotateVelocity(Main.rand.NextFloat(-0.01f, 0.01f)), new SetLighting(chosen.ToVector3(), 0.3f));
+                    if (peaked) Helpers.DrawParticlesAlongBezier(bezierOrig + new Vector2(104, 32) - zero, bezierOrig + new Vector2(80, -ballHeight) - zero, bezierOrig + new Vector2(96, -16) - zero, 0.0025f, chosen, 0.0003f, new RotateTexture(0.02f), new SetMask(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/RadialGradient").Value, 0.6f), new AfterImageTrail(0.96f), new RotateVelocity(Main.rand.NextFloat(-0.01f, 0.01f)), new SetLighting(chosen.ToVector3(), 0.3f));
 
-                    EEMod.MainParticles.SpawnParticles(new Vector2(((bulboBallPosLight.X - zero.X) * 16) + Main.rand.Next(-64, 64), ((bulboBallPosLight.Y - zero.Y) * 16) + Main.rand.Next(-64, 64)), new Vector2(Main.rand.NextFloat(-0.75f, 0.75f), Main.rand.NextFloat(-0.75f, 0.75f)), mod.GetTexture("Particles/SmallCircle"), 30, 1, chosen, new SlowDown(0.98f), new RotateTexture(0.02f), new SetMask(ModContent.GetInstance<EEMod>().GetTexture("Textures/RadialGradient"), 0.6f), new AfterImageTrail(0.96f), new RotateVelocity(Main.rand.NextFloat(-0.01f, 0.01f)), new SetLighting(chosen.ToVector3(), 0.3f));
+                    EEMod.MainParticles.SpawnParticles(new Vector2(((bulboBallPosLight.X - zero.X) * 16) + Main.rand.Next(-64, 64), ((bulboBallPosLight.Y - zero.Y) * 16) + Main.rand.Next(-64, 64)), new Vector2(Main.rand.NextFloat(-0.75f, 0.75f), Main.rand.NextFloat(-0.75f, 0.75f)), Mod.Assets.Request<Texture2D>("Particles/SmallCircle").Value, 30, 1, chosen, new SlowDown(0.98f), new RotateTexture(0.02f), new SetMask(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/RadialGradient").Value, 0.6f), new AfterImageTrail(0.96f), new RotateVelocity(Main.rand.NextFloat(-0.01f, 0.01f)), new SetLighting(chosen.ToVector3(), 0.3f));
                 }
             }
 

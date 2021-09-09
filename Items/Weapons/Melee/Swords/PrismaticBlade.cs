@@ -21,10 +21,10 @@ namespace EEMod.Items.Weapons.Melee.Swords
 
         public override void SetDefaults()
         {
-            Item.melee = true;
+            Item.DamageType = DamageClass.Melee;
             Item.rare = ItemRarityID.Green;
             Item.autoReuse = true;
-            Item.useStyle = ItemUseStyleID.SwingThrow;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 4f; // 5 and 1/4
             Item.useTime = 35;
             Item.useAnimation = 35;
@@ -41,7 +41,7 @@ namespace EEMod.Items.Weapons.Melee.Swords
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (player.altFunctionUse == 2)
             {

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
 using EEMod.Prim;
 using EEMod.Extensions;
+using Terraria.Audio;
 
 namespace EEMod.Items.Weapons.Melee
 {
@@ -25,10 +26,10 @@ namespace EEMod.Items.Weapons.Melee
             Projectile.penetrate = -1;
             Projectile.scale = 1f;
 
-            Projectile.melee = true;
-            Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Melee;
+            // Projectile.tileCollide = false;
             Projectile.friendly = true;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
             Projectile.damage = 20;
             Projectile.knockBack = 3.5f;
         }
@@ -69,7 +70,7 @@ namespace EEMod.Items.Weapons.Melee
 
                 while (player.itemAnimation < 3)
                 {
-                    Main.PlaySound(SoundID.Item1, Projectile.Center);
+                    SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
                     player.itemAnimation += 320;
                 }
                 player.itemTime = player.itemAnimation;
@@ -80,7 +81,7 @@ namespace EEMod.Items.Weapons.Melee
                     Projectile.ai[0]++;
                     if (Projectile.ai[0] == chargeTime)
                     {
-                        Main.PlaySound(SoundID.NPCDeath7, Projectile.Center);
+                        SoundEngine.PlaySound(SoundID.NPCDeath7, Projectile.Center);
                     }
                 }
                 else
@@ -118,7 +119,7 @@ namespace EEMod.Items.Weapons.Melee
             {
                 if (Projectile.ai[0] < chargeTime)
                 {
-                    Projectile.active = false;
+                    // Projectile.active = false;
                 }
                 else
                 {
@@ -133,13 +134,13 @@ namespace EEMod.Items.Weapons.Melee
             }
             else
             {
-                Projectile.tileCollide = false;
+                // Projectile.tileCollide = false;
                 Projectile.rotation -= 0.5f;
                 Vector2 direction = player.position - Projectile.position;
                 if (direction.Length() < 20 || player.statLife < 1)
                 {
                     Main.LocalPlayer.GetModPlayer<EEPlayer>().TurnCameraFixationsOff();
-                    Projectile.active = false;
+                    // Projectile.active = false;
                 }
                 direction.Normalize();
                 direction *= 20;
@@ -188,7 +189,7 @@ namespace EEMod.Items.Weapons.Melee
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
 
-                Texture2D tex = ModContent.GetTexture("EEMod/Textures/SmoothFadeOut");
+                Texture2D tex = ModContent.Request<Texture2D>("EEMod/Textures/SmoothFadeOut");
 
                 Main.spriteBatch.Draw(tex, Projectile.Center.ForDraw(), tex.Bounds, Color.Gold * sineAdd * 0.3f, 0, new Vector2(31, 23), 0.25f * (sineAdd + 1) * 2, SpriteEffects.None, 0f);
 
@@ -232,7 +233,7 @@ namespace EEMod.Items.Weapons.Melee
                 }
                 Projectile.ai[1] = 2;
             }
-            Main.PlaySound(SoundID.Item70, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item70, Projectile.Center);
         }
     }
 }

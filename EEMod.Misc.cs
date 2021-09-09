@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ObjectData;
 using Terraria.World;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +22,7 @@ using EEMod.NPCs.CoralReefs;
 using EEMod.Tiles.Furniture;
 using EEMod.VerletIntegration;
 using EEMod.Systems.EEGame;
+using Terraria.Audio;
 
 namespace EEMod
 {
@@ -136,15 +137,15 @@ namespace EEMod
                 {
                     if (Inspect.JustPressed && player.GetModPlayer<EEPlayer>().playingGame == true)
                     {
-                        player.GetModPlayer<EEPlayer>().playingGame = false;
-                        player.webbed = false;
+                        // player.GetModPlayer<EEPlayer>().playingGame = false;
+                        // player.webbed = false;
                         simpleGame.EndGame();
                         break;
                     }
                     if (Inspect.JustPressed && Framing.GetTileSafely((int)player.Center.X / 16, (int)player.Center.Y / 16).type == ModContent.TileType<BlueArcadeMachineTile>() && player.GetModPlayer<EEPlayer>().playingGame == false && PlayerExtensions.GetSavings(player) >= 2500)
                     {
                         simpleGame = new SpaceInvaders();
-                        Main.PlaySound(SoundID.CoinPickup, Main.LocalPlayer.Center);
+                        SoundEngine.PlaySound(SoundID.CoinPickup, Main.LocalPlayer.Center);
                         player.BuyItem(2500);
                         simpleGame.StartGame(i);
                         player.GetModPlayer<EEPlayer>().playingGame = true;
@@ -204,8 +205,8 @@ namespace EEMod
                 color = Color.GreenYellow * alpha;
             }*/
 
-            Texture2D Outline = ModContent.GetInstance<EEMod>().GetTexture("UI/Outline");
-            Texture2D OceanScreen = ModContent.GetInstance<EEMod>().GetTexture("Seamap/SeamapAssets/OceanScreen");
+            Texture2D Outline = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("UI/Outline").Value;
+            Texture2D OceanScreen = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Seamap/SeamapAssets/OceanScreen").Value;
             if (Main.fontDeathText != null)
             {
                 if (Main.worldName == KeyID.Sea)

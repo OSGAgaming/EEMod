@@ -865,7 +865,7 @@ namespace EEMod.Systems
 					writer.Write(moddedEntry.Value);
 
 					ModTile modTile = TileLoader.GetTile(moddedEntry.Key);
-					writer.Write(modTile.mod.Name + "." + modTile.Name);
+					writer.Write(modTile.Mod.Name + "." + modTile.Name);
 				}
 			}
 			else
@@ -875,7 +875,7 @@ namespace EEMod.Systems
 					writer.Write(moddedEntry.Value);
 
 					ModWall modWall = WallLoader.GetWall(moddedEntry.Key);
-					writer.Write(modWall.mod.Name + "." + modWall.Name);
+					writer.Write(modWall.Mod.Name + "." + modWall.Name);
 				}
 			}
 		}

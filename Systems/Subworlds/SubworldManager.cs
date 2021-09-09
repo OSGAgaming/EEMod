@@ -13,7 +13,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Social;
 using Terraria.Utilities;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
+using Terraria.Audio;
 
 namespace EEMod.Systems.Subworlds.EESubworlds
 {
@@ -94,7 +95,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
                     repeats++;
                 }
 
-                Liquid.quickSettle = false;
+                // Liquid.quickSettle = false;
                 Main.tileSolid[190] = true;
             });
         }
@@ -117,7 +118,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
                 Main.cloudAlpha = 0f;
                 Main.maxRaining = 0f;
-                Main.raining = false;
+                // Main.raining = false;
 
                 WorldGen.RandomizeTreeStyle();
                 WorldGen.RandomizeCaveBackgrounds();
@@ -147,7 +148,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
         public static void EnterSubworld<T>() where T : Subworld, new()
         {
-            Main.PlaySound(SoundID.MenuClose);
+            SoundEngine.PlaySound(SoundID.MenuClose);
             PreSaveAndQuit();
             ThreadPool.QueueUserWorkItem(SaveAndQuitCallBack, new T());
         }
@@ -157,8 +158,8 @@ namespace EEMod.Systems.Subworlds.EESubworlds
         {
             try
             {
-                Main.PlaySound(SoundID.Waterfall, -1, -1, 0);
-                Main.PlaySound(SoundID.Lavafall, -1, -1, 0);
+                SoundEngine.PlaySound(SoundID.Waterfall, -1, -1, 0);
+                SoundEngine.PlaySound(SoundID.Lavafall, -1, -1, 0);
             }
             catch
             {
@@ -188,9 +189,9 @@ namespace EEMod.Systems.Subworlds.EESubworlds
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 WorldFile.saveWorld();
-                Main.PlaySound(SoundID.MenuOpen);
+                SoundEngine.PlaySound(SoundID.MenuOpen);
 
-                Main.fastForwardTime = false;
+                // Main.fastForwardTime = false;
 
                 Main.UpdateSundial();
 
@@ -201,7 +202,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
             {
                 Netplay.disconnect = true;
                 Main.netMode = NetmodeID.SinglePlayer;
-                Main.fastForwardTime = false;
+                // Main.fastForwardTime = false;
 
                 Main.UpdateSundial();
 
@@ -220,7 +221,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
         public static void Do_worldGenCallBack(object threadContext)
         {
-            Main.PlaySound(SoundID.MenuOpen);
+            SoundEngine.PlaySound(SoundID.MenuOpen);
             WorldGen.clearWorld();
             GenerateWorld((Subworld)threadContext, Main.ActiveWorldFileData.Seed, null);
             WorldFile.saveWorld(Main.ActiveWorldFileData.IsCloudSave, resetTime: true);
@@ -317,7 +318,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
             }
             else
             {
-                subworldPlayer.InSubworld = false;
+                // subworldPlayer.InSubworld = false;
                 Main.ActiveWorldFileData = WorldFile.GetAllMetadata(Path.Combine(EEPath, Name + ".wld"), false);
                 Main.ActivePlayerFileData.SetAsActive();
             }
@@ -334,10 +335,10 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
                 Main.GetInputText("");
 
-                Main.autoPass = false;
+                // Main.autoPass = false;
                 Main.menuMode = 30;
 
-                Main.PlaySound(SoundID.MenuOpen);
+                SoundEngine.PlaySound(SoundID.MenuOpen);
             }
         }
 

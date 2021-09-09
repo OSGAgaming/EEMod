@@ -19,10 +19,10 @@ namespace EEMod.NPCs.Bosses.Hydros
             Projectile.width = 8;
             Projectile.height = 8;
             Projectile.penetrate = -1;
-            Projectile.hostile = false;
-            Projectile.friendly = false;
+            // Projectile.hostile = false;
+            // Projectile.friendly = false;
             Projectile.ignoreWater = true;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.alpha = 0;
             Projectile.timeLeft = 120;
         }

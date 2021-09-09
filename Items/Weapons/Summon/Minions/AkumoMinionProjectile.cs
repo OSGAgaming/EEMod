@@ -18,11 +18,11 @@ namespace EEMod.Items.Weapons.Summon.Minions
         {
             Projectile.width = 42;
             Projectile.height = 18;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.timeLeft = 120;
             Projectile.rotation = (float)(Math.PI / 2);
             Projectile.penetrate = 1;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
             Projectile.friendly = true;
         }
 

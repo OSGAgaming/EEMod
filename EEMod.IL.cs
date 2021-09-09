@@ -309,16 +309,16 @@ namespace EEMod
                 num10 = Math.Pow((Main.time / 54000.0 - 0.5) * 2.0, 2.0);
             }
 
-            Rectangle[] rects = { new Rectangle(0, 0, ModContent.GetInstance<EEMod>().GetTexture("Textures/SunRing").Width, ModContent.GetInstance<EEMod>().GetTexture("Textures/SunRing").Height), new Rectangle(0, 0, ModContent.GetInstance<EEMod>().GetTexture("Textures/LensFlare").Width, ModContent.GetInstance<EEMod>().GetTexture("Textures/LensFlare").Height) };
+            Rectangle[] rects = { new Rectangle(0, 0, ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/SunRing").Value.Width, ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/SunRing").Value.Height), new Rectangle(0, 0, ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/LensFlare").Value.Width, ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/LensFlare").Value.Height) };
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
 
             if (EEModConfigClient.Instance.BetterLighting)
             {
-                Main.spriteBatch.Draw(ModContent.GetTexture("EEMod/Projectiles/Nice"), _sunPos - Main.screenPosition, new Rectangle(0, 0, 174, 174), Color.White * .5f * _globalAlpha * (_intensityFunction * 0.36f), (float)Math.Sin(Main.time / 540f), new Vector2(87), 10f, SpriteEffects.None, 0);
-                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("Textures/LensFlare"), _sunPos - Main.screenPosition + new Vector2(5, 28 + (float)num10 * 250), rects[1], Color.White * _globalAlpha * _intensityFunction, (float)Math.Sin(Main.time / 540f), rects[1].Size() / 2, 1.3f, SpriteEffects.None, 0);
-                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("Textures/SunRing"), _sunPos - Main.screenPosition + new Vector2(0, 37 + (float)num10 * 250), rects[0], Color.White * .7f * _globalAlpha * (_intensityFunction * 0.36f), (float)Math.Sin(Main.time / 5400f), rects[0].Size() / 2, 1f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Projectiles/Nice"), _sunPos - Main.screenPosition, new Rectangle(0, 0, 174, 174), Color.White * .5f * _globalAlpha * (_intensityFunction * 0.36f), (float)Math.Sin(Main.time / 540f), new Vector2(87), 10f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/LensFlare").Value, _sunPos - Main.screenPosition + new Vector2(5, 28 + (float)num10 * 250), rects[1], Color.White * _globalAlpha * _intensityFunction, (float)Math.Sin(Main.time / 540f), rects[1].Size() / 2, 1.3f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/SunRing").Value, _sunPos - Main.screenPosition + new Vector2(0, 37 + (float)num10 * 250), rects[0], Color.White * .7f * _globalAlpha * (_intensityFunction * 0.36f), (float)Math.Sin(Main.time / 5400f), rects[0].Size() / 2, 1f, SpriteEffects.None, 0);
             }
 
             Main.spriteBatch.End();
@@ -332,8 +332,8 @@ namespace EEMod
 
             if (EEModConfigClient.Instance.BetterLighting && Main.worldName != KeyID.CoralReefs)
             {
-                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("Textures/LensFlare2"), _sunPos - Main.screenPosition + new Vector2(-400, 400), new Rectangle(0, 0, 174, 174), Color.White * .7f * _globalAlpha * (_intensityFunction * 0.36f), 0f, new Vector2(87), 1f, SpriteEffects.None, 0);
-                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().GetTexture("Textures/LensFlare2"), _sunPos - Main.screenPosition + new Vector2(-800, 800), new Rectangle(0, 0, 174, 174), Color.White * .8f * _globalAlpha * (_intensityFunction * 0.36f), 0f, new Vector2(87), .5f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/LensFlare2").Value, _sunPos - Main.screenPosition + new Vector2(-400, 400), new Rectangle(0, 0, 174, 174), Color.White * .7f * _globalAlpha * (_intensityFunction * 0.36f), 0f, new Vector2(87), 1f, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/LensFlare2").Value, _sunPos - Main.screenPosition + new Vector2(-800, 800), new Rectangle(0, 0, 174, 174), Color.White * .8f * _globalAlpha * (_intensityFunction * 0.36f), 0f, new Vector2(87), .5f, SpriteEffects.None, 0);
             }
 
             Main.spriteBatch.End();
@@ -410,9 +410,9 @@ namespace EEMod
             float scale = 1.5f;
             Vector2 traverseFunction = new Vector2(4000, 1000);
             Vector2 traverse = new Vector2(-Main.LocalPlayer.Center.X / (Main.maxTilesX * 16) * traverseFunction.X, -Main.LocalPlayer.Center.Y / (Main.maxTilesY * 16) * traverseFunction.Y);
-            Texture2D CB1 = ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceFar"); //instance.GetTexture("Backgrounds /CoralReefsSurfaceFar");
-            Texture2D CB2 = ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceMid"); //instance.GetTexture("Backgrounds /CoralReefsSurfaceMid");
-            Texture2D CB3 = ModContent.GetInstance<EEMod>().GetTexture("Backgrounds/CoralReefsSurfaceClose");
+            Texture2D CB1 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceFar").Value; //instance.GetTexture("Backgrounds /CoralReefsSurfaceFar");
+            Texture2D CB2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceMid").Value; //instance.GetTexture("Backgrounds /CoralReefsSurfaceMid");
+            Texture2D CB3 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Backgrounds/CoralReefsSurfaceClose").Value;
             Rectangle GlobalRect = new Rectangle(0, 0, (int)(CB1.Width * scale), (int)(CB1.Height * scale));
             Rectangle GlobalRectUnscaled = new Rectangle(0, 0, CB1.Width, CB1.Height);
 
@@ -435,23 +435,23 @@ namespace EEMod
             switch (loadingChooseImage)
             {
                 case 0:
-                    _texture2 = ModContent.GetInstance<EEMod>().GetTexture("UI/LoadingScreenImages/LoadingScreen1");
+                    _texture2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("UI/LoadingScreenImages/LoadingScreen1").Value;
                     break;
                 case 1:
-                    _texture2 = ModContent.GetInstance<EEMod>().GetTexture("UI/LoadingScreenImages/LoadingScreen2");
+                    _texture2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("UI/LoadingScreenImages/LoadingScreen2").Value;
                     break;
                 case 2:
-                    _texture2 = ModContent.GetInstance<EEMod>().GetTexture("UI/LoadingScreenImages/LoadingScreen3");
+                    _texture2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("UI/LoadingScreenImages/LoadingScreen3").Value;
                     break;
                 default:
-                    _texture2 = ModContent.GetInstance<EEMod>().GetTexture("UI/LoadingScreenImages/LoadingScreen4");
+                    _texture2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("UI/LoadingScreenImages/LoadingScreen4").Value;
                     break;
             }
             switch (loadingChooseImage)
             {
                 case 0:
                 {
-                    _screenTexture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoconutCrab");
+                    _screenTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoconutCrab").Value;
                     _screenframes = 4;
                     _screenframeSpeed = 5;
                     break;
@@ -459,28 +459,28 @@ namespace EEMod
 
                 case 1:
                 {
-                    _screenTexture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/HermitCrab");
+                    _screenTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/HermitCrab").Value;
                     _screenframes = 4;
                     _screenframeSpeed = 5;
                     break;
                 }
                 case 2:
                 {
-                    _screenTexture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/Seahorse");
+                    _screenTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/Seahorse").Value;
                     _screenframes = 7;
                     _screenframeSpeed = 4;
                     break;
                 }
                 case 3:
                 {
-                    _screenTexture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/GlisteningReefs/Lionfish");
+                    _screenTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/GlisteningReefs/Lionfish").Value;
                     _screenframes = 8;
                     _screenframeSpeed = 10;
                     break;
                 }
                 case 4:
                 {
-                    _screenTexture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/CoralReefs/MechanicalReefs/MechanicalShark");
+                    _screenTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/MechanicalReefs/MechanicalShark").Value;
                     _screenframes = 6;
                     _screenframeSpeed = 10;
                     break;

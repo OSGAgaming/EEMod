@@ -101,7 +101,7 @@ namespace EEMod
 
             if (Main.netMode != NetmodeID.Server && !Filters.Scene["EEMod:SeaOpening"].IsActive())
             {
-                Filters.Scene.Activate("EEMod:SeaOpening", player.Center).GetShader().UseIntensity(quickOpeningFloat);
+                Filters.Scene.Activate("EEMod:SeaOpening", Player.Center).GetShader().UseIntensity(quickOpeningFloat);
             }
 
             if (noU)
@@ -122,7 +122,7 @@ namespace EEMod
 
             if (Main.netMode != NetmodeID.Server && !Filters.Scene[SunThroughWallsShader].IsActive())
             {
-                Filters.Scene.Activate(SunThroughWallsShader, player.Center).GetShader().UseOpacity(cutSceneTriggerTimer);
+                Filters.Scene.Activate(SunThroughWallsShader, Player.Center).GetShader().UseOpacity(cutSceneTriggerTimer);
             }
             #endregion
 
@@ -205,8 +205,8 @@ namespace EEMod
 
                     isCollidingWithAnyIsland = true;
 
-                    player.ClearBuff(BuffID.Cursed);
-                    player.ClearBuff(BuffID.Invisibility);
+                    Player.ClearBuff(BuffID.Cursed);
+                    Player.ClearBuff(BuffID.Invisibility);
                 }
             }
 
@@ -224,12 +224,12 @@ namespace EEMod
             #region Warp cutscene
             if (importantCutscene)
             {
-                EEMod.Noise2D.NoiseTexture = ModContent.GetTexture("EEMod/Textures/Noise/noise");
+                EEMod.Noise2D.NoiseTexture = ModContent.Request<Texture2D>("EEMod/Textures/Noise/noise");
                 Filters.Scene["EEMod:Noise2D"].GetShader().UseOpacity(cutSceneTriggerTimer / 180f);
 
                 if (Main.netMode != NetmodeID.Server && !Filters.Scene["EEMod:Noise2D"].IsActive())
                 {
-                    Filters.Scene.Activate("EEMod:Noise2D", player.Center).GetShader().UseOpacity(0);
+                    Filters.Scene.Activate("EEMod:Noise2D", Player.Center).GetShader().UseOpacity(0);
                 }
 
                 cutSceneTriggerTimer++;
@@ -265,10 +265,10 @@ namespace EEMod
             #endregion
 
             #region Hiding the player
-            player.position = player.oldPosition;
-            player.invis = true;
+            Player.position = Player.oldPosition;
+            Player.invis = true;
 
-            player.AddBuff(BuffID.Cursed, 100000);
+            Player.AddBuff(BuffID.Cursed, 100000);
             #endregion
 
             //THIS NEEDS CHANGING
@@ -347,7 +347,7 @@ namespace EEMod
 
             #region Moving screen position
 
-            player.position = player.oldPosition;
+            Player.position = Player.oldPosition;
 
             SeamapPlayerShip.localship.ModifyScreenPosition(ref Main.screenPosition);
             #endregion
@@ -376,7 +376,7 @@ namespace EEMod
 
             if (clone.EEPosition != SeamapPlayerShip.localship.position)
             {
-                var packet = mod.GetPacket();
+                var packet = Mod.GetPacket();
                 packet.Write(triggerSeaCutscene);
                 packet.WriteVector2(EEPosition);
                 packet.Send();
@@ -389,7 +389,7 @@ namespace EEMod
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            ModPacket packet = mod.GetPacket();
+            ModPacket packet = Mod.GetPacket();
             packet.Write(triggerSeaCutscene);
             packet.WriteVector2(EEPosition);
             packet.Send(toWho, fromWho);
@@ -443,7 +443,7 @@ namespace EEMod
             Filters.Scene[RippleShader].GetShader().UseOpacity(timerForCutscene);
             if (Main.netMode != NetmodeID.Server && !Filters.Scene[RippleShader].IsActive())
             {
-                Filters.Scene.Activate(RippleShader, player.Center).GetShader().UseOpacity(timerForCutscene);
+                Filters.Scene.Activate(RippleShader, Player.Center).GetShader().UseOpacity(timerForCutscene);
             }
             if (!godMode)
             {
@@ -455,7 +455,7 @@ namespace EEMod
             Filters.Scene[SeaTransShader].GetShader().UseOpacity(cutSceneTriggerTimer);
             if (Main.netMode != NetmodeID.Server && !Filters.Scene[SeaTransShader].IsActive())
             {
-                Filters.Scene.Activate(SeaTransShader, player.Center).GetShader().UseOpacity(cutSceneTriggerTimer);
+                Filters.Scene.Activate(SeaTransShader, Player.Center).GetShader().UseOpacity(cutSceneTriggerTimer);
             }
             if (!triggerSeaCutscene)
             {

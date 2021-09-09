@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace EEMod.NPCs.Bosses.Kraken    //We need this to basically indicate the folder where it is to be read from, so you the texture will load correctly
 {
@@ -23,8 +24,8 @@ namespace EEMod.NPCs.Bosses.Kraken    //We need this to basically indicate the f
             Projectile.hostile = true;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 2000;
-            Projectile.friendly = false;
-            Projectile.tileCollide = false;
+            // Projectile.friendly = false;
+            // Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
             Projectile.damage = 60;
             Projectile.light = 1f;
@@ -113,7 +114,7 @@ namespace EEMod.NPCs.Bosses.Kraken    //We need this to basically indicate the f
                 }
             }
 
-            Main.PlaySound(SoundID.Item27, Projectile.position);
+            SoundEngine.PlaySound(SoundID.Item27, Projectile.position);
             for (var i = 0; i < 5; i++)
             {
                 int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-4f, 4f), 6, Color.Black, 2);

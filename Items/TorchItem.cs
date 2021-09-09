@@ -15,7 +15,7 @@ namespace EEMod.Items
 
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.HoldingOut;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.shootSpeed = 1f;
             Item.rare = ItemRarityID.Orange;
             Item.width = 20;

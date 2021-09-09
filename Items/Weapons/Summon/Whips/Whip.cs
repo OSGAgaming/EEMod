@@ -20,7 +20,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
     {
         public virtual string texture => "EEMod/Projectiles/Summons/KelpWhipProj";
 
-        private Texture2D tex => ModContent.GetTexture(texture);
+        private Texture2D tex => ModContent.Request<Texture2D>(texture);
         public override string Texture => texture;
 
         private List<Vector2> _whipPointsForCollision = new List<Vector2>();
@@ -56,7 +56,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
             Projectile.height = 0;
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.scale = 1f;
             Projectile.ownerHitCheck = true;
             Projectile.extraUpdates = 1;
@@ -127,7 +127,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
                 _whipPointsForCollision.Clear();
                 FillWhipControlPoints(Projectile, _whipPointsForCollision);
                 Vector2 position = _whipPointsForCollision[_whipPointsForCollision.Count - 1];
-                Main.PlaySound(mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Custom, "Sounds/Sounds/WhipCrack"));
+                SoundEngine.PlaySound(Mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Custom, "Sounds/Sounds/WhipCrack"));
 
                 hasPlayedSound = true;
             }
@@ -274,7 +274,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
                         Vector2 vector5 = controlPoints[i + 2] - currentPoint;
                         for (float m = 0; m < 1; m += (1 / vector5.Length()))
                         {
-                            Main.spriteBatch.Draw(ModContent.GetTexture("EEMod/Particles/Square"), Vector2.Lerp(currentPoint, controlPoints[i + 2], m).ForDraw(), new Rectangle(0, 0, 1, 1), stringColor, rotation, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Particles/Square"), Vector2.Lerp(currentPoint, controlPoints[i + 2], m).ForDraw(), new Rectangle(0, 0, 1, 1), stringColor, rotation, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                         }
                     }
 
@@ -282,7 +282,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
 
                     handPos = new Rectangle((int)playerHandPosition.X, (int)playerHandPosition.Y, segmentRect.Width, segmentRect.Height);
 
-                    ItemCheck_MeleeHitNPCs(player.HeldItem, handPos, (int)(player.HeldItem.damage * player.minionDamage), player.HeldItem.knockBack);
+                    ItemCheck_MeleeHitNPCs(player.HeldItem, handPos, (int)(player.HeldItem.damage * player.GetDamage(DamageClass.Summon)), player.HeldItem.knockBack);
                 }
                 playerHandPosition += vector4;
             }

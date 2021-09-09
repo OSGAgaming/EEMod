@@ -17,14 +17,14 @@ namespace EEMod.Items.Weapons.Mage
 
         public override void SetDefaults()
         {
-            Projectile.hostile = false;
-            Projectile.magic = true;
+            // Projectile.hostile = false;
+            Projectile.DamageType = DamageClass.Magic;
             Projectile.width = 34;
             Projectile.height = 34;
             Projectile.aiStyle = -1;
-            Projectile.friendly = false;
+            // Projectile.friendly = false;
             Projectile.penetrate = 1;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.timeLeft = 999999;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -108,7 +108,7 @@ namespace EEMod.Items.Weapons.Mage
             {
                 player.itemAnimation = 1;
                 player.itemTime = 1;
-                Projectile.active = false;
+                // Projectile.active = false;
             }
             if (player.itemAnimation <= 0)
             {

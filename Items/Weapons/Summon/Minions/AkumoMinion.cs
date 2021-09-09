@@ -27,13 +27,13 @@ namespace EEMod.Items.Weapons.Summon.Minions
             Projectile.height = 58;
             Projectile.penetrate = -1;
             Projectile.minion = true;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.minionSlots = 1;
             Projectile.friendly = true;
             Projectile.damage = 50;
             Projectile.knockBack = 4f;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
         }
 
         private Color minionGlow;
@@ -255,7 +255,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             float funnySin = (float)Math.Sin(projectileAiCont[0]);
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("Projectiles/Summons/AkumoMinionGlow");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Projectiles/Summons/AkumoMinionGlow").Value;
             Vector2 funny = Projectile.Center.ForDraw();
             Main.spriteBatch.Draw(texture, new Rectangle((int)(funny + new Vector2(funnySin * 10, 0)).X, (int)(funny + new Vector2(funnySin * 10, 0)).Y, Projectile.width, Projectile.height), texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame), minionGlow * funnySin * 0.5f, Projectile.rotation, Projectile.Center, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : default, default);
             Main.spriteBatch.Draw(texture, new Rectangle((int)(funny + new Vector2(funnySin * 0, 10)).X, (int)(funny + new Vector2(funnySin * 10, 0)).Y, Projectile.width, Projectile.height), texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame), minionGlow * funnySin * 0.5f, Projectile.rotation, Projectile.Center, Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : default, default);

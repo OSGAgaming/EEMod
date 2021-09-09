@@ -17,14 +17,14 @@ namespace EEMod.Items.Weapons.Mage
 
         public override void SetDefaults()
         {
-            Projectile.hostile = false;
-            Projectile.magic = true;
+            // Projectile.hostile = false;
+            Projectile.DamageType = DamageClass.Magic;
             Projectile.width = 34;
             Projectile.height = 34;
             Projectile.aiStyle = -1;
-            Projectile.friendly = false;
+            // Projectile.friendly = false;
             Projectile.penetrate = 1;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.timeLeft = 1000;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
@@ -60,7 +60,7 @@ namespace EEMod.Items.Weapons.Mage
                     Dust dust = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + Dist.RotatedBy(lerp) * 1.2f, 219, offset * 0.5f, 0, Color.Red);
                     dust.noGravity = true;
                     dust.velocity *= 0.94f;
-                    dust.noLight = false;
+                    // dust.noLight = false;
                     dust.fadeIn = 1f;
                 }
             }
@@ -113,7 +113,7 @@ namespace EEMod.Items.Weapons.Mage
                         int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Fireworks, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-2f, -1f), 6, default, Projectile.scale);
                         Main.dust[num].noGravity = true;
                         Main.dust[num].velocity *= 2.5f;
-                        Main.dust[num].noLight = false;
+                        // Main.dust[num].noLight = false;
                     }
                 }
             }

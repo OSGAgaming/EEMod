@@ -20,10 +20,10 @@ namespace EEMod.Items.Weapons.Mage
             Projectile.height = 58;
             Projectile.timeLeft = 420;
             Projectile.ignoreWater = true;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.alpha = 255;
             Projectile.damage = 100;
         }

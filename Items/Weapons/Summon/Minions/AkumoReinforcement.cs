@@ -24,13 +24,13 @@ namespace EEMod.Items.Weapons.Summon.Minions
             Projectile.height = 58;
             Projectile.penetrate = -1;
             Projectile.minion = true;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.minionSlots = 1;
             Projectile.friendly = true;
             Projectile.damage = 50;
             Projectile.knockBack = 4f;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
         }
 
         public override void AI()

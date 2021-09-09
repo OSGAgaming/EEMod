@@ -17,7 +17,7 @@ using System;
 using EEMod.Systems.Noise;
 using System.Collections.Generic;
 using EEMod.Autoloading;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 using EEMod.Tiles.EmptyTileArrays;
 using EEMod.Tiles.Ores;
 using EEMod.Tiles.Walls;
@@ -603,7 +603,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
             //Finishing initialization stuff
             EEMod.progressMessage = "Successful!";
-            EEMod.isSaving = false;
+            // EEMod.isSaving = false;
 
             Main.spawnTileX = boatPos;
             Main.spawnTileY = depth - 22;

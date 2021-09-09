@@ -19,7 +19,7 @@ namespace EEMod.NPCs.CoralReefs
         {
             NPC.aiStyle = -1;
 
-            NPC.friendly = false;
+            // NPC.friendly = false;
 
             NPC.HitSound = SoundID.NPCHit25;
             NPC.DeathSound = SoundID.NPCDeath28;
@@ -33,8 +33,8 @@ namespace EEMod.NPCs.CoralReefs
 
             NPC.noGravity = true;
 
-            NPC.lavaImmune = false;
-            NPC.noTileCollide = false;
+            // NPC.lavaImmune = false;
+            // NPC.noTileCollide = false;
 
             NPC.damage = 5;
         }

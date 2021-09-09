@@ -175,7 +175,7 @@ namespace EEMod.Tiles
                 }
             }
 
-            Texture2D tex = ModContent.GetTexture("EEMod/Tiles/BrimstoneTile");
+            Texture2D tex = ModContent.Request<Texture2D>("EEMod/Tiles/BrimstoneTile");
 
             tile.frameX = (short)(((newFrameX * tilescale) + frameXOffset) + ((Math.Sin((i - (i % 2)) * (j - (j % 2))) >= 0) ? 144 : 0));
             tile.frameY = (short)((newFrameY * tilescale) + frameYOffset);
@@ -185,7 +185,7 @@ namespace EEMod.Tiles
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            Texture2D tex = ModContent.GetTexture("EEMod/Tiles/ScorchedGemsandTileGlow");
+            Texture2D tex = ModContent.Request<Texture2D>("EEMod/Tiles/ScorchedGemsandTileGlow");
 
             Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
 

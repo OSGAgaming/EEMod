@@ -24,7 +24,7 @@ namespace EEMod.NPCs
         public override void SetDefaults()
         {
             NPC.aiStyle = -1;
-            NPC.friendly = false;
+            // NPC.friendly = false;
             NPC.HitSound = SoundID.NPCHit25;
             NPC.DeathSound = SoundID.NPCDeath28;
             NPC.alpha = 0;

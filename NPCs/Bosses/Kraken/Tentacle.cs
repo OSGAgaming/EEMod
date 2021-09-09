@@ -207,14 +207,14 @@ namespace EEMod.NPCs.Bosses.Kraken
             if (NPC.ai[3] == 1)
             {
                 isGrabbing1 = true;
-                (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).isRightOrLeft = false;
+                // (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).isRightOrLeft = false;
             }
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D chain = mod.GetTexture("NPCs/Bosses/Kraken/ChainSmol");
-            Texture2D texture2 = mod.GetTexture("NPCs/Bosses/Kraken/EndOfSmol");
+            Texture2D chain = Mod.Assets.Request<Texture2D>("NPCs/Bosses/Kraken/ChainSmol").Value;
+            Texture2D texture2 = Mod.Assets.Request<Texture2D>("NPCs/Bosses/Kraken/EndOfSmol").Value;
             Helpers.DrawBezier(spriteBatch, chain, "", drawColor * alpha, NPC.Center, startingPosition, startingPosition + (NPC.Center - startingPosition) * 0.33f + new Vector2((float)Math.Cos(NPC.ai[0] / 23f) * 50, (float)Math.Sin(NPC.ai[0] / 10f) * 40), startingPosition + (NPC.Center - startingPosition) * 0.66f + new Vector2((float)Math.Sin(NPC.ai[0] / 20f) * 50, -(float)Math.Cos(NPC.ai[0] / 15f) * 55), NPC.width * 0.6f / distanceCovered, MathHelper.PiOver2, texture2);
             /*  if(npc.ai[3] == 0)
               Main.spriteBatch.Draw(texture, npc.Center + new Vector2(npc.width / 2, 0) - Main.screenPosition - distance / 2 + new Vector2(70,0), new Rectangle(texture.Width - (int)distance.X, 0, (int)distance.X, texture.Height), drawColor, npc.rotation, new Rectangle(texture.Width - (int)distance.X, 0, (int)distance.X, texture.Height).Size() / 2, npc.scale, npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);

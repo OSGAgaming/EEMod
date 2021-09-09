@@ -83,7 +83,7 @@ namespace EEMod.NPCs.Bosses.Kraken
         {
             NPC.boss = true;
             NPC.lavaImmune = true;
-            NPC.friendly = false;
+            // NPC.friendly = false;
             NPC.noGravity = true;
             NPC.aiStyle = -1;
             NPC.lifeMax = 50000;
@@ -710,14 +710,14 @@ namespace EEMod.NPCs.Bosses.Kraken
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/Bosses/Kraken/KrakenTentacles");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Kraken/KrakenTentacles").Value;
             Main.spriteBatch.Draw(texture, NPC.spriteDirection == -1 ? NPC.Center - Main.screenPosition + new Vector2(texture.Width / 16, -texture.Height / 96) : NPC.Center - Main.screenPosition + new Vector2(texture.Width / 16, -texture.Height / 96), seperateFrame, drawColor * tentacleAlpha, tentaclerotation, seperateFrame.Size() / 2 + new Vector2(texture.Width / 16, -texture.Height / 96), NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return true;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = ModContent.GetInstance<EEMod>().GetTexture("NPCs/Bosses/Kraken/KrakenHeadGlowMask");
+            Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Kraken/KrakenHeadGlowMask").Value;
             Main.spriteBatch.Draw(texture, NPC.Center - Main.screenPosition, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         }
 

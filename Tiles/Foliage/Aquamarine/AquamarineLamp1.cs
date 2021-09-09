@@ -33,7 +33,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.Direction = TileObjectDirection.None;
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.LavaDeath = false;
+            // TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.RandomStyleRange = 1;
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(120, 85, 60));
@@ -67,10 +67,10 @@ namespace EEMod.Tiles.Foliage.Aquamarine
             Projectile.height = 24;
             Projectile.timeLeft = 999999999;
             Projectile.ignoreWater = true;
-            Projectile.hostile = false;
+            // Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
+            // Projectile.tileCollide = false;
             Projectile.extraUpdates = 12;
         }
 
@@ -226,8 +226,8 @@ namespace EEMod.Tiles.Foliage.Aquamarine
                 HeartBeat = spire.ai[3];
                 Projectile.scale = 1f + (HeartBeat / 5f);
 
-                Texture2D tex = ModContent.GetInstance<EEMod>().GetTexture("Tiles/Foliage/Aquamarine/AquamarineLamp1Glow");
-                Texture2D mask = ModContent.GetInstance<EEMod>().GetTexture("Textures/SmoothFadeOut");
+                Texture2D tex = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Tiles/Foliage/Aquamarine/AquamarineLamp1Glow").Value;
+                Texture2D mask = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Textures/SmoothFadeOut").Value;
 
                 float sineAdd = (float)Math.Sin(Main.GameUpdateCount / 20f) + 2.5f;
                 Main.spriteBatch.Draw(mask, Projectile.position, null, new Color(sineAdd, sineAdd, sineAdd, 0) * 0.2f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -266,7 +266,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
                             {
                                 Color drawColor = Color.Lerp(Color.Cyan, Color.Magenta, (float)Math.Sin(Main.GameUpdateCount / 30f));
 
-                                Main.spriteBatch.Draw(mod.GetTexture("Particles/Square"), Projectile.Center + (desiredVector - Projectile.Center) * k - Main.screenPosition, new Rectangle(0, 0, 2, 2), drawColor, (desiredVector - Projectile.Center).ToRotation(), Vector2.One, 2f, SpriteEffects.None, 0);
+                                Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Particles/Square").Value, Projectile.Center + (desiredVector - Projectile.Center) * k - Main.screenPosition, new Rectangle(0, 0, 2, 2), drawColor, (desiredVector - Projectile.Center).ToRotation(), Vector2.One, 2f, SpriteEffects.None, 0);
                             }
                         }
                     }
@@ -288,7 +288,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
                         {
                             Color drawColor = Color.Lerp(Color.Cyan, Color.Magenta, (float)Math.Sin(Main.GameUpdateCount / 30f));
 
-                            Main.spriteBatch.Draw(mod.GetTexture("Particles/Square"), Projectile.Center + (desiredVector - Projectile.Center) * k - Main.screenPosition, new Rectangle(0, 0, 2, 2), drawColor, (desiredVector - Projectile.Center).ToRotation(), Vector2.One, 2f, SpriteEffects.None, 0);
+                            Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Particles/Square").Value, Projectile.Center + (desiredVector - Projectile.Center) * k - Main.screenPosition, new Rectangle(0, 0, 2, 2), drawColor, (desiredVector - Projectile.Center).ToRotation(), Vector2.One, 2f, SpriteEffects.None, 0);
                         }
                     }
 

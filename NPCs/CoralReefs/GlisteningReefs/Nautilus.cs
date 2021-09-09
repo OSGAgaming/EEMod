@@ -50,8 +50,8 @@ namespace EEMod.NPCs.CoralReefs.GlisteningReefs
 
             NPC.buffImmune[BuffID.Confused] = true;
 
-            NPC.lavaImmune = false;
-            NPC.noTileCollide = false;
+            // NPC.lavaImmune = false;
+            // NPC.noTileCollide = false;
         }
 
         public override void AI()

@@ -10,6 +10,6 @@ namespace EEMod
 {
     public abstract class EEItem : ModItem
     {
-        public Item Item => base.item; // for 1.4 port
+        public Item Item => base.Item; // for 1.4 port
     }
 }

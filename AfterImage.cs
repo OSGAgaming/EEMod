@@ -243,7 +243,7 @@ namespace EEMod
                         Main.dust[dustID].velocity.Y -= 0.5f;
                         if (Main.rand.NextBool(4))
                         {
-                            Main.dust[dustID].noGravity = false;
+                            // Main.dust[dustID].noGravity = false;
                             Main.dust[dustID].scale *= 0.5f;
                         }
                         if (codable is Player)
@@ -271,7 +271,7 @@ namespace EEMod
                         Main.dust[dustID].velocity.Y -= 0.5f;
                         if (Main.rand.NextBool(4))
                         {
-                            Main.dust[dustID].noGravity = false;
+                            // Main.dust[dustID].noGravity = false;
                             Main.dust[dustID].scale *= 0.5f;
                         }
                         if (codable is Player)
@@ -383,7 +383,7 @@ namespace EEMod
                         Main.dust[dustID].velocity.Y -= 0.5f;
                         if (Main.rand.NextBool(4))
                         {
-                            Main.dust[dustID].noGravity = false;
+                            // Main.dust[dustID].noGravity = false;
                             Main.dust[dustID].scale *= 0.5f;
                         }
                         if (codable is Player)
@@ -431,7 +431,7 @@ namespace EEMod
                 value.Normalize();
                 value.X *= 0.66f;
                 int goreID = Gore.NewGore(codable.position + new Vector2(Main.rand.Next(codable.width + 1), Main.rand.Next(codable.height + 1)), value * Main.rand.Next(3, 6) * 0.33f, 331, Main.rand.Next(40, 121) * 0.01f);
-                Main.gore[goreID].sticky = false;
+                // Main.gore[goreID].sticky = false;
                 Main.gore[goreID].velocity *= 0.4f;
                 Main.gore[goreID].velocity.Y -= 0.6f;
                 if (codable is Player)
