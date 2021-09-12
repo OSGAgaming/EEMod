@@ -54,7 +54,7 @@ namespace EEMod.Items.Weapons.Mage
                 lightColor.G = (byte)(lightColor.G + ((Color.White.G * 10) - lightColor.G) * lerp);
                 lightColor.B = (byte)(lightColor.B + ((Color.White.B * 10) - lightColor.B) * lerp);
             }
-            Vector2 drawOrigin = new Vector2(Main.projectileTexture[Projectile.type].Width * 0.5f, Projectile.height * 0.5f);
+            Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value.Width * 0.5f, Projectile.height * 0.5f);
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 Vector2 drawPos = Projectile.oldPos[k].ForDraw() + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
@@ -66,7 +66,7 @@ namespace EEMod.Items.Weapons.Mage
                     color2.G = (byte)(color2.G + (Color.HotPink.G - color2.G) * lerp);
                     color2.B = (byte)(color2.B + (Color.HotPink.B - color2.B) * lerp);
                 }
-                spriteBatch.Draw(Main.projectileTexture[Projectile.type], drawPos, new Rectangle(0, 0, Projectile.width, Projectile.height), color2 * 0.5f, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, drawPos, new Rectangle(0, 0, Projectile.width, Projectile.height), color2 * 0.5f, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
             }
             return false;
         }

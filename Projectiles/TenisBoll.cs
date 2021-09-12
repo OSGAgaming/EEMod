@@ -110,7 +110,7 @@ namespace EEMod.Projectiles
             Player chosenPlayer = Main.player[GetPlayer(Projectile.Center)];
             Texture2D volleyArrow = Mod.Assets.Request<Texture2D>("Projectiles/VolleyballArrow").Value;
             Main.spriteBatch.Draw(volleyArrow, Projectile.Center - Main.screenPosition, new Rectangle(0, volleyArrow.Height / frames * (11 - frame), volleyArrow.Width, volleyArrow.Height / frames), Color.White * ree, new Vector2(mouseHitBoxVec.X - chosenPlayer.Center.X, mouseHitBoxVec.Y - chosenPlayer.Center.Y).ToRotation() + MathHelper.PiOver2, new Rectangle(0, 0, volleyArrow.Width, volleyArrow.Height).Size() / 2, 1, SpriteEffects.None, 0);
-            Vector2 drawOrigin = new Vector2(Main.projectileTexture[Projectile.type].Width * 0.5f, Projectile.height * 0.5f);
+            Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value.Width * 0.5f, Projectile.height * 0.5f);
             float velocitylength = Projectile.velocity.Length();
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
@@ -118,7 +118,7 @@ namespace EEMod.Projectiles
                 {
                     Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                     Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length / 2);
-                    spriteBatch.Draw(Main.projectileTexture[Projectile.type], drawPos, new Rectangle(0, 0, Projectile.width, Projectile.height), new Color(255, 255, 255, 10), Projectile.rotation, drawOrigin, Projectile.scale * (1 - (k / (float)Projectile.oldPos.Length)) * (velocitylength * 0.06f), SpriteEffects.None, 0f);
+                    spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, drawPos, new Rectangle(0, 0, Projectile.width, Projectile.height), new Color(255, 255, 255, 10), Projectile.rotation, drawOrigin, Projectile.scale * (1 - (k / (float)Projectile.oldPos.Length)) * (velocitylength * 0.06f), SpriteEffects.None, 0f);
                 }
             }
             return true;

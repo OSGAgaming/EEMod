@@ -45,7 +45,7 @@ namespace EEMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)  //this make the projectile sprite rotate perfectaly around the player
         {
-            Texture2D texture = Main.projectileTexture[Projectile.type];
+            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.Cyan * ((255f - Projectile.alpha) / 255f), Projectile.rotation, new Vector2(texture.Width / 2, texture.Height / 2), 1f, Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
             return false;
         }

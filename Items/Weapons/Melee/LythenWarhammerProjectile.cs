@@ -157,10 +157,10 @@ namespace EEMod.Items.Weapons.Melee
             if (Projectile.ai[1] == 0)
             {
                 Color color = lightColor;
-                Main.spriteBatch.Draw(Main.projectileTexture[Projectile.type], Main.player[Projectile.owner].Center - Main.screenPosition, new Rectangle(0, 0, width, height), color, (float)radians + 3.9f, new Vector2(0, height), Projectile.scale, SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type], Main.player[Projectile.owner].Value.Center - Main.screenPosition, new Rectangle(0, 0, width, height), color, (float)radians + 3.9f, new Vector2(0, height), Projectile.scale, SpriteEffects.None, 0);
                 if (Projectile.ai[0] >= chargeTime && Projectile.ai[1] == 0)
                 {
-                    Main.spriteBatch.Draw(Main.projectileTexture[Projectile.type], Main.player[Projectile.owner].Center - Main.screenPosition, new Rectangle(0, height * 2, width, height), Color.White * 0.9f, (float)radians + 3.9f, new Vector2(0, height), Projectile.scale, SpriteEffects.None, 1);
+                    Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type], Main.player[Projectile.owner].Value.Center - Main.screenPosition, new Rectangle(0, height * 2, width, height), Color.White * 0.9f, (float)radians + 3.9f, new Vector2(0, height), Projectile.scale, SpriteEffects.None, 1);
 
                     if (flickerTime < 16)
                     {
@@ -172,7 +172,7 @@ namespace EEMod.Items.Weapons.Melee
                         {
                             alpha = 0;
                         }
-                        Main.spriteBatch.Draw(Main.projectileTexture[Projectile.type], Main.player[Projectile.owner].Center - Main.screenPosition, new Rectangle(0, height, width, height), color * alpha, (float)radians + 3.9f, new Vector2(0, height), Projectile.scale, SpriteEffects.None, 1);
+                        Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type], Main.player[Projectile.owner].Value.Center - Main.screenPosition, new Rectangle(0, height, width, height), color * alpha, (float)radians + 3.9f, new Vector2(0, height), Projectile.scale, SpriteEffects.None, 1);
                     }
                 }
                 return false;
@@ -189,7 +189,7 @@ namespace EEMod.Items.Weapons.Melee
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
 
-                Texture2D tex = ModContent.Request<Texture2D>("EEMod/Textures/SmoothFadeOut");
+                Texture2D tex = ModContent.Request<Texture2D>("EEMod/Textures/SmoothFadeOut").Value;
 
                 Main.spriteBatch.Draw(tex, Projectile.Center.ForDraw(), tex.Bounds, Color.Gold * sineAdd * 0.3f, 0, new Vector2(31, 23), 0.25f * (sineAdd + 1) * 2, SpriteEffects.None, 0f);
 
@@ -198,7 +198,7 @@ namespace EEMod.Items.Weapons.Melee
             }
             if (Projectile.ai[1] != 0)
             {
-                Main.spriteBatch.Draw(Main.projectileTexture[Projectile.type], new Rectangle((int)(Projectile.Center.X - Main.screenPosition.X), (int)(Projectile.Center.Y - Main.screenPosition.Y), 54, 60), new Rectangle(0, height * 2, width, height), Color.White, Projectile.rotation, new Vector2(27, 30), SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, new Rectangle((int)(Projectile.Center.X - Main.screenPosition.X), (int)(Projectile.Center.Y - Main.screenPosition.Y), 54, 60), new Rectangle(0, height * 2, width, height), Color.White, Projectile.rotation, new Vector2(27, 30), SpriteEffects.None, 0);
             }
         }
 

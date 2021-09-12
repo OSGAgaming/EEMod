@@ -126,7 +126,7 @@ namespace EEMod.NPCs.Bosses.Hydros
             {
                 return false;
             }
-            Texture2D projectileTexture = Main.projectileTexture[Projectile.type];
+            Texture2D projectileTexture = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
             Texture2D beamTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Hydros/HydroBeam_Beam").Value;
             Texture2D beamEndTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Hydros/HydroBeam_End").Value;
             float laserLength = LaserLength;

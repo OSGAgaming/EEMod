@@ -20,7 +20,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
     {
         public virtual string texture => "EEMod/Projectiles/Summons/KelpWhipProj";
 
-        private Texture2D tex => ModContent.Request<Texture2D>(texture);
+        private Texture2D tex => ModContent.Request<Texture2D>(texture).Value;
         public override string Texture => texture;
 
         private List<Vector2> _whipPointsForCollision = new List<Vector2>();

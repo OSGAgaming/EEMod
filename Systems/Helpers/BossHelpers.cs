@@ -341,7 +341,7 @@ namespace EEMod
         public static void DrawAroundOrigin(int index, Color lightColor)
         {
             Projectile projectile = Main.projectile[index];
-            Texture2D texture2D = Main.projectileTexture[projectile.type];
+            Texture2D texture2D = Terraria.GameContent.TextureAssets.Projectile[projectile.type].Value;
             Vector2 origin = new Vector2(texture2D.Width * 0.5f, texture2D.Height / Main.projFrames[projectile.type] * 0.5f);
             SpriteEffects effects = projectile.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Main.spriteBatch.Draw(texture2D, projectile.Center - Main.screenPosition, texture2D.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame), lightColor, projectile.rotation, origin, projectile.scale, effects, 0f);

@@ -91,14 +91,14 @@ namespace EEMod.Tiles.Foliage.BulboBall
 
                     Lighting.AddLight(new Vector2(i * 16, j * 16) + new Vector2(64, 16), Color.Gold.ToVector3() * 0.75f * 0.5f);
 
-                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall"), new Vector2(i * 16, j * 16) + new Vector2(0, -32) + zero - Main.screenPosition, new Rectangle(0, 0, 128, 64), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall").Value, new Vector2(i * 16, j * 16) + new Vector2(0, -32) + zero - Main.screenPosition, new Rectangle(0, 0, 128, 64), Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                 }
                 else
                 {
                     if (peaked) ballHeight += (float)Math.Sin((Main.GameUpdateCount / 80f) + (j - i)) * 0.5f;
 
-                    Texture2D vineTex = ModContent.Request<Texture2D>("EEMod/Textures/BigVineVert");
-                    Texture2D vineTexGlow = ModContent.Request<Texture2D>("EEMod/Textures/BigVineVertGlow");
+                    Texture2D vineTex = ModContent.Request<Texture2D>("EEMod/Textures/BigVineVert").Value;
+                    Texture2D vineTexGlow = ModContent.Request<Texture2D>("EEMod/Textures/BigVineVertGlow").Value;
                     Vector2 bezierOrig = new Vector2(i * 16, j * 16) + zero;
 
                     Vector2 bulboBallPos = new Vector2(i * 16, j * 16) + new Vector2(64, 32 - ballHeight);
@@ -114,8 +114,8 @@ namespace EEMod.Tiles.Foliage.BulboBall
 
 
 
-                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall"), bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
-                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBallGlow"), bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBall").Value, bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Tiles/Foliage/BulboBall/GoldBulboBallGlow").Value, bulboBallPos + zero - Main.screenPosition, new Rectangle(0, 0, 128, 128), Lighting.GetColor((int)bulboBallPosLight.X, (int)bulboBallPosLight.Y), (float)(Math.Sin((Main.GameUpdateCount / 65f) + i) / 13f) * (ballHeight / 256f), new Vector2(64, 64), 1f, SpriteEffects.None, 0f);
 
 
 

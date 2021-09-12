@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using EEMod.Tiles.EmptyTileArrays;
 using EEMod.Tiles;
 using Terraria.Audio;
-
+using Terraria.GameContent;
 
 namespace EEMod.NPCs.CoralReefs
 {
@@ -91,7 +91,7 @@ namespace EEMod.NPCs.CoralReefs
             EEMod.SpireShader.Parameters["lightColor"].SetValue(drawColor.ToVector3());
             EEMod.SpireShader.CurrentTechnique.Passes[0].Apply();
 
-            spriteBatch.Draw(TextureAssets.Npc[NPC.type], NPC.Center - Main.screenPosition + new Vector2(0, 4), Main.npcTexture[NPC.type].Value.Bounds, drawColor, NPC.rotation, TextureAssets.Npc[NPC.type].Value.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureAssets.Npc[NPC.type], NPC.Center - Main.screenPosition + new Vector2(0, 4), TextureAssets.Npc[NPC.type].Value.Bounds, drawColor, NPC.rotation, TextureAssets.Npc[NPC.type].Value.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);

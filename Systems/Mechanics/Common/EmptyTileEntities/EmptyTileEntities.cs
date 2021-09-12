@@ -159,7 +159,7 @@ namespace EEMod.Tiles.EmptyTileArrays
             Vector2 rand = new Vector2(Main.rand.NextFloat(ScreenPosition.X, ScreenPosition.X + texture.Width), Main.rand.NextFloat(ScreenPosition.Y, ScreenPosition.Y + texture.Height));
 
             EEMod.MainParticles.SetSpawningModules(new SpawnRandomly(0.0075f));
-            EEMod.MainParticles.SpawnParticles(rand, new Vector2(Main.rand.NextFloat(-0.75f, 0.75f), Main.rand.NextFloat(-0.75f, 0.75f)), ModContent.Request<Texture2D>("EEMod/Particles/Crystal"), 60, 1.5f, Color.Lerp(new Color(78, 125, 224), new Color(107, 2, 81), Main.rand.NextFloat(0, 1)), new SlowDown(0.98f), new RotateTexture(0.01f), new RotateVelocity(Main.rand.NextFloat(-.1f, .1f)), new SetMask(Helpers.RadialMask, 0.4f));
+            EEMod.MainParticles.SpawnParticles(rand, new Vector2(Main.rand.NextFloat(-0.75f, 0.75f), Main.rand.NextFloat(-0.75f, 0.75f)), ModContent.Request<Texture2D>("EEMod/Particles/Crystal").Value, 60, 1.5f, Color.Lerp(new Color(78, 125, 224), new Color(107, 2, 81), Main.rand.NextFloat(0, 1)), new SlowDown(0.98f), new RotateTexture(0.01f), new RotateVelocity(Main.rand.NextFloat(-.1f, .1f)), new SetMask(Helpers.RadialMask, 0.4f));
 
             rotation = 0;
             shaderLerp = 1;
@@ -231,7 +231,7 @@ namespace EEMod.Tiles.EmptyTileArrays
         {
             Vector2 rand = new Vector2(Main.rand.NextFloat(ScreenPosition.X, ScreenPosition.X + texture.Width), Main.rand.NextFloat(ScreenPosition.Y, ScreenPosition.Y + texture.Height));
             EEMod.MainParticles.SetSpawningModules(new SpawnRandomly(0.02f));
-            EEMod.MainParticles.SpawnParticles(rand, new Vector2(Main.rand.NextFloat(-0.75f, 0.75f), Main.rand.NextFloat(-0.75f, 0.75f)), ModContent.Request<Texture2D>("EEMod/Particles/Crystal"), 60, 1, Color.Lerp(new Color(78, 125, 224), new Color(107, 2, 81), Main.rand.NextFloat(0, 1)), new SlowDown(0.98f), new RotateTexture(0.01f), new RotateVelocity(Main.rand.NextFloat(-.1f, .1f)), new SetMask(Helpers.RadialMask));
+            EEMod.MainParticles.SpawnParticles(rand, new Vector2(Main.rand.NextFloat(-0.75f, 0.75f), Main.rand.NextFloat(-0.75f, 0.75f)), ModContent.Request<Texture2D>("EEMod/Particles/Crystal").Value, 60, 1, Color.Lerp(new Color(78, 125, 224), new Color(107, 2, 81), Main.rand.NextFloat(0, 1)), new SlowDown(0.98f), new RotateTexture(0.01f), new RotateVelocity(Main.rand.NextFloat(-.1f, .1f)), new SetMask(Helpers.RadialMask));
             rotation = 0;
             shaderLerp = 1;
             colour = Lighting.GetColor((int)position.X, (int)position.Y);

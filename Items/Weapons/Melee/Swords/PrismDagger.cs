@@ -96,7 +96,7 @@ namespace EEMod.Items.Weapons.Melee.Swords
             Vector2 drawOrigin = new Vector2(Projectile.width / 2, Projectile.height / 2);
             Vector2 drawPos = Projectile.position - Main.screenPosition;
             shadeColor.A = 150;
-            spriteBatch.Draw(Main.projectileTexture[Projectile.type], drawPos + drawOrigin, null, shadeColor, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, drawPos + drawOrigin, null, shadeColor, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.GameViewMatrix.TransformationMatrix);
             return false;

@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent;
 
 namespace EEMod.NPCs.CoralReefs.MechanicalReefs
 {
@@ -127,7 +128,7 @@ float x0, float x1, float x2, float x3)
             //Player player = Main.player[npc.target]; // unused
             DrawColor = NPC.GetAlpha(DrawColor);
             DrawHead(spriteBatch, "NPCs/CoralReefs/MechanicalReefs/DreadmineChain", "NPCs/CoralReefs/MechanicalReefs/DreadmineChain", NPC, DrawColor, new Vector2(NPC.ai[2], NPC.ai[3]));
-            Texture2D texture = Main.npcTexture[NPC.type];
+            Texture2D texture = TextureAssets.Npc[NPC.type].Value;
             Vector2 origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             spriteBatch.Draw(texture, NPC.Center - Main.screenPosition + new Vector2(0, 8), null, DrawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0);
             return false;

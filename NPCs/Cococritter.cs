@@ -87,7 +87,7 @@ namespace EEMod.NPCs
                 NPC.frameCounter = 0;
                 NPC.frame.Y = NPC.frame.Y + (TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type]);
             }
-            if (NPC.frame.Y >= Main.npcTexture[NPC.type].Height / Main.npcFrameCount[NPC.type] * (Main.npcFrameCount[NPC.type] - 1))
+            if (NPC.frame.Y >= TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] * (Main.npcFrameCount[NPC.type] - 1))
             {
                 NPC.frame.Y = 0;
                 return;

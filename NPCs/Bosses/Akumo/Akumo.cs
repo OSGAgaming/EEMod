@@ -473,7 +473,7 @@ namespace EEMod.NPCs.Bosses.Akumo
             Texture2D texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/Bosses/Akumo/Akumo").Value;
             //Main.spriteBatch.End();
             //Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-            //Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            //Vector2 drawOrigin = new Vector2(TextureAssets.Npc[npc.type].Value.Width * 0.5f, npc.height * 0.5f);
 
             //Main.spriteBatch.End();
             //Main.spriteBatch.Begin();

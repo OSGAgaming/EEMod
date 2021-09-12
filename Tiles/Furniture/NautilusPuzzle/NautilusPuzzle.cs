@@ -78,7 +78,7 @@ namespace EEMod.Tiles.Furniture.NautilusPuzzle
                                 zero = Vector2.Zero;
                             }
 
-                            Texture2D tex = ModContent.Request<Texture2D>(path + "NautilusPuzzle" + tiles[y, x]);
+                            Texture2D tex = ModContent.Request<Texture2D>(path + "NautilusPuzzle" + tiles[y, x]).Value;
                             Vector2 pos = new Vector2((i * 16) + (x * 48), (j * 16) + (y * 48));
 
                             Rectangle rect = new Rectangle((int)pos.X, (int)pos.Y, 48, 48);

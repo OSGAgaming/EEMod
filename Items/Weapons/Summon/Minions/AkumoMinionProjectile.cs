@@ -48,7 +48,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            AfterImage.DrawAfterimage(spriteBatch, Main.projectileTexture[Projectile.type], 0, Projectile, 1.5f, 1f, 3, false, 0f, 0f, new Color(lightColor.R, lightColor.G, lightColor.B, 150));
+            AfterImage.DrawAfterimage(spriteBatch, Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, 0, Projectile, 1.5f, 1f, 3, false, 0f, 0f, new Color(lightColor.R, lightColor.G, lightColor.B, 150));
             return true;
         }
     }

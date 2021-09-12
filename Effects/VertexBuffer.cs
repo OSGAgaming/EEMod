@@ -404,7 +404,7 @@ namespace EEMod.Effects
     {
         public Vector2 GetNextTrailPosition(Projectile projectile)
         {
-            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+            Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Projectile[projectile.type].Value.Width * 0.5f, projectile.height * 0.5f);
             return projectile.position + drawOrigin + Vector2.UnitY * projectile.gfxOffY;
         }
     }

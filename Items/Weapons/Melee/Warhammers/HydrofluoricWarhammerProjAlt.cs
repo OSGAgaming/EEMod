@@ -69,7 +69,7 @@ namespace EEMod.Items.Weapons.Melee.Warhammers
         {
             Helpers.DrawChain(Mod.Assets.Request<Texture2D>("Items/Weapons/Melee/Warhammers/HydrofluoricWarhammerChain").Value, Main.player[Projectile.owner].Center, Projectile.Center, 0);
             if (Projectile.ai[0] >= 120)
-                AfterImage.DrawAfterimage(spriteBatch, Main.projectileTexture[Projectile.type], 0, Projectile, 1.5f, 1f, 1, false, 0f, 0f, new Color(lightColor.R, lightColor.G, lightColor.B, 100));
+                AfterImage.DrawAfterimage(spriteBatch, Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, 0, Projectile, 1.5f, 1f, 1, false, 0f, 0f, new Color(lightColor.R, lightColor.G, lightColor.B, 100));
             return true;
         }
     }
