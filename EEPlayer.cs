@@ -874,7 +874,7 @@ namespace EEMod
                 if (i != 0)
                 {
                     Tile tile = Framing.GetTileSafely((int)arrayPoints[i].X / 16, (int)arrayPoints[i].Y / 16);
-                    while (tile.active() &&
+                    while (tile.IsActive &&
                             Main.tileSolid[tile.type]
                            || !Collision.CanHit(new Vector2(arrayPoints[i].X, arrayPoints[i].Y), 1, 1, new Vector2(arrayPoints[i - 1].X, arrayPoints[i - 1].Y), 1, 1))
                     {

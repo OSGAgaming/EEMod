@@ -53,7 +53,7 @@ namespace EEMod.Tiles.Foliage
         public override void RandomUpdate(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j - 1);
-            if (!tile.active() && Main.rand.Next(4) == 0)
+            if (!tile.IsActive && Main.rand.Next(4) == 0)
             {
                 WorldGen.PlaceObject(i, j - 1, ModContent.TileType<SeagrassTile>());
                 NetMessage.SendObjectPlacment(-1, i, j - 1, ModContent.TileType<SeagrassTile>(), 0, 0, -1, -1);

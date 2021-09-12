@@ -447,7 +447,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
                             for (int j = 1; j < random; j++)
                             {
-                                if (Framing.GetTileSafely(i, ballfart - j).active() || Framing.GetTileSafely(i, ballfart - j).liquid < 64) break;
+                                if (Framing.GetTileSafely(i, ballfart - j).active() || Framing.GetTileSafely(i, ballfart - j).LiquidAmount < 64) break;
 
                                 WorldGen.PlaceTile(i, ballfart - j, ModContent.TileType<SeagrassTile>());
                             }

@@ -49,7 +49,7 @@ namespace EEMod.Tiles.Foliage.KelpForest
             AddMapEntry(Color.DarkMagenta, name);
             dustType = DustID.PurpleTorch;
             disableSmartCursor = true;
-            animationFrameHeight = 66;
+            AnimationFrameHeight = 66;
         }
 
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
@@ -62,7 +62,7 @@ namespace EEMod.Tiles.Foliage.KelpForest
             int targetTe = ModContent.GetInstance<KelpFlowerTE>().Find(x, y);
             if (targetTe > -1 && TileEntity.ByID[targetTe] is KelpFlowerTE TE)
             {
-                frameYOffset = (animationFrameHeight * TE._frame);
+                frameYOffset = (AnimationFrameHeight * TE._frame);
             }
 
             if (targetTe > -1 && TileEntity.ByID[targetTe] is KelpFlowerTE kelpFlowerEntity)
@@ -121,7 +121,7 @@ namespace EEMod.Tiles.Foliage.KelpForest
         public override bool ValidTile(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
-            return tile.active();
+            return tile.IsActive;
         }
 
         public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction)

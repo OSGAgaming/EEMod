@@ -112,7 +112,7 @@ namespace EEMod.Items.Weapons.Melee.Boomerangs
                                 for (float j = 0; j <= 1; j += 0.02f)
                                 {
                                     Vector2 Lerped = Projectile.Center + (Main.projectile[i].Center - Projectile.Center) * j + new Vector2((float)Math.Sin(j * 20) * 10, (float)Math.Cos(j * 20) * 10);
-                                    Dust dust = Dust.NewDustPerfect(Lerped, DustID.Fire, Vector2.Zero);
+                                    Dust dust = Dust.NewDustPerfect(Lerped, DustID.Lava, Vector2.Zero);
                                     dust.fadeIn = 1f;
                                     dust.noGravity = true;
                                     dust.color = npc == null ? Color.Green : default;
@@ -140,7 +140,7 @@ namespace EEMod.Items.Weapons.Melee.Boomerangs
             for (var a = 0; a < 50; a++)
             {
                 Vector2 vector = new Vector2(0, 20).RotatedBy(Math.PI * 0.04) * a;
-                int index = Dust.NewDust(Projectile.Center, 1, 1, DustID.Fire, vector.X, vector.Y, 0, default, 1f);
+                int index = Dust.NewDust(Projectile.Center, 1, 1, DustID.Lava, vector.X, vector.Y, 0, default, 1f);
                 Main.dust[index].velocity *= 1.1f;
                 Main.dust[index].noGravity = true;
             }

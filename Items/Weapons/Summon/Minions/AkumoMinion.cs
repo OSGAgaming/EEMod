@@ -171,7 +171,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
                     for (int i = 0; i < 4; i++)
                     {
                         Vector2 position = projectile.Center + new Vector2(0, 4) + Vector2.UnitX.RotatedBy(MathHelper.ToRadians(360f / 6 * i) + (j*2) - projectileAiCont[2]) * radius;
-                        Dust dust = Dust.NewDustPerfect(position, DustID.Fire);
+                        Dust dust = Dust.NewDustPerfect(position, DustID.Lava);
                         dust.noGravity = true;
                     }
                     radius += 4;
@@ -230,7 +230,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
                 else
                 {
                     projectileAiCont[1]++;
-                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Fire);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Lava);
                     dust.noGravity = true;
                     if (projectileAiCont[1] >= 20 / projectileAiCont[3])
                     {

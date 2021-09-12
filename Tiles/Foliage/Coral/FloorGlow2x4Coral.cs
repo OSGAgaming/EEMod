@@ -23,8 +23,8 @@ namespace EEMod.Tiles.Foliage.Coral
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Wide Bulbous Coral");
             AddMapEntry(new Color(50, 50, 50), name);
-            disableSmartCursor = true;
-            animationFrameHeight = 38;
+            HasSmartInteract = true;
+            AnimationFrameHeight = 38;
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)

@@ -29,7 +29,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
             Tile tile = Framing.GetTileSafely(i, j + 1);
             Tile tile2 = Framing.GetTileSafely(i, j - 1);
 
-            if (tile.active() && tile.type == Type && tile2.active() && tile2.type == Type)
+            if (tile.IsActive && tile.type == Type && tile2.active() && tile2.type == Type)
             {
                 WorldGen.KillTile(i, j + 1);
                 WorldGen.KillTile(i, j - 1);

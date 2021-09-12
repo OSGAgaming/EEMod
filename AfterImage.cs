@@ -153,7 +153,7 @@ namespace EEMod
             float cr = 1f, cg = 1f, cb = 1f, ca = 1f;
             if (effects && honey && Main.rand.NextBool(30))
             {
-                int dustID = Dust.NewDust(codable.position, codable.width, codable.height, DustID.HoneyBubbles, 0f, 0f, 150, default, 1f);
+                int dustID = Dust.NewDust(codable.position, codable.width, codable.height, DustID.Honey, 0f, 0f, 150, default, 1f);
                 Main.dust[dustID].velocity.Y = 0.3f;
                 Main.dust[dustID].velocity.X *= 0.1f;
                 Main.dust[dustID].scale += Main.rand.Next(3, 4) * 0.1f;
@@ -215,7 +215,7 @@ namespace EEMod
             {
                 if (effects)
                 {
-                    int dustID = Dust.NewDust(new Vector2(codable.position.X - 2f, codable.position.Y - 2f), codable.width + 4, codable.height + 4, DustID.Fire, codable.velocity.X * 0.4f, codable.velocity.Y * 0.4f, 100, default, 2f);
+                    int dustID = Dust.NewDust(new Vector2(codable.position.X - 2f, codable.position.Y - 2f), codable.width + 4, codable.height + 4, DustID.Lava, codable.velocity.X * 0.4f, codable.velocity.Y * 0.4f, 100, default, 2f);
                     Main.dust[dustID].noGravity = true;
                     Main.dust[dustID].velocity *= 1.8f;
                     Main.dust[dustID].velocity.Y -= 0.75f;
@@ -265,7 +265,7 @@ namespace EEMod
                 {
                     if (Main.rand.Next(4) != 0)
                     {
-                        int dustID = Dust.NewDust(codable.position - new Vector2(2f, 2f), codable.width + 4, codable.height + 4, DustID.Fire, codable.velocity.X * 0.4f, codable.velocity.Y * 0.4f, 100, default, 3.5f);
+                        int dustID = Dust.NewDust(codable.position - new Vector2(2f, 2f), codable.width + 4, codable.height + 4, DustID.Lava, codable.velocity.X * 0.4f, codable.velocity.Y * 0.4f, 100, default, 3.5f);
                         Main.dust[dustID].noGravity = true;
                         Main.dust[dustID].velocity *= 1.8f;
                         Main.dust[dustID].velocity.Y -= 0.5f;

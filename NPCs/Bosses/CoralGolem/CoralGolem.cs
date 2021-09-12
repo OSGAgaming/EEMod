@@ -42,7 +42,7 @@ namespace EEMod.NPCs.Bosses.CoralGolem
             NPC.noTileCollide = true;
             NPC.width = 250;
             NPC.height = 230;
-            drawOffsetY = 40;
+            DrawOffsetY = 40;
 
             NPC.npcSlots = 24f;
             NPC.knockBackResist = 0f;

@@ -70,9 +70,9 @@ namespace EEMod.NPCs
             {
                 var npcCenter = NPC.Center.ToTileCoordinates();
                 Tile tile = Framing.GetTileSafely(npcCenter.X, npcCenter.Y);
-                if (!WorldGen.SolidTile(npcCenter.X, npcCenter.Y) && tile.liquid == 0)
+                if (!WorldGen.SolidTile(npcCenter.X, npcCenter.Y) && tile.LiquidAmount == 0)
                 {
-                    tile.liquid = (byte)Main.rand.Next(50, 150);
+                    tile.LiquidAmount = (byte)Main.rand.Next(50, 150);
                     tile.lava(true);
                     tile.honey(false);
                     WorldGen.SquareTileFrame(npcCenter.X, npcCenter.Y, true);

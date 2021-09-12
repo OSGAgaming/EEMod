@@ -174,7 +174,7 @@ namespace EEMod.EEWorld
             BoundClause((int i, int j) =>
             {
                 Tile tile = Framing.GetTileSafely(i, j);
-                if (tile.active() && !Framing.GetTileSafely(i, j - 1).active() && (
+                if (tile.IsActive && !Framing.GetTileSafely(i, j - 1).active() && (
                     tile.type == ModContent.TileType<GemsandTile>()
                     || tile.type == ModContent.TileType<LightGemsandTile>()
                     || tile.type == ModContent.TileType<DarkGemsandTile>()

@@ -26,7 +26,7 @@ namespace EEMod
                 Main.LocalPlayer.GetModPlayer<EEPlayer>().currentAltarPos = Vector2.Zero;
                 if (tile != null)
                 {
-                    if (tile.active() && tile.type == ModContent.TileType<OrbHolder>())
+                    if (tile.IsActive && tile.type == ModContent.TileType<OrbHolder>())
                     {
                         speed += 0.002f;
 

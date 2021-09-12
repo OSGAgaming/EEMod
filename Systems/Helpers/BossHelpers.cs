@@ -295,10 +295,10 @@ namespace EEMod
                 }
                 for (int j = 0; j < 20; j++)
                 {
-                    int num2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default, 3.5f);
+                    int num2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Lava, 0f, 0f, 100, default, 3.5f);
                     Main.dust[num2].noGravity = true;
                     Main.dust[num2].velocity *= 7f;
-                    num2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default, 1.5f);
+                    num2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Lava, 0f, 0f, 100, default, 1.5f);
                     Main.dust[num2].velocity *= 3f;
                 }
                 for (int k = 0; k < 2; k++)

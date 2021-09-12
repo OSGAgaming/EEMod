@@ -39,7 +39,7 @@ namespace EEMod.NPCs.Bosses.Akumo
             NPC.noTileCollide = true;
             NPC.width = 250;
             NPC.height = 230;
-            drawOffsetY = 40;
+            DrawOffsetY = 40;
 
             NPC.npcSlots = 24f;
             NPC.knockBackResist = 0f;
@@ -389,7 +389,7 @@ namespace EEMod.NPCs.Bosses.Akumo
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Fire, 0f, 0f, 0, default, 4 - (NPC.ai[0] - 240) / 90);
+                    int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Lava, 0f, 0f, 0, default, 4 - (NPC.ai[0] - 240) / 90);
                     Main.dust[num7].position = NPC.Center;
                     Main.dust[num7].noGravity = true;
                 }
@@ -404,14 +404,14 @@ namespace EEMod.NPCs.Bosses.Akumo
             {
                 for (int i = 0; i < 100; i++)
                 {
-                    int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Fire, 0f, 0f, 0, default, 2);
+                    int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Lava, 0f, 0f, 0, default, 2);
                     Main.dust[num7].position.X = player.Center.X - 1000 + (i * 20);
                     Main.dust[num7].position.Y = player.Center.Y - 700;
                     // Main.dust[num7].noGravity = false;
                 }
                 for (int i = 0; i < 2; i++)
                 {
-                    int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Fire, 0f, 0f, 0, default, (NPC.ai[0] - 240) / 90);
+                    int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Lava, 0f, 0f, 0, default, (NPC.ai[0] - 240) / 90);
                     Main.dust[num7].position = NPC.Center;
                     Main.dust[num7].noGravity = true;
                 }
@@ -424,7 +424,7 @@ namespace EEMod.NPCs.Bosses.Akumo
                 {
                     for (int i = 0; i < 100; i++)
                     {
-                        int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Fire, 0f, 0f, 0, default, 2);
+                        int num7 = Dust.NewDust(NPC.Center, 1, 1, DustID.Lava, 0f, 0f, 0, default, 2);
                         Main.dust[num7].position.X = player.Center.X - 1000 + (i * 20);
                         Main.dust[num7].position.Y = player.Center.Y - 700;
                         // Main.dust[num7].noGravity = false;

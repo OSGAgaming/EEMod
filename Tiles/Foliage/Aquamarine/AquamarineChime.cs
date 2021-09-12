@@ -27,7 +27,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             Tile tile = Framing.GetTileSafely(i, j + 1);
-            if (tile.active() && tile.type == Type)
+            if (tile.IsActive && tile.type == Type)
             {
                 WorldGen.KillTile(i, j + 1);
             }

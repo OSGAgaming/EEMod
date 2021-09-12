@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
-using Terraria.GameContent.Liquid;
+using Terraria.GameContent.LiquidAmount;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.Graphics.Effects;
@@ -71,7 +71,7 @@ namespace EEMod
             //IL.Terraria.Main.oldDrawWater += Main_oldDrawWater;
             hooklist = new ILHookList();
 
-            IL.Terraria.GameContent.Liquid.LiquidRenderer.InternalPrepareDraw += LiquidRenderer_InternalDraw1;
+            IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalPrepareDraw += LiquidRenderer_InternalDraw1;
             hooklist.Add(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), LayeredMusic.ILFillBuffer);
 
             //HookEndpointManager.Modify(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), (ILContext.Manipulator)LayeredMusic.ILFillBuffer);
@@ -84,8 +84,8 @@ namespace EEMod
             //IL.Terraria.Main.OldDrawBackground -= Main_OldDrawBackground;
             //IL.Terraria.Main.oldDrawWater -= Main_oldDrawWater;
             //IL.Terraria.NPC.AI_001_Slimes -= Practice;
-            IL.Terraria.GameContent.Liquid.LiquidRenderer.InternalPrepareDraw -= LiquidRenderer_InternalDraw1;
-            //IL.Terraria.GameContent.Liquid.LiquidRenderer.InternalDraw -= Traensperentaoiasjpdfdsgwuttttttttttttttryddddddddddtyrrrrrrrrrrrrrrrrrvvfghnmvvb;
+            IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalPrepareDraw -= LiquidRenderer_InternalDraw1;
+            //IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalDraw -= Traensperentaoiasjpdfdsgwuttttttttttttttryddddddddddtyrrrrrrrrrrrrrrrrrvvfghnmvvb;
             //HookEndpointManager.Unmodify(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), (ILContext.Manipulator)LayeredMusic.ILFillBuffer);
             hooklist?.UnloadAll();
             hooklist?.Dispose();

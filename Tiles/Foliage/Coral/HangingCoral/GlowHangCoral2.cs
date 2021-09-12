@@ -51,7 +51,7 @@ namespace EEMod.Tiles.Foliage.Coral.HangingCoral
         {
             Tile tile = Framing.GetTileSafely(i, j);
 
-            if (tile != null && tile.active() && tile.type == Type)
+            if (tile != null && tile.IsActive && tile.type == Type)
             {
                 int frameX = tile.frameX;
                 int frameY = tile.frameY;

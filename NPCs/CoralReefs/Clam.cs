@@ -31,7 +31,7 @@ namespace EEMod.NPCs.CoralReefs
             NPC.npcSlots = 1f;
             NPC.buffImmune[BuffID.Confused] = true;
             // NPC.lavaImmune = false;
-            banner = NPC.type;
+            BannerItem = NPC.type;
             //bannerItem = ModContent.ItemType<Items.Banners.ClamBanner>();
             NPC.value = Item.sellPrice(0, 0, 0, 75);
         }
@@ -57,7 +57,7 @@ namespace EEMod.NPCs.CoralReefs
                 for (int j = minTilePosY; j < maxTilePosY + 5; ++j)
                 {
                     Tile tile = Framing.GetTileSafely(i, j);
-                    if (tile?.nactive() is true && (Main.tileSolid[tile.type] || Main.tileSolidTop[tile.type] && tile.frameY == 0))
+                    if (tile?.IsActive is true && (Main.tileSolid[tile.type] || Main.tileSolidTop[tile.type] && tile.frameY == 0))
                     {
                         tilePos.X = i * 16f;
                         tilePos.Y = j * 16f;

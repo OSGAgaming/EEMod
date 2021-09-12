@@ -148,7 +148,7 @@ namespace EEMod.Tiles.EmptyTileArrays
 
             lerp += speed;
 
-            if (tile.type != ModContent.TileType<EmptyTile>() && tile.active())
+            if (tile.type != ModContent.TileType<EmptyTile>() && tile.IsActive)
             {
                 Destroy();
             }
@@ -221,7 +221,7 @@ namespace EEMod.Tiles.EmptyTileArrays
         {
             lerp += speed;
             Tile tile = Framing.GetTileSafely((int)position.X, (int)position.Y);
-            if (tile.type != ModContent.TileType<EmptyTile>() && tile.active())
+            if (tile.type != ModContent.TileType<EmptyTile>() && tile.IsActive)
             {
                 Destroy();
             }

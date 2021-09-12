@@ -55,7 +55,7 @@ namespace EEMod.Projectiles.Enemy
         {
             for (int i = 0; i < 20; i++)
             {
-                int dust = Dust.NewDust(Projectile.position, 0, 0, DustID.Fire);
+                int dust = Dust.NewDust(Projectile.position, 0, 0, DustID.Lava);
                 Main.dust[dust].velocity = Projectile.velocity + new Vector2(Main.rand.NextFloat(-1, 2), Main.rand.NextFloat(-1, 2));
             }
         }

@@ -69,7 +69,7 @@ namespace EEMod
                     {
                         Tile tile = Framing.GetTileSafely(tilePos.X + i, tilePos.Y + j);
                         float pdist = Vector2.DistanceSquared(ControlSegment.position, new Vector2(tilePos.X + i, tilePos.Y + j) * 16);
-                        if (pdist < range * range && pdist > 0 && tile.active() && Main.tileSolid[tile.type])
+                        if (pdist < range * range && pdist > 0 && tile.IsActive && Main.tileSolid[tile.type])
                         {
                             Vector2 d = ControlSegment.position - new Vector2(tilePos.X + i, tilePos.Y + j) * 16;
                             Vector2 norm = Vector2.Normalize(d);

@@ -49,7 +49,7 @@ namespace EEMod.Items.Gliders
                 Dust.NewDust(player.position + new Vector2(-30 * player.direction, -5), 2, 2, DustID.DiamondBolt, 0, 0, 0, default, Math.Abs(player.velocity.X) / 40f);
 
             Tile tile = Framing.GetTileSafely((int)player.position.X / 16, (int)player.position.Y / 16 + 3);
-            if (tile.active()
+            if (tile.IsActive
                 && Main.tileSolid[tile.type]
                 && Math.Abs(player.fullRotation) > 0.01f)
             {
