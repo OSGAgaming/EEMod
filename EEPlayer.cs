@@ -1216,14 +1216,14 @@ namespace EEMod
                     Player.HealEffect(healSet);
                 }
             }
-            if (isQuartzRangedOn && item.ranged)
+            if (isQuartzRangedOn && item.DamageType == DamageClass.Ranged)
             {
                 if (crit)
                 {
                     target.AddBuff(BuffID.CursedInferno, 120);
                 }
             }
-            if (isQuartzSummonOn && item.summon)
+            if (isQuartzSummonOn && item.DamageType == DamageClass.Summon)
             {
                 if (Main.rand.Next(10) < 3)
                 {
@@ -1234,7 +1234,7 @@ namespace EEMod
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (isQuartzRangedOn && proj.ranged)
+            if (isQuartzRangedOn && proj.DamageType == DamageClass.Ranged)
             {
                 if (crit)
                 {
@@ -1380,7 +1380,7 @@ namespace EEMod
             {
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-                Main.spriteBatch.Draw(GetTexture("EEMod/Projectiles/Nice"), Player.Center.ForDraw(), new Rectangle(0, 0, 174, 174), Color.White * 0.75f, Main.GameUpdateCount / 300f, new Rectangle(0, 0, 174, 174).Size() / 2, 0.5f, SpriteEffects.None, default);
+                Main.spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Projectiles/Nice").Value, Player.Center.ForDraw(), new Rectangle(0, 0, 174, 174), Color.White * 0.75f, Main.GameUpdateCount / 300f, new Rectangle(0, 0, 174, 174).Size() / 2, 0.5f, SpriteEffects.None, default);
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
             }

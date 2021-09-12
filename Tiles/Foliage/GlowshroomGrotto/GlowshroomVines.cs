@@ -37,7 +37,7 @@ namespace EEMod.Tiles.Foliage.GlowshroomGrotto
         {
             Tile tileAbove = Framing.GetTileSafely(i, j - 1);
             int type = -1;
-            if (tileAbove.active())
+            if (tileAbove.IsActive)
             {
                 type = tileAbove.type;
             }
@@ -48,7 +48,7 @@ namespace EEMod.Tiles.Foliage.GlowshroomGrotto
         public override void RandomUpdate(int i, int j)
         {
             Tile tileBelow = Framing.GetTileSafely(i, j + 1);
-            if (WorldGen.genRand.NextBool(15) && !tileBelow.active() && !tileBelow.lava())
+            if (WorldGen.genRand.NextBool(15) && !tileBelow.IsActive && !(tileBelow.LiquidType == 1))
             {
                 bool placeVine = false;
                 int yTest = j;
@@ -59,7 +59,7 @@ namespace EEMod.Tiles.Foliage.GlowshroomGrotto
                     {
                         break;
                     }
-                    else if (!testTile.active() || testTile.type != ModContent.TileType<GemsandstoneTile>() || testTile.type == ModContent.TileType<LightGemsandstoneTile>())
+                    else if (!testTile.IsActive || testTile.type != ModContent.TileType<GemsandstoneTile>() || testTile.type == ModContent.TileType<LightGemsandstoneTile>())
                     {
                         yTest--;
                         continue;
@@ -70,7 +70,7 @@ namespace EEMod.Tiles.Foliage.GlowshroomGrotto
                 if (placeVine)
                 {
                     tileBelow.type = Type;
-                    tileBelow.active(true);
+                    tileBelow.IsActive = true;
                     WorldGen.SquareTileFrame(i, j + 1, true);
                     if (Main.netMode == NetmodeID.Server)
                     {

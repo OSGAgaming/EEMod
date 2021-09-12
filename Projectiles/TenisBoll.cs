@@ -35,7 +35,7 @@ namespace EEMod.Projectiles
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Bounce(Projectile.modProjectile, oldVelocity, .7f);
+            Bounce(Projectile.ModProjectile, oldVelocity, .7f);
             return false;
         }
 

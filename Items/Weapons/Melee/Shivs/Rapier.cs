@@ -100,9 +100,9 @@ namespace EEMod.Items.Weapons.Melee.Shivs
                 if (!flag)
                 {
                     lightningproj = Projectile.NewProjectile(firstClickPos,Vector2.Zero, ModContent.ProjectileType<RapierProj>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                    (Main.projectile[lightningproj].modProjectile as RapierProj).mid = midPoint;
-                    (Main.projectile[lightningproj].modProjectile as RapierProj).start = firstClickPos;
-                    (Main.projectile[lightningproj].modProjectile as RapierProj).end = lastClickPos;
+                    (Main.projectile[lightningproj].ModProjectile as RapierProj).mid = midPoint;
+                    (Main.projectile[lightningproj].ModProjectile as RapierProj).start = firstClickPos;
+                    (Main.projectile[lightningproj].ModProjectile as RapierProj).end = lastClickPos;
                     flag = true;
                     EEMod.primitives.CreateTrail(new Prim.SwordPrimTrail(Projectile, lastClickPos, midPoint, firstClickPos));
                 }

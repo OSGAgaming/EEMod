@@ -29,13 +29,13 @@ namespace EEMod.Items
         {
             if (EEMod.UI.IsActive("EEInterfacee"))
             {
-                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Sounds/FishermansLogClose"));
+                SoundEngine.PlaySound(mod.GetLegacySoundSlot(Terraria.Audio.SoundType.Music, "Sounds/Sounds/FishermansLogClose"));
                 (EEMod.UI.GetState("EEInterfacee") as FishermansLogUI).ClosingUI = true;
                 (EEMod.UI.GetState("EEInterfacee") as FishermansLogUI).SlideTimer = 0;
             }
             else
             {
-                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Sounds/FishermansLogOpen"));
+                SoundEngine.PlaySound(mod.GetLegacySoundSlot(Terraria.Audio.SoundType.Music, "Sounds/Sounds/FishermansLogOpen"));
                 EEMod.UI.SetState("EEInterfacee", "FishermansLogUI");
             }
             return true;

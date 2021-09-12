@@ -63,7 +63,7 @@ namespace EEMod.Tiles.EmptyTileArrays
             {
                 foreach (var item in EmptyTileEntities.Instance.EmptyTilePairsCache.Where(kvp => kvp.Value == position).ToList()) // Turning into a list is needed because if the collection is modified while it's looping an exception will be thrown
                 {
-                    if (Framing.GetTileSafely((int)item.Key.X, (int)item.Key.Y).active())
+                    if (Framing.GetTileSafely((int)item.Key.X, (int)item.Key.Y).IsActive)
                         WorldGen.KillTile((int)item.Key.X, (int)item.Key.Y);
                 }
             }

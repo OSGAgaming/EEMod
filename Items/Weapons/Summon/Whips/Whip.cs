@@ -274,7 +274,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
                         Vector2 vector5 = controlPoints[i + 2] - currentPoint;
                         for (float m = 0; m < 1; m += (1 / vector5.Length()))
                         {
-                            Main.spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Particles/Square"), Vector2.Lerp(currentPoint, controlPoints[i + 2], m).ForDraw(), new Rectangle(0, 0, 1, 1), stringColor, rotation, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(ModContent.Request<Texture2D>("EEMod/Particles/Square").Value, Vector2.Lerp(currentPoint, controlPoints[i + 2], m).ForDraw(), new Rectangle(0, 0, 1, 1), stringColor, rotation, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                         }
                     }
 
@@ -305,7 +305,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
                 Projectile.NewProjectile(Main.npc[npcIndex].Center.X, Main.npc[npcIndex].Center.Y, Main.npc[npcIndex].velocity.X, Main.npc[npcIndex].velocity.Y, ProjectileID.ConfettiMelee, 0, 0f, player.whoAmI);
             }
 
-            if (Main.npc[npcIndex].value > 0f && player.coins && Main.rand.Next(5) == 0)
+            if (Main.npc[npcIndex].value > 0f && Main.rand.Next(5) == 0)
             {
                 int type = 71;
                 if (Main.rand.Next(10) == 0)
@@ -349,7 +349,7 @@ namespace EEMod.Items.Weapons.Summon.Whips
                             int num = Main.DamageVar(originalDamage);
 
                             int NPCtype = Item.NPCtoBanner(Main.npc[HitNPC].BannerID());
-                            if (NPCtype > 0 && player.NPCBannerBuff[NPCtype] == true)
+                            if (NPCtype > 0 && player.HasNPCBannerBuff(NPCtype))
                             {
                                 num = ((!Main.expertMode) ? ((int)((float)num * ItemID.Sets.BannerStrength[Item.BannerToItem(NPCtype)].NormalDamageDealt)) : ((int)((float)num * ItemID.Sets.BannerStrength[Item.BannerToItem(NPCtype)].ExpertDamageDealt)));
                             }
@@ -368,9 +368,9 @@ namespace EEMod.Items.Weapons.Summon.Whips
 
                             int dmgDone = (int)Main.npc[HitNPC].StrikeNPC(RealDamage, knockBack, player.direction, false);
 
-                            if (sItem.modItem != null)
+                            if (sItem.ModItem != null)
                             {
-                                sItem.modItem.OnHitNPC(player, Main.npc[HitNPC], RealDamage, knockBack, false);
+                                sItem.ModItem.OnHitNPC(player, Main.npc[HitNPC], RealDamage, knockBack, false);
                             }
 
                             OnHitNPC(Main.npc[HitNPC], RealDamage, knockBack, false);

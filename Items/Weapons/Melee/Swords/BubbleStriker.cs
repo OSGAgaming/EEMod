@@ -101,7 +101,7 @@ namespace EEMod.Items.Weapons.Melee.Swords
 					for (int i = 0; i < Main.projectile.Length; i++)
 					{
 						Projectile proj = Main.projectile[i];
-						if (proj.modProjectile is BubbleStrikerProj bubble && proj.owner == Projectile.owner && bubble.stuck)
+						if (proj.ModProjectile is BubbleStrikerProj bubble && proj.owner == Projectile.owner && bubble.stuck)
 							bubble.pop = true;
 					}
 				}

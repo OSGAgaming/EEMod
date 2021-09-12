@@ -130,7 +130,7 @@ namespace EEMod.Items.Weapons.Melee.Boomerangs
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<FCHandler>())
                 {
-                    FCHandler Handler = Main.projectile[i].modProjectile as FCHandler;
+                    FCHandler Handler = Main.projectile[i].ModProjectile as FCHandler;
                     for (int j = 0; j < 4; j++)
                     {
                         Handler.projectileIndex[j] = -1;

@@ -401,7 +401,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
                         {
                             Tile.SmoothSlope(i, j);
                         }
-                        if (!Framing.GetTileSafely(i, j + 1).active() && !Framing.GetTileSafely(i, j - 1).active() && !Framing.GetTileSafely(i + 1, j).active() && !Framing.GetTileSafely(i - 1, j).active())
+                        if (!Framing.GetTileSafely(i, j + 1).IsActive && !Framing.GetTileSafely(i, j - 1).IsActive && !Framing.GetTileSafely(i + 1, j).IsActive && !Framing.GetTileSafely(i - 1, j).IsActive)
                         {
                             WorldGen.KillTile(i, j);
                         }
@@ -447,7 +447,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
 
                             for (int j = 1; j < random; j++)
                             {
-                                if (Framing.GetTileSafely(i, ballfart - j).active() || Framing.GetTileSafely(i, ballfart - j).LiquidAmount < 64) break;
+                                if (Framing.GetTileSafely(i, ballfart - j).IsActive || Framing.GetTileSafely(i, ballfart - j).LiquidAmount < 64) break;
 
                                 WorldGen.PlaceTile(i, ballfart - j, ModContent.TileType<SeagrassTile>());
                             }
@@ -874,7 +874,7 @@ namespace EEMod.Systems.Subworlds.EESubworlds
                 {
                     for (int j = 0; j < width; j++)
                     {
-                        if (!Framing.GetTileSafely(i, j).active())
+                        if (!Framing.GetTileSafely(i, j).IsActive)
                         {
                             WorldGen.TileRunner(i + xPos + (a * horDir), j + yPos + (a * vertDir), Main.rand.Next(2, 3), Main.rand.Next(1, 2), type, true, 0, 0, false, false);
                         }

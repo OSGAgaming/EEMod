@@ -252,7 +252,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
 
                     if ((tempint) > spirespire.shields.Count - 1) tempint = 0;
 
-                    if (!(spirespire.shields[tempint].modProjectile as AquamarineLamp1Glow).dead)
+                    if (!(spirespire.shields[tempint].ModProjectile as AquamarineLamp1Glow).dead)
                     {
                         Vector2 desiredVector = (spire.Center + new Vector2(-2, 2)) + Vector2.UnitX.RotatedBy(MathHelper.ToRadians((360f / Projectile.ai[0] * (Projectile.ai[1] + 1)) + Main.GameUpdateCount * 2)) * 48;
 

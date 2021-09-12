@@ -31,7 +31,7 @@ namespace EEMod.Items.Weapons.Mage
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Bounce(Projectile.modProjectile, oldVelocity);
+            Bounce(Projectile.ModProjectile, oldVelocity);
             Projectile.ai[0]++;
             return false;
         }

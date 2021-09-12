@@ -166,34 +166,34 @@ namespace EEMod.Tiles.Furniture.Chests
                 top--;
             }
             int chest = Chest.FindChest(left, top);
-            player.showItemIcon2 = -1;
+            player.cursorItemIconID = -1;
             if (chest < 0)
             {
 #pragma warning disable CS0618 // El tipo o el miembro están obsoletos
-                player.showItemIconText = Lang.chestType[0].Value; // TODO: Change to Language.GetText
+                player.cursorItemIconText = Lang.chestType[0].Value; // TODO: Change to Language.GetText
 #pragma warning restore CS0618 // El tipo o el miembro están obsoletos
             }
             else
             {
-                player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Gemsand Chest";
-                if (player.showItemIconText == "Gemsand Chest")
+                player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Gemsand Chest";
+                if (player.cursorItemIconText == "Gemsand Chest")
                 {
-                    player.showItemIcon2 = ModContent.ItemType<GemsandChest>();
-                    player.showItemIconText = "";
+                    player.cursorItemIconID = ModContent.ItemType<GemsandChest>();
+                    player.cursorItemIconText = "";
                 }
             }
             player.noThrow = 2;
-            player.showItemIcon = true;
+            player.cursorItemIconEnabled = true;
         }
 
         public override void MouseOverFar(int i, int j)
         {
             MouseOver(i, j);
             Player player = Main.LocalPlayer;
-            if (player.showItemIconText == "")
+            if (player.cursorItemIconText == "")
             {
                 // player.showItemIcon = false;
-                player.showItemIcon2 = 0;
+                player.cursorItemIconID = 0;
             }
         }
     }

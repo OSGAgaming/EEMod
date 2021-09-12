@@ -65,7 +65,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
                 {
                     if(Main.player[proj.owner] == player && proj.type == ModContent.ProjectileType<PrismaticCaneProj>())
                     {
-                        (proj.modProjectile as PrismaticCaneProj).awake = true;
+                        (proj.ModProjectile as PrismaticCaneProj).awake = true;
                     }
                 }
             }*/

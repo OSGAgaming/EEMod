@@ -51,7 +51,7 @@ namespace EEMod.NPCs.Bosses.Akumo
                 NPC.buffImmune[k] = true;
             }
 
-            music = Compatibilities.EEMusic?.GetSoundSlot(SoundType.Music, "Sounds/Music/Precursors") ?? MusicID.Boss3;
+            music = Compatibilities.EEMusic?.GetSoundSlot(Terraria.Audio.SoundType.Music, "Sounds/Music/Precursors") ?? MusicID.Boss3;
         }
 
         private int frameUpdate;
@@ -432,8 +432,8 @@ namespace EEMod.NPCs.Bosses.Akumo
                 }
                 if (NPC.ai[0] == nextAttackTime + 200 && NPC.ai[0] <= nextAttackTime + 360)
                 {
-                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
-                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(3));
+                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
+                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(Terraria.ModLoader.SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(3));
                 }
                 if (NPC.ai[0] == nextAttackTime + 230)
                 {

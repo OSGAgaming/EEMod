@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace EEMod.Tiles.Foliage.Aquamarine
 {
-    public class AquamarinePillar : ModTile
+    public class AquamarinePillar : EETile
     {
         public override void SetStaticDefaults()
         {
@@ -29,7 +29,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
             Tile tile = Framing.GetTileSafely(i, j + 1);
             Tile tile2 = Framing.GetTileSafely(i, j - 1);
 
-            if (tile.IsActive && tile.type == Type && tile2.active() && tile2.type == Type)
+            if (tile.IsActive && tile.type == Type && tile2.IsActive && tile2.type == Type)
             {
                 WorldGen.KillTile(i, j + 1);
                 WorldGen.KillTile(i, j - 1);

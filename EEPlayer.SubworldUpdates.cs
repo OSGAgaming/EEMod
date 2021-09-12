@@ -62,7 +62,7 @@ namespace EEMod
                 arrowFlag = true;
             }
 
-            //DesArrowProjectile desArrowProj = (DesArrowProjectile)Main.projectile[Arrow].modProjectile;
+            //DesArrowProjectile desArrowProj = (DesArrowProjectile)Main.projectile[Arrow].ModProjectile;
 
             if (Player.Center.X / 16 >= Main.spawnTileX - 5 && Player.Center.X / 16 <= Main.spawnTileX + 5 && Player.Center.Y / 16 >= Main.spawnTileY - 5 && Player.Center.Y / 16 <= Main.spawnTileY + 5)
             {
@@ -209,7 +209,7 @@ namespace EEMod
                 SubWorldSpecificVolcanoInsidePos = new Vector2(198, 198);
             }
 
-            //VolcanoArrowProj voclanoarrow = (VolcanoArrowProj)Main.projectile[Arrow2].modProjectile;
+            //VolcanoArrowProj voclanoarrow = (VolcanoArrowProj)Main.projectile[Arrow2].ModProjectile;
 
             if (Helpers.PointInRectangle(Player.Center / 16, SubWorldSpecificVolcanoInsidePos.X - 4, SubWorldSpecificVolcanoInsidePos.Y - 4, 8, 8))
             {
@@ -308,7 +308,7 @@ namespace EEMod
                     foreach (Vector2 tile in missingShipTiles)
                     {
                         int proj = Projectile.NewProjectile(tile * 16 + new Vector2(8 + (-3 * 16), 8 + (-6 * 16)), Vector2.Zero, ProjectileType<WhiteBlock>(), 0, 0);  // here
-                        WhiteBlock newProj = Main.projectile[proj].modProjectile as WhiteBlock;
+                        WhiteBlock newProj = Main.projectile[proj].ModProjectile as WhiteBlock;
                         newProj.itemTexture = missingShipTilesItems[missingShipTilesRespectedPos.IndexOf(tile)];
                     }
                 }
@@ -363,14 +363,14 @@ namespace EEMod
                 foreach (Vector2 tile in missingShipTiles)
                 {
                     int proj = Projectile.NewProjectile(tile * 16 + new Vector2(8 + (-3 * 16), 8 + (-6 * 16)), Vector2.Zero, ProjectileType<WhiteBlock>(), 0, 0);  // here
-                    WhiteBlock newProj = (WhiteBlock)Main.projectile[proj].modProjectile;
+                    WhiteBlock newProj = (WhiteBlock)Main.projectile[proj].ModProjectile;
 
                     newProj.itemTexture = missingShipTilesItems[missingShipTilesRespectedPos.IndexOf(tile)];
                 }
             }
             /* if (EntracesPosses.Count > 0)
              {
-                 if (Main.projectile[Arrow].modProjectile is DesArrowProjectile arrow)
+                 if (Main.projectile[Arrow].ModProjectile is DesArrowProjectile arrow)
                  {
                      Vector2 entrace = EntracesPosses[0];
                      if (Helpers.PointInRectangle(player.Center / 16, entrace.X + 10, entrace.Y + 5, 4, 4))

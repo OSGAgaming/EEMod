@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace EEMod
 {
@@ -12,9 +14,9 @@ namespace EEMod
     {
         public Item Item => base.Item; // for 1.4 port
 
-        /*public virtual bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public virtual bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Useitem
-        }*/
+            return Shoot(player, new ProjectileSource_Item_WithAmmo(player, Item, Item.useAmmo), position, new Vector2(speedX, speedY), type, damage, knockBack);
+        }
     }
 }

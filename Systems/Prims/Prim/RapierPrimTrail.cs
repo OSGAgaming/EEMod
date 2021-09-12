@@ -96,13 +96,13 @@ namespace EEMod.Prim
             {
                 _points.RemoveAt(0);
             }
-            if ((_projectile.modProjectile as Rapier).timeForSwing >= 0.99f)
+            if ((_projectile.ModProjectile as Rapier).timeForSwing >= 0.99f)
             {
                 OnDestroy();
             }
             else
             {
-                //_points.Add((_projectile.modProjectile as Rapier).Center);
+                //_points.Add((_projectile.ModProjectile as Rapier).Center);
             }
         }
         public override void OnDestroy()

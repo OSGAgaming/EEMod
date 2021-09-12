@@ -34,7 +34,7 @@ namespace EEMod.Projectiles.Enemy
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Bounce(Projectile.modProjectile, oldVelocity);
+            Bounce(Projectile.ModProjectile, oldVelocity);
             Projectile.ai[0]++;
             return false;
         }
@@ -65,7 +65,7 @@ namespace EEMod.Projectiles.Enemy
 
                 if (Framing.GetTileSafely((int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16)).type == ModContent.TileType<EmptyTile>())
                 {
-                    Bounce(Projectile.modProjectile, Projectile.oldVelocity);
+                    Bounce(Projectile.ModProjectile, Projectile.oldVelocity);
                     Projectile.ai[0]++;
                 }
             }

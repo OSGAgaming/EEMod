@@ -81,7 +81,7 @@ namespace EEMod.Items.Weapons.Mage
                 Item.shoot = ModContent.ProjectileType<DalantiniumFan>();
                 Projectile projectile = Projectile.NewProjectileDirect(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
                 powerUp += 200;
-                (projectile.modProjectile as DalantiniumFan).boost = powerUp;
+                (projectile.ModProjectile as DalantiniumFan).boost = powerUp;
                 if (Main.netMode != NetmodeID.Server)
                 {
                     EEMod.prims.CreateTrail(projectile);

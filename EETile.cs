@@ -12,13 +12,13 @@ namespace EEMod
     {
         public virtual void SetDefaults()
         {
-            SoundStyle = soundStyle;
+            SoundStyle = soundType;
             DustType = dustType;
 
             SetStaticDefaults();
         }
 
-        public int soundStyle;
+        public int soundType;
         public int dustType;
         public bool disableSmartCursor;
 

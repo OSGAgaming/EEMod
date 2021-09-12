@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
-using Terraria.GameContent.LiquidAmount;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.Graphics.Effects;
@@ -27,7 +27,7 @@ using Terraria.UI;
 using EEMod.Prim;
 using EEMod.Seamap.SeamapContent;
 using MonoMod.RuntimeDetour.HookGen;
-using Terraria.ModLoader.Audio;
+using Terraria.ModLoader;
 using EEMod.Systems;
 
 namespace EEMod
@@ -115,7 +115,7 @@ namespace EEMod
             ILLabel l = c.DefineLabel(); // where Color color = Lighting.GetColor(j, i);
             MethodInfo drawcall = typeof(Lighting).GetMethod(nameof(Lighting.GetColor), new Type[] { typeof(int), typeof(int) });
             if (!c.TryGotoNext(
-                i => i.MatchCallOrCallvirt(typeof(Tile).GetMethod(nameof(Tile.nactive))),
+                i => i.MatchCallOrCallvirt(typeof(Tile).GetMethod(nameof(!Tile.IsActive))),
                 i => i.MatchBrfalse(out _)))
             {
                 throw new Exception("Could not modify draw water");

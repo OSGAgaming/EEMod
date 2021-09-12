@@ -69,7 +69,7 @@ namespace EEMod.Tiles.Foliage
             int frameX = 0;
             int frameY = 1;
 
-            if(tile.type == ModContent.TileType<SeagrassTile>() && (!Framing.GetTileSafely(i, j - 1).active() || Framing.GetTileSafely(i, j - 1).type != ModContent.TileType<SeagrassTile>()))
+            if(tile.type == ModContent.TileType<SeagrassTile>() && (!Framing.GetTileSafely(i, j - 1).IsActive || Framing.GetTileSafely(i, j - 1).type != ModContent.TileType<SeagrassTile>()))
             {
                 frameY = 0;
             }
