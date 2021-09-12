@@ -100,17 +100,17 @@ namespace EEMod
             RuneSpecial = RegisterHotKey("Activate Runes", "V");
             Inspect = RegisterHotKey("Inspect", "]");
             ActivateVerletEngine = RegisterHotKey("Activate VerletEngine", "N");
-            Train = RegisterHotKey("Train Neural Network", "P");
+            //Train = RegisterHotKey("Train Neural Network", "P");
 
             AutoloadingManager.LoadManager(this);
 
             //IL.Terraria.IO.WorldFile.SaveWorldTiles += ILSaveWorldTiles;
             if (!Main.dedServ)
             {
-                Ref<Effect> screenRef3 = new Ref<Effect>(GetEffect("Effects/Ripple"));
-                Ref<Effect> screenRef2 = new Ref<Effect>(GetEffect("Effects/SeaTrans"));
-                Ref<Effect> screenRef = new Ref<Effect>(GetEffect("Effects/SunThroughWalls"));
-                Ref<Effect> MyTestShader = new Ref<Effect>(GetEffect("Effects/MyTestShader"));
+                Ref<Effect> screenRef3 = new Ref<Effect>(Assets.Request<Effect>("Effects/Ripple").Value);
+                Ref<Effect> screenRef2 = new Ref<Effect>(Assets.Request<Effect>("Effects/SeaTrans").Value);
+                Ref<Effect> screenRef = new Ref<Effect>(Assets.Request<Effect>("Effects/SunThroughWalls").Value);
+                Ref<Effect> MyTestShader = new Ref<Effect>(Assets.Request<Effect>("Effects/MyTestShader").Value);
                 Filters.Scene["EEMod:Ripple"] = new Filter(new ScreenShaderData(screenRef3, "Ripple"), EffectPriority.High);
                 Filters.Scene["EEMod:Ripple"].Load();
                 Filters.Scene["EEMod:SeaTrans"] = new Filter(new ScreenShaderData(screenRef2, "SeaTrans"), EffectPriority.High);
@@ -121,7 +121,7 @@ namespace EEMod
                 Filters.Scene["EEMod:MyTestShader"] = new Filter(new ScreenShaderData(MyTestShader, "MyTestShaderFlot"), EffectPriority.High);
                 Filters.Scene["EEMod:MyTestShader"].Load();
 
-                GameShaders.Misc["EEMod:SpireHeartbeat"] = new MiscShaderData(new Ref<Effect>(GetEffect("Effects/SpireShine")), "SpireHeartbeat").UseImage("Textures/Noise/WormNoisePixelated");
+                GameShaders.Misc["EEMod:SpireHeartbeat"] = new MiscShaderData(new Ref<Effect>(Assets.Request<Effect>("Effects/SpireShine").Value), "SpireHeartbeat").UseImage("Textures/Noise/WormNoisePixelated");
 
                 SkyManager.Instance["EEMod:SavingCutscene"] = new SavingSky();
                 NoiseSurfacing = GetEffect("Effects/NoiseSurfacing");
@@ -129,9 +129,9 @@ namespace EEMod
                 Effervescence = GetEffect("Effects/Effervescence");
 
 
-                Ref<Effect> hydrosDye = new Ref<Effect>(GetEffect("Effects/HydrosDye"));
+                Ref<Effect> hydrosDye = new Ref<Effect>(Assets.Request<Effect>("Effects/HydrosDye").Value);
                 GameShaders.Armor.BindShader(ModContent.ItemType<HydrosDye>(), new ArmorShaderData(hydrosDye, "HydrosDyeShader"));
-                Ref<Effect> aquamarineDye = new Ref<Effect>(GetEffect("Effects/AquamarineDye"));
+                Ref<Effect> aquamarineDye = new Ref<Effect>(Assets.Request<Effect>("Effects/AquamarineDye").Value);
                 GameShaders.Armor.BindShader(ModContent.ItemType<HydrosDye>(), new ArmorShaderData(aquamarineDye, "AquamarineDyeShader"));
 
                 /*
@@ -188,11 +188,11 @@ namespace EEMod
             AutoloadingManager.UnloadManager(this);
             Noise2DShift = null;
             //BufferPool.ClearBuffers();
-            Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2");
-            Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo");
-            Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2");
-            Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3");
-            Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
+            //Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2").Value;
+            //Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo").Value;
+            //Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2").Value;
+            //Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3").Value;
+            //Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun").Value;
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
