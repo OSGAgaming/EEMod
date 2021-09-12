@@ -44,14 +44,14 @@ namespace EEMod.NPCs.Bosses.Akumo
             NPC.npcSlots = 24f;
             NPC.knockBackResist = 0f;
 
-            musicPriority = MusicPriority.BossMedium;
+            //musicPriority = MusicPriority.BossMedium;
 
             for (int k = 0; k < NPC.buffImmune.Length; k++)
             {
                 NPC.buffImmune[k] = true;
             }
 
-            music = Compatibilities.EEMusic?.GetSoundSlot(Terraria.Audio.SoundType.Music, "Sounds/Music/Precursors") ?? MusicID.Boss3;
+            //music = Compatibilities.EEMusic?.GetSoundSlot(Terraria.ModLoader.SoundType.Music, "Sounds/Music/Precursors") ?? MusicID.Boss3;
         }
 
         private int frameUpdate;

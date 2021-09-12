@@ -7,7 +7,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ObjectData;
-using Terraria.World;
 using Terraria.WorldBuilding;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;

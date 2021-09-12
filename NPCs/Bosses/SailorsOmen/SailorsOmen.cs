@@ -12,7 +12,7 @@ using EEMod.Items.Placeables.Ores;
 
 namespace EEMod.NPCs.Bosses.SailorsOmen
 {
-    public class SailorsOmen : ModNPC
+    public class SailorsOmen : EENPC
     {
         public override void SetStaticDefaults()
         {
@@ -57,7 +57,7 @@ namespace EEMod.NPCs.Bosses.SailorsOmen
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D tex = ModContent.Request<Texture2D>("EEMod/NPCs/Bosses/SailorsOmen/OmenMagic2");
+            Texture2D tex = ModContent.Request<Texture2D>("EEMod/NPCs/Bosses/SailorsOmen/OmenMagic2").Value;
 
             Color outlineColor = Color.DarkCyan;
 
@@ -67,7 +67,7 @@ namespace EEMod.NPCs.Bosses.SailorsOmen
             {
                 if (!p.dead)
                 {
-                    Helpers.DrawAdditive(ModContent.Request<Texture2D>("EEMod/Textures/RadialGradient"), p.position - Main.screenPosition, Color.DarkCyan * MathHelper.Clamp((p.timeLeft + 30) / 30f, 0f, 1f), 0.25f, 0f);
+                    Helpers.DrawAdditive(ModContent.Request<Texture2D>("EEMod/Textures/RadialGradient").Value, p.position - Main.screenPosition, Color.DarkCyan * MathHelper.Clamp((p.timeLeft + 30) / 30f, 0f, 1f), 0.25f, 0f);
                 }
             }
 

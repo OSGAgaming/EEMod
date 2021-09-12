@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace EEMod.Tiles.Foliage.Aquamarine
 {
-    public class AquamarineChime : ModTile
+    public class AquamarineChime : EETile
     {
         public override void SetStaticDefaults()
         {

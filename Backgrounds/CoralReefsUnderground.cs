@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace EEMod.Backgrounds
 {
-    public class CoralReefsUnderground : ModUgBgStyle
+    public class CoralReefsUnderground : ModUndergroundBackgroundStyle
     {
         public override bool ChooseBgStyle()
         {

@@ -63,7 +63,7 @@ namespace EEMod.Items.Armor.Kelpweaver
             else return val < desiredVal ? val += speed : val -= speed;
         }
 
-        public static readonly PlayerLayer KelpweaverArms = new PlayerLayer("EEMod", "MiscEffectsBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo) 
+        /*public static readonly PlayerDrawLayer KelpweaverArms = new PlayerDrawLayer("EEMod", "MiscEffectsBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo) 
         {
             if (drawInfo.shadow != 0f)
             {
@@ -183,13 +183,13 @@ namespace EEMod.Items.Armor.Kelpweaver
 
                 DrawNewLeg(player.Center, player, gun4rot, gun4, 3);
             }
-        });
+        });*/
         
-        private static void DrawNewLeg(Vector2 position, Player player, float rot, bool canShoot, int quadrant)
+        /*private static void DrawNewLeg(Vector2 position, Player player, float rot, bool canShoot, int quadrant)
         {
-            Texture2D arm = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverArm");
-            Texture2D glow = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverArmGlow");
-            Texture2D pistol = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverPistol");
+            Texture2D arm = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverArm").Value;
+            Texture2D glow = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverArmGlow").Value;
+            Texture2D pistol = ModContent.Request<Texture2D>("EEMod/Items/Armor/Kelpweaver/KelpweaverPistol").Value;
 
             Color lightColor = Lighting.GetColor((int)(player.Center.X / 16f), (int)(player.Center.Y / 16f));
             SpriteEffects dir = rot > 3.14f ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -245,7 +245,8 @@ namespace EEMod.Items.Armor.Kelpweaver
         {
             KelpweaverArms.visible = true;
             layers.Insert(0, KelpweaverArms);
-        }
+        }*/
+
         public override void PostUpdate()
         {
             if (kelpweaverSet)

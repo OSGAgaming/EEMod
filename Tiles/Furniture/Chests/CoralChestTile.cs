@@ -169,21 +169,21 @@ namespace EEMod.Tiles.Furniture.Chests
                 top--;
             }
             int chest = Chest.FindChest(left, top);
-            player.showItemIcon2 = -1;
+            player.cursorItemIconID = -1;
             if (chest < 0)
             {
-                player.showItemIconText = Language.GetTextValue("LegacyChestType.0");
+                player.cursorItemIconText = Language.GetTextValue("LegacyChestType.0");
             }
             else
             {
-                player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Coral Chest";
-                if (player.showItemIconText == "Coral Chest")
+                player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Coral Chest";
+                if (player.cursorItemIconText == "Coral Chest")
                 {
-                    player.showItemIcon2 = ModContent.ItemType<CoralChest>();
-                    player.showItemIconText = "";
+                    player.cursorItemIconID = ModContent.ItemType<CoralChest>();
+                    player.cursorItemIconText = "";
                 }
                 player.noThrow = 2;
-                player.showItemIcon = true;
+                player.cursorItemIconEnabled = true;
             }
         }
 
@@ -191,10 +191,10 @@ namespace EEMod.Tiles.Furniture.Chests
         {
             MouseOver(i, j);
             Player player = Main.LocalPlayer;
-            if (player.showItemIconText == "")
+            if (player.cursorItemIconText == "")
             {
                 // player.showItemIcon = false;
-                player.showItemIcon2 = 0;
+                player.cursorItemIconID = 0;
             }
         }
     }

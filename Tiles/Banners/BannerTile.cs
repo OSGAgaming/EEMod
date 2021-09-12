@@ -133,8 +133,8 @@ namespace EEMod.Tiles.Banners
                     default:
                         return;
                 }
-                player.NPCBannerBuff[Mod.Find<ModNPC>(type).Type] = true;
-                player.hasBanner = true;
+                //player.Banner[Mod.Find<ModNPC>(type).Type] = true;
+                //player.hasBanner = true;
             }
         }
 

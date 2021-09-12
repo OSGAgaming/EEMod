@@ -362,7 +362,7 @@ namespace EEMod
 
                 foreach (Vector2 tile in missingShipTiles)
                 {
-                    int proj = Projectile.NewProjectile(tile * 16 + new Vector2(8 + (-3 * 16), 8 + (-6 * 16)), Vector2.Zero, ProjectileType<WhiteBlock>(), 0, 0);  // here
+                    int proj = Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_TileInteraction(Main.LocalPlayer, (int)tile.X, (int)tile.Y), tile * 16 + new Vector2(8 + (-3 * 16), 8 + (-6 * 16)), Vector2.Zero, ProjectileType<WhiteBlock>(), 0, 0);  // here
                     WhiteBlock newProj = (WhiteBlock)Main.projectile[proj].ModProjectile;
 
                     newProj.itemTexture = missingShipTilesItems[missingShipTilesRespectedPos.IndexOf(tile)];

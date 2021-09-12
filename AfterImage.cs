@@ -162,7 +162,7 @@ namespace EEMod
                 Main.dust[dustID].velocity += codable.velocity * 0.1f;
                 if (codable is Player)
                 {
-                    Main.playerDrawDust.Add(dustID);
+                    //Main.playerDrawDust.Add(dustID);
                 }
             }
             if (poisoned)
@@ -174,7 +174,7 @@ namespace EEMod
                     Main.dust[dustID].fadeIn = 1.9f;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
                 cr *= 0.65f;
@@ -189,7 +189,7 @@ namespace EEMod
                     Main.dust[dustID].fadeIn = 1.5f;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
                 cg *= 0.45f;
@@ -221,7 +221,7 @@ namespace EEMod
                     Main.dust[dustID].velocity.Y -= 0.75f;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
                 if (codable is Player)
@@ -248,7 +248,7 @@ namespace EEMod
                         }
                         if (codable is Player)
                         {
-                            Main.playerDrawDust.Add(dustID);
+                            //Main.playerDrawDust.Add(dustID);
                         }
                     }
                     Lighting.AddLight((int)(codable.position.X / 16f), (int)(codable.position.Y / 16f + 1f), 0.1f, 0.6f, 1f);
@@ -276,7 +276,7 @@ namespace EEMod
                         }
                         if (codable is Player)
                         {
-                            Main.playerDrawDust.Add(dustID);
+                            //Main.playerDrawDust.Add(dustID);
                         }
                     }
                     Lighting.AddLight((int)(codable.position.X / 16f), (int)(codable.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
@@ -310,7 +310,7 @@ namespace EEMod
                     Main.dust[dustID].velocity += codable.velocity;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
                 else
@@ -333,7 +333,7 @@ namespace EEMod
                     Main.dust[dustID].velocity += codable.velocity;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
             }
@@ -364,7 +364,7 @@ namespace EEMod
                         Main.dust[dustID].velocity += codable.velocity;
                         if (codable is Player)
                         {
-                            Main.playerDrawDust.Add(dustID);
+                            //Main.playerDrawDust.Add(dustID);
                         }
                     }
                 }
@@ -388,7 +388,7 @@ namespace EEMod
                         }
                         if (codable is Player)
                         {
-                            Main.playerDrawDust.Add(dustID);
+                            //Main.playerDrawDust.Add(dustID);
                         }
                     }
                     Lighting.AddLight((int)(codable.position.X / 16f), (int)(codable.position.Y / 16f + 1f), 1f, 0.3f, 0.1f);
@@ -419,7 +419,7 @@ namespace EEMod
                     Main.dust[dustID].velocity *= 0.25f;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
                 cg *= 0.9f;
@@ -436,7 +436,7 @@ namespace EEMod
                 Main.gore[goreID].velocity.Y -= 0.6f;
                 if (codable is Player)
                 {
-                    Main.playerDrawGore.Add(goreID);
+                    //Main.playerDrawGore.Add(goreID);
                 }
             }
             if (stinky && shadow == 0f)
@@ -453,7 +453,7 @@ namespace EEMod
                     Main.dust[dustID].velocity.Y -= 0.5f;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
             }
@@ -475,7 +475,7 @@ namespace EEMod
                     Main.dust[dustID].noLight = true;
                     if (codable is Player)
                     {
-                        Main.playerDrawDust.Add(dustID);
+                        //Main.playerDrawDust.Add(dustID);
                     }
                 }
                 byte colorR = 50, colorG = 255, colorB = 50;

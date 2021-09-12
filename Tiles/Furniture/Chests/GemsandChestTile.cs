@@ -22,7 +22,7 @@ namespace EEMod.Tiles.Furniture.Chests
             Main.tileShine[Type] = 1200;
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
-            Main.tileValue[Type] = 500;
+            //Main.tileValue[Type] = 500;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Origin = new Point16(0, 0);
             TileObjectData.newTile.Height = 2;

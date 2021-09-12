@@ -29,6 +29,8 @@ using Terraria.Localization; // :sadge:
 using Terraria.ModLoader;
 using Terraria.UI;// l a g
 using Terraria.WorldBuilding;
+using Microsoft.Xna.Framework.Input;
+using Terraria.ModLoader.IO;
 
 namespace EEMod
 {
@@ -38,11 +40,11 @@ namespace EEMod
         public static int loadingChoose;
         public static int loadingChooseImage;
         public static bool loadingFlag = true;
-        public static ModHotKey RuneActivator;
-        public static ModHotKey RuneSpecial;
-        public static ModHotKey Inspect;
-        public static ModHotKey ActivateVerletEngine;
-        public static ModHotKey Train;
+        public static ModKeybind RuneActivator;
+        public static ModKeybind RuneSpecial;
+        public static ModKeybind Inspect;
+        public static ModKeybind ActivateVerletEngine;
+        public static ModKeybind Train;
         public static Noise2D Noise2D;
         public static Effect White;
         public static Effect Effervescence;
@@ -65,9 +67,9 @@ namespace EEMod
             verlet = new Verlet();
             Subworlds = new SubworldInstanceManager();
 
-            Terraria.ModLoader.IO.TagSerializer.AddSerializer(new BigCrystalSerializer());
-            Terraria.ModLoader.IO.TagSerializer.AddSerializer(new EmptyTileEntitySerializer());
-            Terraria.ModLoader.IO.TagSerializer.AddSerializer(new CrystalSerializer());
+            TagSerializer.AddSerializer(new BigCrystalSerializer());
+            TagSerializer.AddSerializer(new EmptyTileEntitySerializer());
+            TagSerializer.AddSerializer(new CrystalSerializer());
 
             if (!Main.dedServ)
             {
@@ -98,10 +100,10 @@ namespace EEMod
             }
             //HandwritingCNN = new Handwriting();
 
-            RuneActivator = RegisterHotKey("Rune UI", "Z");
-            RuneSpecial = RegisterHotKey("Activate Runes", "V");
-            Inspect = RegisterHotKey("Inspect", "]");
-            ActivateVerletEngine = RegisterHotKey("Activate VerletEngine", "N");
+            RuneActivator = KeybindLoader.RegisterKeybind(this, "Rune UI", Keys.Z);
+            RuneSpecial = KeybindLoader.RegisterKeybind(this, "Activate Runes", Keys.V);
+            Inspect = KeybindLoader.RegisterKeybind(this, "Inspect", Keys.OemCloseBrackets);
+            ActivateVerletEngine = KeybindLoader.RegisterKeybind(this, "Activate VerletEngine", Keys.N);
             //Train = RegisterHotKey("Train Neural Network", "P");
 
             AutoloadingManager.LoadManager(this);
@@ -162,8 +164,8 @@ namespace EEMod
             }
             InitializeAmbience();
             //Example
-            LayeredMusic.Groups[GetSoundSlot(SoundType.Music, "Sounds/Music/UpperReefs")] = "AquamarineGroup";
-            LayeredMusic.Groups[GetSoundSlot(SoundType.Music, "Sounds/Music/LowerReefs")] = "AquamarineGroup";
+            //LayeredMusic.Groups[GetSoundSlot(SoundType.Music, "Sounds/Music/UpperReefs")] = "AquamarineGroup";
+            //LayeredMusic.Groups[GetSoundSlot(SoundType.Music, "Sounds/Music/LowerReefs")] = "AquamarineGroup";
         }
 
         public override void Unload()
@@ -350,7 +352,8 @@ namespace EEMod
         }*/
 
         //mechanic port
-        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+
+        /*public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
             if (Main.gameMenu)
                 return;
@@ -402,14 +405,14 @@ namespace EEMod
                     priority = MusicPriority.BiomeHigh;
                 }
 
-                /*if ((int)MinibiomeID.ThermalVents < length)
+                if ((int)MinibiomeID.ThermalVents < length)
                 {
                     if (eeplayer.reefMinibiome[(int)MinibiomeID.ThermalVents])
                     {
                         music = GetSoundSlot(SoundType.Music, "Sounds/Music/ThermalVents");
                         priority = MusicPriority.BiomeHigh;
                     }
-                }*/
+                }
             }
 
             for (int i = 0; i < Main.maxNPCs; i++)
@@ -433,6 +436,6 @@ namespace EEMod
             }
 
             MechanicManager.UpdateMusic(ref music, ref priority);
-        }
+        }*/
     }
 }

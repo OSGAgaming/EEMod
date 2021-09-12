@@ -18,5 +18,15 @@ namespace EEMod
         {
             return Shoot(player, new ProjectileSource_Item_WithAmmo(player, Item, Item.useAmmo), position, new Vector2(speedX, speedY), type, damage, knockBack);
         }
+
+        public virtual void HoldStyle(Player player)
+        {
+            HoldStyle(player, Item.getRect());
+        }
+
+        public virtual void UpdateVanity(Player player, EquipType type)
+        {
+            UpdateVanity(player);
+        }
     }
 }

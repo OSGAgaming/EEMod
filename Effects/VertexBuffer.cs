@@ -380,7 +380,7 @@ namespace EEMod.Effects
         {
             _xOffset -= _coordMult.X;
             effect.Parameters["imageTexture"].SetValue(_texture);
-            effect.Parameters["coordOffset"].SetValue(new Vector2(_xOffset, Main.GlobalTime * _yAnimSpeed));
+            effect.Parameters["coordOffset"].SetValue(new Vector2(_xOffset, Main.GlobalTimeWrappedHourly * _yAnimSpeed));
             effect.Parameters["coordMultiplier"].SetValue(_coordMult);
             effect.Parameters["strength"].SetValue(_strength);
             effect.CurrentTechnique.Passes[ShaderPass].Apply();
@@ -452,7 +452,7 @@ namespace EEMod.Effects
         public Color GetColourAt(float distanceFromStart, float trailLength, List<Vector2> points)
         {
             float progress = distanceFromStart / trailLength;
-            float hue = (Main.GlobalTime * _speed + distanceFromStart * _distanceMultiplier) % MathHelper.TwoPi;
+            float hue = (float)(Main.time * _speed + distanceFromStart * _distanceMultiplier) % MathHelper.TwoPi;
             return ColorFromHSL(hue, _saturation, _lightness) * (1f - progress);
         }
 

@@ -47,7 +47,7 @@ namespace EEMod.NPCs.Bosses.CoralGolem
             NPC.npcSlots = 24f;
             NPC.knockBackResist = 0f;
 
-            musicPriority = MusicPriority.BossMedium;
+            //musicPriority = MusicPriority.BossMedium;
 
             for (int k = 0; k < NPC.buffImmune.Length; k++)
             {
