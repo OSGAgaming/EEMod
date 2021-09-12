@@ -22,7 +22,7 @@ namespace EEMod.Tiles.Furniture
                 return tile.IsActive;
             }
 
-            public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction)
+            /*public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction)
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -42,7 +42,7 @@ namespace EEMod.Tiles.Furniture
             public override void NetReceive(BinaryReader reader, bool lightReceive)
             {
                 hasOrb = reader.ReadBoolean();
-            }
+            }*/
 
             public override TagCompound Save()
             {

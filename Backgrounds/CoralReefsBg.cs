@@ -5,10 +5,10 @@ namespace EEMod.Backgrounds
 {
     public class Surfacebg : ModSurfaceBackgroundStyle
     {
-        public override bool ChooseBgStyle()
+        /*public override bool ChooseBgStyle()
         {
             return !Main.gameMenu && Main.LocalPlayer.GetModPlayer<EEPlayer>().ZoneCoralReefs;
-        }
+        }*/
 
         public override void ModifyFarFades(float[] fades, float transitionSpeed)
         {
@@ -33,7 +33,7 @@ namespace EEMod.Backgrounds
             }
         }
 
-        public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
+        /*public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
             return Mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceClose");
         }
@@ -46,7 +46,7 @@ namespace EEMod.Backgrounds
         public override int ChooseFarTexture()
         {
             return Mod.GetBackgroundSlot("Backgrounds/CoralReefsSurfaceFar");
-        }
+        }*/
 
         /* public override bool PreDrawCloseBackground(SpriteBatch spriteBatch)
          {

@@ -15,11 +15,11 @@ namespace EEMod.NPCs.Friendly
     {
         public override string Texture => "EEMod/NPCs/Friendly/Sailor";
 
-        public override bool Autoload(ref string name)
+        /*public override void AutoStaticDefaults()
         {
-            name = "Sailor";
+            NPC.name = "Sailor";
             return Mod.Properties.Autoload;
-        }
+        }*/
 
         public override void SetStaticDefaults()
         {

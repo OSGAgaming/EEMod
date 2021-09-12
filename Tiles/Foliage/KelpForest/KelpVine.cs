@@ -55,7 +55,7 @@ namespace EEMod.Tiles.Foliage.KelpForest
                 while (yTest > j - 10)
                 {
                     Tile testTile = Framing.GetTileSafely(i, yTest);
-                    if (testTile.bottomSlope())
+                    if (testTile.Slope != 0)
                     {
                         break;
                     }

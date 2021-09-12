@@ -71,8 +71,8 @@ namespace EEMod
             //IL.Terraria.Main.oldDrawWater += Main_oldDrawWater;
             hooklist = new ILHookList();
 
-            IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalPrepareDraw += LiquidRenderer_InternalDraw1;
-            hooklist.Add(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), LayeredMusic.ILFillBuffer);
+            //IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalPrepareDraw += LiquidRenderer_InternalDraw1;
+            //hooklist.Add(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), LayeredMusic.ILFillBuffer);
 
             //HookEndpointManager.Modify(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), (ILContext.Manipulator)LayeredMusic.ILFillBuffer);
         }
@@ -84,7 +84,7 @@ namespace EEMod
             //IL.Terraria.Main.OldDrawBackground -= Main_OldDrawBackground;
             //IL.Terraria.Main.oldDrawWater -= Main_oldDrawWater;
             //IL.Terraria.NPC.AI_001_Slimes -= Practice;
-            IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalPrepareDraw -= LiquidRenderer_InternalDraw1;
+            //IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalPrepareDraw -= LiquidRenderer_InternalDraw1;
             //IL.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalDraw -= Traensperentaoiasjpdfdsgwuttttttttttttttryddddddddddtyrrrrrrrrrrrrrrrrrvvfghnmvvb;
             //HookEndpointManager.Unmodify(typeof(MusicStreamingOGG).GetMethod("FillBuffer", BindingFlags.NonPublic | BindingFlags.Instance), (ILContext.Manipulator)LayeredMusic.ILFillBuffer);
             hooklist?.UnloadAll();
@@ -100,10 +100,10 @@ namespace EEMod
         {
             ILCursor c = new ILCursor(il);
 
-            Type t = typeof(LiquidRenderer).GetNestedType("LiquidCache", BindingFlags.NonPublic | BindingFlags.Public);
-            FieldInfo issolid = t.GetField("IsSolid");
-            if (!c.TryGotoNext(i => i.MatchStfld(issolid)))
-                throw new Exception();
+            //Type t = typeof(LiquidRenderer).GetNestedType("LiquidCache", BindingFlags.NonPublic | BindingFlags.Public);
+            //FieldInfo issolid = t.GetField("IsSolid");
+            //if (!c.TryGotoNext(i => i.MatchStfld(issolid)))
+                //throw new Exception();
             // before the stfld there will be an int on the stack
             c.Emit(OpCodes.Ldloc, 3); // tile
             c.EmitDelegate<Func<bool, Tile, bool>>((orig, tile) => orig && tile.type != ModContent.TileType<EmptyTile>());
@@ -115,7 +115,7 @@ namespace EEMod
             ILLabel l = c.DefineLabel(); // where Color color = Lighting.GetColor(j, i);
             MethodInfo drawcall = typeof(Lighting).GetMethod(nameof(Lighting.GetColor), new Type[] { typeof(int), typeof(int) });
             if (!c.TryGotoNext(
-                i => i.MatchCallOrCallvirt(typeof(Tile).GetMethod(nameof(!Tile.IsActive))),
+                //i => i.MatchCallOrCallvirt(typeof(Tile).GetMethod(nameof(!Tile.IsActive))),
                 i => i.MatchBrfalse(out _)))
             {
                 throw new Exception("Could not modify draw water");
@@ -142,19 +142,19 @@ namespace EEMod
         private void Main_DrawWater(ILContext il)
         {
             ILCursor c = new ILCursor(il);
-            Type liqRend = typeof(LiquidRenderer);
-            MethodInfo drawcall = liqRend.GetMethod(nameof(LiquidRenderer.Draw), new Type[] { typeof(SpriteBatch), typeof(Vector2), typeof(int), typeof(float), typeof(bool) });
+            //Type liqRend = typeof(LiquidRenderer);
+            //MethodInfo drawcall = liqRend.GetMethod(nameof(LiquidRenderer.Draw), new Type[] { typeof(SpriteBatch), typeof(Vector2), typeof(int), typeof(float), typeof(bool) });
 
-            if (!c.TryGotoNext(i => i.MatchCallvirt(drawcall)))
-            {
-                throw new Exception("Couldn't find argument 1 post lc1");
-            }
+            //if (!c.TryGotoNext(i => i.MatchCallvirt(drawcall)))
+            //{
+            //    throw new Exception("Couldn't find argument 1 post lc1");
+            //}
 
             c.Remove();
-            c.EmitDelegate<Action<LiquidRenderer, SpriteBatch, Vector2, int, float, bool>>((t, spritebatch, drawOffset, Style, Alpha, bg) =>
-            {
-                t.Draw(spritebatch, drawOffset, Style, Alpha / 2, bg);
-            });
+            //c.EmitDelegate<Action<LiquidRenderer, SpriteBatch, Vector2, int, float, bool>>((t, spritebatch, drawOffset, Style, Alpha, bg) =>
+            //{
+            //    t.Draw(spritebatch, drawOffset, Style, Alpha / 2, bg);
+            //});
         }
 
         /*public void DrawRef()

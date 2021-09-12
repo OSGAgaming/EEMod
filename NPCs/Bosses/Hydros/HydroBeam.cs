@@ -38,9 +38,9 @@ namespace EEMod.NPCs.Bosses.Hydros
             return false;
         }
 
-        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
-            drawCacheProjsBehindProjectiles.Add(index);
+            behindNPCsAndTiles.Add(index);
         }
 
         private float attackCounter = 0;
@@ -111,7 +111,7 @@ namespace EEMod.NPCs.Bosses.Hydros
         public override bool? CanCutTiles()
         {
             DelegateMethods.tilecut_0 = Terraria.Enums.TileCuttingContext.AttackProjectile;
-            Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * LaserLength, Projectile.width * Projectile.scale * 2, new Utils.PerLinePoint(CutTilesAndBreakWalls));
+            //Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * LaserLength, Projectile.width * Projectile.scale * 2, new Utils.PerLinePoint(CutTilesAndBreakWalls));
             return true;
         }
 

@@ -104,14 +104,14 @@ namespace EEMod.Items.Weapons.Ranger.Longbows.HuntressBow
             {
                 if (arrowShots < 15)
                 {
-                    Projectile cloudSprite = Projectile.NewProjectileDirect(player.Center, Vector2.Normalize(player.Center - Main.MouseWorld) * -4, ModContent.ProjectileType<HuntressArrow>(), Item.damage, Item.knockBack, default);
-                    cloudSprite.ai[1] = player.GetModPlayer<HuntressBowPlayer>().targetNPC.whoAmI;
+                    //Projectile cloudSprite = Projectile.NewProjectileDirect(player.Center, Vector2.Normalize(player.Center - Main.MouseWorld) * -4, ModContent.ProjectileType<HuntressArrow>(), Item.damage, Item.knockBack, default);
+                    //cloudSprite.ai[1] = player.GetModPlayer<HuntressBowPlayer>().targetNPC.whoAmI;
 
                     arrowShots++;
                 }
                 else
                 {
-                    Projectile cloudSprite = Projectile.NewProjectileDirect(player.Center, Vector2.Normalize(player.Center - Main.MouseWorld) * -40, ModContent.ProjectileType<HuntressBallista>(), Item.damage, Item.knockBack, default);
+                    //Projectile cloudSprite = Projectile.NewProjectileDirect(player.Center, Vector2.Normalize(player.Center - Main.MouseWorld) * -40, ModContent.ProjectileType<HuntressBallista>(), Item.damage, Item.knockBack, default);
 
                     ballistaShots++;
 
@@ -124,8 +124,8 @@ namespace EEMod.Items.Weapons.Ranger.Longbows.HuntressBow
             }
             if (player.altFunctionUse == 2)
             {
-                Projectile cloudSprite = Projectile.NewProjectileDirect(player.Center, Vector2.Normalize(player.Center - Main.MouseWorld) * -4, ModContent.ProjectileType<HuntressGlaive>(), Item.damage, Item.knockBack, default);
-                cloudSprite.ai[1] = player.GetModPlayer<HuntressBowPlayer>().targetNPC.whoAmI;
+                //Projectile cloudSprite = Projectile.NewProjectileDirect(player.Center, Vector2.Normalize(player.Center - Main.MouseWorld) * -4, ModContent.ProjectileType<HuntressGlaive>(), Item.damage, Item.knockBack, default);
+                //cloudSprite.ai[1] = player.GetModPlayer<HuntressBowPlayer>().targetNPC.whoAmI;
             }
 
             return false;
@@ -136,7 +136,7 @@ namespace EEMod.Items.Weapons.Ranger.Longbows.HuntressBow
     {
         public NPC targetNPC;
 
-        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        public override void DrawEffects(Terraria.DataStructures.PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
             if(Player.HeldItem.type == ModContent.ItemType<HuntressBow>())
             {
@@ -157,10 +157,10 @@ namespace EEMod.Items.Weapons.Ranger.Longbows.HuntressBow
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin();
 
-                Texture2D targetTexture = ModContent.Request<Texture2D>("EEMod/Items/Weapons/Ranger/Longbows/HuntressBow/HuntressBowTarget");
-                Texture2D ballistaTarget = ModContent.Request<Texture2D>("EEMod/Items/Weapons/Ranger/Longbows/HuntressBow/HuntressBallistaTarget");
+                Texture2D targetTexture = ModContent.Request<Texture2D>("EEMod/Items/Weapons/Ranger/Longbows/HuntressBow/HuntressBowTarget").Value;
+                Texture2D ballistaTarget = ModContent.Request<Texture2D>("EEMod/Items/Weapons/Ranger/Longbows/HuntressBow/HuntressBallistaTarget").Value;
 
-                if ((Player.HeldItem.modItem as HuntressBow).arrowShots >= 15)
+                if ((Player.HeldItem.ModItem as HuntressBow).arrowShots >= 15)
                     Main.spriteBatch.Draw(ballistaTarget, Raycast(Player.Center, Vector2.Normalize(Main.MouseWorld - Player.Center), false, false, 1, 1500) - Main.screenPosition, targetTexture.Bounds, Color.White, Main.GameUpdateCount / 40f, targetTexture.Bounds.Size() / 2f, 1 + ((float)Math.Sin(Main.GameUpdateCount / 60f) / 10f), SpriteEffects.None, 0f);
 
                 else

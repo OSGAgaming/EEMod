@@ -52,23 +52,23 @@ namespace EEMod
         private void LoadDetours()
         {
             On.Terraria.Lighting.AddLight_int_int_float_float_float += Lighting_AddLight_int_int_float_float_float;
-            On.Terraria.Main.DoUpdate += Main_DoUpdate;
+            //On.Terraria.Main.DoUpdate += Main_DoUpdate;
             On.Terraria.Main.Draw += Main_Draw;
             On.Terraria.Main.DrawBG += Main_DrawBG;
             On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
             On.Terraria.Main.DrawNPC += Main_DrawNPC;
             On.Terraria.Main.DrawWoF += Main_DrawWoF;
             On.Terraria.Main.DrawWalls += Main_DrawWalls;
-            On.Terraria.Main.DrawTiles += Main_DrawTiles;
+            //On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.DrawWater += Main_DrawWater1;
             On.Terraria.Main.DrawBackground += Main_DrawBackground1;
             On.Terraria.Main.CacheNPCDraws += Main_CacheNPCDraws;
             //On.Terraria.Main.DrawNPC += Main_DrawNPC1;
-            On.Terraria.Main.DrawPlayer += Main_DrawPlayer;
+            //On.Terraria.Main.DrawPlayer += Main_DrawPlayer;
             //On.Terraria.Main.CacheNPCDraws += Main_CacheNPCDraws;
             //On.Terraria.Main.DrawGoreBehind += Main_DrawGoreBehind;
-            On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
-            On.Terraria.GameContent.UI.Elements.UIWorldListItem.ctor += UIWorldListItem_ctor;
+            //On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
+            //On.Terraria.GameContent.UI.Elements.UIWorldListItem.ctor += UIWorldListItem_ctor;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.DrawSelf += UIWorldListItem_DrawSelf;
             //On.Terraria.GameContent.Liquid.LiquidRenderer.InternalDraw += LiquidRenderer_InternalDraw;
             On.Terraria.WorldGen.SaveAndQuitCallBack += WorldGen_SaveAndQuitCallBack;
@@ -135,10 +135,10 @@ namespace EEMod
             orig(self, bg, Style, Main.worldName == KeyID.CoralReefs ? Alpha/3.5f : Alpha);
         }
 
-        private void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
+        /*private void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
         {
             orig(self, solidOnly, waterStyleOverride);
-        }
+        }*/
 
         private void UnloadDetours()
         {
@@ -146,21 +146,21 @@ namespace EEMod
             //On.Terraria.Main.CacheNPCDraws -= Main_CacheNPCDraws;
             On.Terraria.Main.DrawBackground -= Main_DrawBackground1;
             On.Terraria.Lighting.AddLight_int_int_float_float_float -= Lighting_AddLight_int_int_float_float_float;
-            On.Terraria.Main.DoUpdate -= Main_DoUpdate;
+            //On.Terraria.Main.DoUpdate -= Main_DoUpdate;
             On.Terraria.Main.DrawNPC -= Main_DrawNPC;
             On.Terraria.Main.Draw -= Main_Draw;
-            On.Terraria.Main.DrawPlayer -= Main_DrawPlayer;
+            //On.Terraria.Main.DrawPlayerChat -= Main_DrawPlayerChat;
             On.Terraria.Main.DrawBG -= Main_DrawBG;
             On.Terraria.Main.DrawProjectiles -= Main_DrawProjectiles;
             On.Terraria.Main.DrawWoF -= Main_DrawWoF;
-            On.Terraria.Main.DrawTiles -= Main_DrawTiles;
+            //On.Terraria.Main.DrawTiles -= Main_DrawTiles;
             On.Terraria.Main.DrawWater -= Main_DrawWater1;
             On.Terraria.Main.CacheNPCDraws -= Main_CacheNPCDraws;
             On.Terraria.Main.DrawWalls -= Main_DrawWalls;
             //On.Terraria.Main.DrawNPC -= Main_DrawNPC1;
             //On.Terraria.Main.DrawGoreBehind -= Main_DrawGoreBehind;
-            On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float -= Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
-            On.Terraria.GameContent.UI.Elements.UIWorldListItem.ctor -= UIWorldListItem_ctor;
+            //On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float -= Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
+            //On.Terraria.GameContent.UI.Elements.UIWorldListItem.ctor -= UIWorldListItem_ctor;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.DrawSelf -= UIWorldListItem_DrawSelf;
             On.Terraria.WorldGen.SaveAndQuitCallBack -= WorldGen_SaveAndQuitCallBack;
         }
@@ -169,10 +169,10 @@ namespace EEMod
         {
             orig(self, spriteBatch, drawOffset, waterStyle, globalAlpha, isBackgroundDraw);
         }*/
-        private void Main_DrawPlayer(On.Terraria.Main.orig_DrawPlayer orig, Main self, Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
+        private void Main_DrawPlayerChat(On.Terraria.Main.orig_DrawPlayerChat orig, Main self, Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
         {
             // if(!Main.LocalPlayer.GetModPlayer<EEPlayer>().isLight)
-            orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
+            //orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
             if (!Main.gameMenu)
             {
                // if (Main.LocalPlayer.GetModPlayer<EEPlayer>().isLight)
@@ -238,10 +238,10 @@ namespace EEMod
             Vector2 position = new Vector2(num2, innerDimensions.Y + 59);
             const float width = 370;
 
-            Texture2D texture = TextureCollection.Load("Images/UI/InnerPanelBackground");
-            spriteBatch.Draw(texture, position, new Rectangle(0, 0, 8, texture.Height), Color.White);
-            spriteBatch.Draw(texture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, texture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, texture.Height), Color.White);
+            //Texture2D texture = TextureCollection.Load("Images/UI/InnerPanelBackground");
+            //spriteBatch.Draw(texture, position, new Rectangle(0, 0, 8, texture.Height), Color.White);
+            //spriteBatch.Draw(texture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, texture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
+            //spriteBatch.Draw(texture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, texture.Height), Color.White);
         }
 
         public void DrawCR()
@@ -258,7 +258,7 @@ namespace EEMod
 
         private void UIWorldListItem_ctor(On.Terraria.GameContent.UI.Elements.UIWorldListItem.orig_ctor orig, UIWorldListItem self, WorldFileData data, int snapPointIndex)
         {
-            orig(self, data, snapPointIndex);
+            //orig(self, data, snapPointIndex);
             string EEPath = $@"{Main.SavePath}\Worlds\{data.Name}Subworlds";
             List<string> SubworldsUnlocked = new List<string>();
 
@@ -308,7 +308,7 @@ namespace EEMod
         }
 
         //CHAD NAME
-        private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
+        /*private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
         {
             int index = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
 
@@ -318,7 +318,7 @@ namespace EEMod
             }
 
             return index;
-        }
+        }*/
 
         float bgAlpha;
         private void Main_DrawWoF(On.Terraria.Main.orig_DrawWoF orig, Main self)
@@ -369,7 +369,7 @@ namespace EEMod
                 else
                 {
                     int a = 2;
-                    SurfaceBackgroundStylesLoader.ChooseStyle(ref a);
+                    //SurfaceBackgroundStylesLoader.ChooseStyle(ref a);
                 }
             }
 

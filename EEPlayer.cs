@@ -128,6 +128,49 @@ namespace EEMod
         public int timeAirborne = 0;
         public override void PostUpdate()
         {
+            ZoneCoralReefs = Main.ActiveWorldFileData.Name == KeyID.CoralReefs;
+
+            if (ZoneCoralReefs)
+            {
+                opac++;
+                if (opac > 100)
+                {
+                    opac = 100;
+                }
+
+                if (Player.Center.Y <= 3000)
+                {
+                    Player.ZoneBeach = true;
+                }
+                else
+                {
+                    // player.ZoneBeach = false;
+                }
+
+                reefMinibiome = MinibiomeID.None;
+
+                for (int k = 0; k < CoralReefs.Minibiomes.Count; k++)
+                {
+                    Vector2 playerPos = Player.Center / 16;
+                    Vector2 minibiomePos = CoralReefs.Minibiomes[k].Center.ToVector2();
+
+                    if (OvalCheck((int)minibiomePos.X, (int)minibiomePos.Y, (int)playerPos.X, (int)playerPos.Y, CoralReefs.Minibiomes[k].Size.X / 2, CoralReefs.Minibiomes[k].Size.Y / 2))
+                    {
+                        reefMinibiome = CoralReefs.Minibiomes[k].id;
+
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                opac--;
+                if (opac < 0)
+                {
+                    opac = 0;
+                }
+            }
+
             /*if (player.wet)
             {
                 if (player.fullRotation % MathHelper.ToRadians(-360f) < 1 && player.fullRotation % MathHelper.ToRadians(-360f) > -1 && !lerpingToRotation)
@@ -219,52 +262,6 @@ namespace EEMod
             }*/
         }
 
-        public override void UpdateBiomes()
-        {
-            ZoneCoralReefs = Main.ActiveWorldFileData.Name == KeyID.CoralReefs;
-
-            if (ZoneCoralReefs)
-            {
-                opac++;
-                if (opac > 100)
-                {
-                    opac = 100;
-                }
-
-                if(Player.Center.Y <= 3000)
-                {
-                    Player.ZoneBeach = true;
-                }
-                else
-                {
-                    // player.ZoneBeach = false;
-                }
-
-                reefMinibiome = MinibiomeID.None;
-
-                for (int k = 0; k < CoralReefs.Minibiomes.Count; k++)
-                {
-                    Vector2 playerPos = Player.Center / 16;
-                    Vector2 minibiomePos = CoralReefs.Minibiomes[k].Center.ToVector2();
-
-                    if (OvalCheck((int)minibiomePos.X, (int)minibiomePos.Y, (int)playerPos.X, (int)playerPos.Y, CoralReefs.Minibiomes[k].Size.X / 2, CoralReefs.Minibiomes[k].Size.Y / 2))
-                    {
-                        reefMinibiome = CoralReefs.Minibiomes[k].id;
-
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                opac--;
-                if (opac < 0)
-                {
-                    opac = 0;
-                }
-            }
-        }
-
         private int bubbleTimer = 6;
         private int bubbleLen = 0;
         private int dur = 0;
@@ -295,12 +292,12 @@ namespace EEMod
             }
         }
 
-        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType)
         {
-            if (junk)
+            /*if (junk)
             {
                 return;
-            }
+            }*/
 
             if (ZoneCoralReefs)
             {
@@ -346,7 +343,7 @@ namespace EEMod
             }
         }
 
-        public override bool CustomBiomesMatch(Player other)
+        /*public override bool CustomBiomesMatch(Player other)
         {
             EEPlayer modOther = other.GetModPlayer<EEPlayer>();
             return ZoneCoralReefs == modOther.ZoneCoralReefs;
@@ -369,7 +366,7 @@ namespace EEMod
         {
             BitsByte flags = reader.ReadByte();
             ZoneCoralReefs = flags[0];
-        }
+        }*/
 
         public bool isHangingOnVine;
 
@@ -679,9 +676,7 @@ namespace EEMod
             }
         }
 
-        public bool playingGame;
-        public float seamapLightColor;
-        public override void UpdateBiomeVisuals()
+        public override void UpdateEquips()
         {
             if (aquamarineSetBonus)
             {
@@ -706,7 +701,7 @@ namespace EEMod
                 else
                 {
                     aquamarineCooldown--;
-                    if(Player.controlUp && aquamarineCooldown <= 0)
+                    if (Player.controlUp && aquamarineCooldown <= 0)
                     {
                         isLight = true;
 
@@ -738,7 +733,7 @@ namespace EEMod
             if (eeplayer.reefMinibiome == MinibiomeID.KelpForest)
             {
                 float gottenParalax = Main.rand.NextFloat(1, 1.5f);
-                EEMod.MainParticles.SpawnParticleDownUp(Main.LocalPlayer, -Vector2.UnitY * 3, GetInstance<EEMod>().Assets.Request<Texture2D>("Particles/ForegroundParticles/KelpLeaf").Value, gottenParalax, 1 - (gottenParalax - 1)/1.2f, new RotateVelocity(Main.rand.NextFloat(-0.002f, 0.002f)), new RotateTexture(0.03f), new SetLightingBlend(true), new SetAnimData(6, 5));
+                EEMod.MainParticles.SpawnParticleDownUp(Main.LocalPlayer, -Vector2.UnitY * 3, GetInstance<EEMod>().Assets.Request<Texture2D>("Particles/ForegroundParticles/KelpLeaf").Value, gottenParalax, 1 - (gottenParalax - 1) / 1.2f, new RotateVelocity(Main.rand.NextFloat(-0.002f, 0.002f)), new RotateTexture(0.03f), new SetLightingBlend(true), new SetAnimData(6, 5));
             }
             if (playingGame)
             {
@@ -767,7 +762,7 @@ namespace EEMod
                     bubbleTimer = 6;
                     if (Player.wet)
                     {
-                        Projectile.NewProjectile(new Vector2(Player.Center.X + bubbleLen - 16, Player.Center.Y - bubbleColumn), new Vector2(0, -1), ProjectileType<WaterDragonsBubble>(), 5, 0, Owner: Player.whoAmI);
+                        Projectile.NewProjectile(new ProjectileSource_BySourceId(ProjectileType<WaterDragonsBubble>()), new Vector2(Player.Center.X + bubbleLen - 16, Player.Center.Y - bubbleColumn), new Vector2(0, -1), ProjectileType<WaterDragonsBubble>(), 5, 0, Owner: Player.whoAmI);
                     }
 
                     bubbleLen = Main.rand.Next(-16, 17);
@@ -832,8 +827,14 @@ namespace EEMod
                     break;
                 }
             }
+
             UpdateCutscenesAndTempShaders();
+
+            base.UpdateEquips();
         }
+
+        public bool playingGame;
+        public float seamapLightColor;
 
         public void UpdateArrayPoints()
         {
@@ -935,7 +936,7 @@ namespace EEMod
                             {
                                 if (bubbleRuneBubble == 0)
                                 {
-                                    bubbleRuneBubble = Projectile.NewProjectile(Player.Center, Vector2.Zero, ProjectileType<BubblingWatersBubble>(), 0, 0, Main.myPlayer);
+                                    bubbleRuneBubble = Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_BySourceId(ProjectileType<BubblingWatersBubble>()), Player.Center, Vector2.Zero, ProjectileType<BubblingWatersBubble>(), 0, 0, Main.myPlayer);
                                 }
                                 else
                                 {
@@ -1043,7 +1044,7 @@ namespace EEMod
                 hydrofluoricSetTimer++;
                 if (hydrofluoricSetTimer >= 30 && Player.velocity != Vector2.Zero)
                 {
-                    Projectile.NewProjectile(Player.Center, Player.velocity / 2, ProjectileType<CorrosiveBubble>(), 20, 0f);
+                    Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_BySourceId(ProjectileType<CorrosiveBubble>()), Player.Center, Player.velocity / 2, ProjectileType<CorrosiveBubble>(), 20, 0f);
                     hydrofluoricSetTimer = 0;
                 }
             }
@@ -1066,7 +1067,7 @@ namespace EEMod
                     }
                     if (closest != null)
                     {
-                        Projectile.NewProjectile(closest.Center, Vector2.Zero, ProjectileType<CyanoburstTomeKelp>(), 10, 0f, Owner: Player.whoAmI);
+                        Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_BySourceId(ProjectileType<CyanoburstTomeKelp>()), closest.Center, Vector2.Zero, ProjectileType<CyanoburstTomeKelp>(), 10, 0f, Owner: Player.whoAmI);
                     }
 
                     lythenSetTimer = 0;
@@ -1349,11 +1350,11 @@ namespace EEMod
         });*/
 
 
-        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        public override void ModifyDrawLayerOrdering(IDictionary<PlayerDrawLayer, PlayerDrawLayer.Position> positions)
         {
             if (isLight)
             {
-                for (int i = 0; i < layers.Count; i++)
+                for (int i = 0; i < positions.Count; i++)
                 {
                     // layers[i].visible = false;
                 }
@@ -1374,7 +1375,7 @@ namespace EEMod
             }*/
         }
 
-        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
             if (isLight)
             {

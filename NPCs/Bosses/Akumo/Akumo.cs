@@ -481,8 +481,8 @@ namespace EEMod.NPCs.Bosses.Akumo
             {
                 if (NPC.ai[0] == 1)
                 {
-                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
-                    SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(1.5f));
+                    //SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/Scree").WithVolume(.7f).WithPitchVariance(4));
+                    //SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/BadScree").WithVolume(.8f).WithPitchVariance(1.5f));
                 }
                 spriteBatch.Draw(texture, NPC.Center - Main.screenPosition, NPC.frame, drawColor * alpha, NPC.rotation, NPC.frame.Size() / 2, scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             }

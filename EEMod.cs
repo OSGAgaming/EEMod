@@ -67,9 +67,9 @@ namespace EEMod
             verlet = new Verlet();
             Subworlds = new SubworldInstanceManager();
 
-            TagSerializer.AddSerializer(new BigCrystalSerializer());
-            TagSerializer.AddSerializer(new EmptyTileEntitySerializer());
-            TagSerializer.AddSerializer(new CrystalSerializer());
+            //TagSerializer.AddSerializer(new BigCrystalSerializer());
+            //TagSerializer.AddSerializer(new EmptyTileEntitySerializer());
+            //TagSerializer.AddSerializer(new CrystalSerializer());
 
             if (!Main.dedServ)
             {
@@ -204,7 +204,7 @@ namespace EEMod
             EENet.ReceievePacket(reader, whoAmI);
         }
 
-        public override void MidUpdateProjectileItem()
+        /*public override void MidUpdateProjectileItem()
         {
             if (Main.netMode != NetmodeID.Server)
             {
@@ -236,9 +236,9 @@ namespace EEMod
         public override void PostUpdateEverything()
         {
             UpdateVerlet();
-        }
+        }*/
 
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        /*public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
             if (mouseTextIndex != -1)
@@ -301,7 +301,7 @@ namespace EEMod
 		            return true;
 		        },
 		        InterfaceScaleType.UI));
-		    }*/
+		    }
             if (Main.worldName == KeyID.Sea)
             {
                 for (int i = 0; i < layers.Count; i++)
@@ -314,7 +314,7 @@ namespace EEMod
                     }
                 }
             }
-        }
+        }*/
 
         public override void AddRecipeGroups()
         {

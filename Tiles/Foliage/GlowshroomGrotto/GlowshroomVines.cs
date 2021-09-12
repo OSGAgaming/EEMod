@@ -55,11 +55,11 @@ namespace EEMod.Tiles.Foliage.GlowshroomGrotto
                 while (yTest > j - 10)
                 {
                     Tile testTile = Framing.GetTileSafely(i, yTest);
-                    if (testTile.bottomSlope())
+                    /*if (testTile.bottomSlope())
                     {
                         break;
                     }
-                    else if (!testTile.IsActive || testTile.type != ModContent.TileType<GemsandstoneTile>() || testTile.type == ModContent.TileType<LightGemsandstoneTile>())
+                    else */if (!testTile.IsActive || testTile.type != ModContent.TileType<GemsandstoneTile>() || testTile.type == ModContent.TileType<LightGemsandstoneTile>())
                     {
                         yTest--;
                         continue;
