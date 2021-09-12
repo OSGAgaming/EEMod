@@ -91,7 +91,7 @@ namespace EEMod.NPCs.CoralReefs
             EEMod.SpireShader.Parameters["lightColor"].SetValue(drawColor.ToVector3());
             EEMod.SpireShader.CurrentTechnique.Passes[0].Apply();
 
-            spriteBatch.Draw(TextureAssets.Npc[NPC.type], NPC.Center - Main.screenPosition + new Vector2(0, 4), TextureAssets.Npc[NPC.type].Value.Bounds, drawColor, NPC.rotation, TextureAssets.Npc[NPC.type].Value.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureAssets.Npc[NPC.type].Value, NPC.Center - Main.screenPosition + new Vector2(0, 4), TextureAssets.Npc[NPC.type].Value.Bounds, drawColor, NPC.rotation, TextureAssets.Npc[NPC.type].Value.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null, Main.GameViewMatrix.ZoomMatrix);
@@ -311,7 +311,7 @@ namespace EEMod.NPCs.CoralReefs
                     switch (NPC.ai[1])
                     {
                         case 0: //Blue laser
-                            Projectile projectile = Projectile.NewProjectileDirect(eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage, 0f, default, 0, 1);
+                            Projectile projectile = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_NPC(NPC), eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage, 0f, default, 0, 1);
                             EEMod.primitives.CreateTrail(new SpirePrimTrail(projectile, Color.Lerp(Color.Navy, Color.LightBlue, Main.rand.NextFloat(0, 1)), 50));
 
                             SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Sounds/SpireShoot"), NPC.Center);
@@ -319,7 +319,7 @@ namespace EEMod.NPCs.CoralReefs
                             break;
 
                         case 1: //Pink laser
-                            Projectile projectile2 = Projectile.NewProjectileDirect(eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage / 2, 0f, default, 0, 2);
+                            Projectile projectile2 = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_NPC(NPC), eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage / 2, 0f, default, 0, 2);
                             EEMod.primitives.CreateTrail(new SpirePrimTrail(projectile2, Color.Lerp(Color.Purple, Color.Pink, Main.rand.NextFloat(0, 1)), 40));
 
                             SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Sounds/SpireShoot"), NPC.Center);
@@ -332,7 +332,7 @@ namespace EEMod.NPCs.CoralReefs
                             break;
 
                         case 2: //White laser
-                            Projectile projectile3 = Projectile.NewProjectileDirect(eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<WideSpireLaser>(), NPC.damage / 2, 0f, default, 0, 3);
+                            Projectile projectile3 = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_NPC(NPC), eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<WideSpireLaser>(), NPC.damage / 2, 0f, default, 0, 3);
                             EEMod.primitives.CreateTrail(new SpirePrimTrail(projectile3, Color.White, 80));
 
                             SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Sounds/SpireShoot"), NPC.Center);
@@ -342,7 +342,7 @@ namespace EEMod.NPCs.CoralReefs
                         case 3: //Cyan laser
                             if (specialLaserShots == 0)
                             {
-                                Projectile projectile4 = Projectile.NewProjectileDirect(eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage / 3, 0f, default, 0, 1);
+                                Projectile projectile4 = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_NPC(NPC), eyePos, Vector2.Normalize(target.Center - NPC.Center) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage / 3, 0f, default, 0, 1);
                                 EEMod.primitives.CreateTrail(new SpirePrimTrail(projectile4, Color.Lerp(Color.LightCyan, Color.DarkCyan, Main.rand.NextFloat(0, 1)), 30));
                                 specialLaserShots++;
                                 NPC.ai[2] = -30;
@@ -351,7 +351,7 @@ namespace EEMod.NPCs.CoralReefs
                             {
                                 for (int i = -1; i < 2; i += 2)
                                 {
-                                    Projectile projectile4 = Projectile.NewProjectileDirect(eyePos, (Vector2.Normalize(target.Center - NPC.Center)).RotatedBy(i / 6f) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage / 3, 0f, default, 0, 4);
+                                    Projectile projectile4 = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_NPC(NPC), eyePos, (Vector2.Normalize(target.Center - NPC.Center)).RotatedBy(i / 6f) * 2, ModContent.ProjectileType<SpireLaser>(), NPC.damage / 3, 0f, default, 0, 4);
                                     EEMod.primitives.CreateTrail(new SpirePrimTrail(projectile4, Color.Lerp(Color.LightCyan, Color.DarkCyan, Main.rand.NextFloat(0, 1)), 30));
                                 }
                                 specialLaserShots++;
@@ -412,7 +412,7 @@ namespace EEMod.NPCs.CoralReefs
                         {
                             if (WorldGen.InWorld(i, j) && Framing.GetTileSafely(i, j).type == ModContent.TileType<AquamarineLamp1>() && Framing.GetTileSafely(i, j).frameX == 0 && Framing.GetTileSafely(i, j).frameY == 0)
                             {
-                                Projectile proj = Projectile.NewProjectileDirect(new Vector2((i * 16) + 16, (j * 16) - 12), Vector2.Zero, ModContent.ProjectileType<AquamarineLamp1Glow>(), 0, 0, default, 0, 0);
+                                Projectile proj = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_NPC(NPC), new Vector2((i * 16) + 16, (j * 16) - 12), Vector2.Zero, ModContent.ProjectileType<AquamarineLamp1Glow>(), 0, 0, default, 0, 0);
                                 if (shields.Count < 10)
                                 {
                                     shields.Add(proj);

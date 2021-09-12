@@ -141,7 +141,7 @@ namespace EEMod.Tiles.Foliage.KelpForest
             if(isOpening && (myItem == null || myItem.active == false) && !itemDeployed && _frame > 5)
             {
                 SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Sounds/KelpFlowerOpen"));
-                myItem = Projectile.NewProjectileDirect(new Vector2((Position.X * 16) + 32, (Position.Y * 16) + 24), new Vector2(0, -2.5f), ModContent.ProjectileType<KelpFlowerItem>(), 0, 0f, default, ChooseItem());
+                myItem = Projectile.NewProjectileDirect(new Terraria.DataStructures.ProjectileSource_TileInteraction(Main.LocalPlayer, i, j), new Vector2((Position.X * 16) + 32, (Position.Y * 16) + 24), new Vector2(0, -2.5f), ModContent.ProjectileType<KelpFlowerItem>(), 0, 0f, default, ChooseItem());
                 itemDeployed = true;
             }
 

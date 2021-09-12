@@ -209,7 +209,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
                     {
                         Vector2 newPos = new Vector2(target.Center.X + Main.rand.Next(-80, 81), target.position.Y - 80);
                         Vector2 newVel = Vector2.Normalize(newPos - target.Center) * -16;
-                        Projectile.NewProjectile(newPos, newVel, ModContent.ProjectileType<AkumoMinionProjectile>(), 50, 2f, player.whoAmI);
+                        Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_ProjectileParent(Projectile), newPos, newVel, ModContent.ProjectileType<AkumoMinionProjectile>(), 50, 2f, player.whoAmI);
                     }
                     projectileAiCont[0] = 0;
                     projectileAiCont[1] = 0;
