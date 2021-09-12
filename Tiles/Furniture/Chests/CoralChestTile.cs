@@ -38,10 +38,9 @@ namespace EEMod.Tiles.Furniture.Chests
             name.SetDefault("Coral Chest");
             AddMapEntry(Color.Black, name);
             dustType = DustID.Dirt;
-            adjTiles = new int[] { TileID.Containers };
+            AdjTiles = new int[] { TileID.Containers };
             TileID.Sets.BasicChest[Type] = true;
-            chestDrop = ModContent.ItemType<CoralChest>();
-            chest = "Coral Chest";
+            ChestDrop = ModContent.ItemType<CoralChest>();
         }
 
         public string MapChestName(string name, int i, int j)
@@ -75,11 +74,11 @@ namespace EEMod.Tiles.Furniture.Chests
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 32, chestDrop);
+            Item.NewItem(i * 16, j * 16, 32, 32, ChestDrop);
             Chest.DestroyChest(i, j);
         }
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             Player player = Main.LocalPlayer;
             Tile tile = Main.tile[i, j];

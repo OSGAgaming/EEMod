@@ -105,7 +105,7 @@ namespace EEMod.Items.Weapons.Summon.Minions
                     if (reinforcements[i] == default)
                     {
                         Main.NewText(i + "AE");
-                        reinforcements[i] = Projectile.NewProjectile(Projectile.Center, Vector2.Zero, ModContent.ProjectileType<AkumoReinforcement>(), 50, 2f, Owner: Main.myPlayer, ai0: MathHelper.TwoPi / 3 * i, ai1: target.whoAmI);
+                        reinforcements[i] = Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_ProjectileParent(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<AkumoReinforcement>(), 50, 2f, Owner: Main.myPlayer, ai0: MathHelper.TwoPi / 3 * i, ai1: target.whoAmI);
                     }
                 }
             }

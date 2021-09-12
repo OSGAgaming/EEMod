@@ -13,13 +13,23 @@ namespace EEMod
         public virtual void SetDefaults()
         {
             SoundStyle = soundType;
+            SoundStyle = soundStyle;
+
             DustType = dustType;
+            ItemDrop = drop;
+
+            MinPick = minPick;
+            MineResist = mineResist;
 
             SetStaticDefaults();
         }
 
         public int soundType;
+        public int soundStyle;
         public int dustType;
+        public int drop;
+        public int minPick;
+        public float mineResist;
         public bool disableSmartCursor;
 
         public override bool HasSmartInteract()

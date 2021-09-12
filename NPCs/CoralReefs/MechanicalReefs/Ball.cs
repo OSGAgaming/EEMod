@@ -107,7 +107,7 @@ float x0, float x1, float x2, float x3)
         {
             if (NPC.ai[0] == 0)
             {
-                Projectile.NewProjectile(NPC.Center + new Vector2(0, -100), Vector2.Zero, ModContent.ProjectileType<Dreadmine>(), 150, 0f, Main.myPlayer, NPC.whoAmI);
+                Projectile.NewProjectile(new Terraria.DataStructures.ProjectileSource_NPC(NPC), NPC.Center + new Vector2(0, -100), Vector2.Zero, ModContent.ProjectileType<Dreadmine>(), 150, 0f, Main.myPlayer, NPC.whoAmI);
             }
             NPC.ai[0]++;
             double deg = (double)NPC.ai[1] + 10;

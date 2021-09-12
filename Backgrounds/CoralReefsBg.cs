@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace EEMod.Backgrounds
 {
-    public class Surfacebg : ModSurfaceBgStyle
+    public class Surfacebg : ModSurfaceBackgroundStyle
     {
         public override bool ChooseBgStyle()
         {

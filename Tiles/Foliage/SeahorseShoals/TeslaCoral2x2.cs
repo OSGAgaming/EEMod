@@ -44,7 +44,7 @@ namespace EEMod.Tiles.Foliage.SeahorseShoals
                         {
                             if (WorldGen.InWorld(i + k, j + l) && Main.tile[i + k, j + l].IsActive && Main.tile[i + k, j + l].type == ModContent.TileType<TeslaCoral2x2>() && Main.tile[i + k, j + l].frameX == 0 && Main.tile[i + k, j + l].frameY == 0)
                             {
-                                int lightningproj = Projectile.NewProjectile(new Vector2((i * 16) + 16, (j * 16) + 16), Vector2.Zero, ModContent.ProjectileType<TeslaCoralProj>(), 20, 2.5f);
+                                int lightningproj = Projectile.NewProjectile(new ProjectileSource_TileInteraction(Main.LocalPlayer, i, j), new Vector2((i * 16) + 16, (j * 16) + 16), Vector2.Zero, ModContent.ProjectileType<TeslaCoralProj>(), 20, 2.5f);
 
                                 if (Main.netMode != NetmodeID.Server)
                                 {

@@ -88,7 +88,7 @@ namespace EEMod.Tiles.Foliage.KelpForest
             ModContent.GetInstance<KelpFlowerTE>().Kill(i, j);
         }
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
 
