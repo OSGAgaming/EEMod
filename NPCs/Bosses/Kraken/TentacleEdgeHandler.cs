@@ -51,7 +51,7 @@ namespace EEMod.NPCs.Bosses.Kraken
             NPC.TargetClosest(true);
             player = Main.player[NPC.target];
             NPC.Center = player.Center - new Vector2(-200, 0);
-            krakenHead = Main.npc[(int)NPC.ai[0]].modNPC as KrakenHead;
+            krakenHead = Main.npc[(int)NPC.ai[0]].ModNPC as KrakenHead;
             npcBase = Main.npc[(int)NPC.ai[0]];
             NPC.ai[1]++;
         }

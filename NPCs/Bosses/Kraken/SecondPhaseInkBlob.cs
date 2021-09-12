@@ -32,7 +32,7 @@ namespace EEMod.NPCs.Bosses.Kraken    //We need this to basically indicate the f
 
         private Vector2 start;
         private readonly Vector2[] yeet = new Vector2[2];
-        KrakenHead krakenHead => Main.npc[(int)Projectile.ai[1]].modNPC as KrakenHead;
+        KrakenHead krakenHead => Main.npc[(int)Projectile.ai[1]].ModNPC as KrakenHead;
 
         public override void AI()
         {

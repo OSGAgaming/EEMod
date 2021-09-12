@@ -32,6 +32,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.UI.States;
 using Terraria.UI.Chat;
 using EEMod.Systems;
+using Terraria.GameContent;
 
 namespace EEMod
 {
@@ -69,7 +70,7 @@ namespace EEMod
             On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.ctor += UIWorldListItem_ctor;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.DrawSelf += UIWorldListItem_DrawSelf;
-            //On.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalDraw += LiquidRenderer_InternalDraw;
+            //On.Terraria.GameContent.Liquid.LiquidRenderer.InternalDraw += LiquidRenderer_InternalDraw;
             On.Terraria.WorldGen.SaveAndQuitCallBack += WorldGen_SaveAndQuitCallBack;
             WP = new WaterPrimitive(null);
             primitives.CreateTrail(WP);
@@ -141,7 +142,7 @@ namespace EEMod
 
         private void UnloadDetours()
         {
-            //On.Terraria.GameContent.LiquidAmount.LiquidRenderer.InternalDraw -= LiquidRenderer_InternalDraw;
+            //On.Terraria.GameContent.Liquid.LiquidRenderer.InternalDraw -= LiquidRenderer_InternalDraw;
             //On.Terraria.Main.CacheNPCDraws -= Main_CacheNPCDraws;
             On.Terraria.Main.DrawBackground -= Main_DrawBackground1;
             On.Terraria.Lighting.AddLight_int_int_float_float_float -= Lighting_AddLight_int_int_float_float_float;
@@ -164,7 +165,7 @@ namespace EEMod
             On.Terraria.WorldGen.SaveAndQuitCallBack -= WorldGen_SaveAndQuitCallBack;
         }
 
-        /*private void LiquidRenderer_InternalDraw(On.Terraria.GameContent.LiquidAmount.LiquidRenderer.orig_InternalDraw orig, Terraria.GameContent.LiquidAmount.LiquidRenderer self, SpriteBatch spriteBatch, Vector2 drawOffset, int waterStyle, float globalAlpha, bool isBackgroundDraw)
+        /*private void LiquidRenderer_InternalDraw(On.Terraria.GameContent.Liquid.LiquidRenderer.orig_InternalDraw orig, Terraria.GameContent.Liquid.LiquidRenderer self, SpriteBatch spriteBatch, Vector2 drawOffset, int waterStyle, float globalAlpha, bool isBackgroundDraw)
         {
             orig(self, spriteBatch, drawOffset, waterStyle, globalAlpha, isBackgroundDraw);
         }*/
@@ -237,7 +238,7 @@ namespace EEMod
             Vector2 position = new Vector2(num2, innerDimensions.Y + 59);
             const float width = 370;
 
-            Texture2D texture = TextureManager.Load("Images/UI/InnerPanelBackground");
+            Texture2D texture = TextureCollection.Load("Images/UI/InnerPanelBackground");
             spriteBatch.Draw(texture, position, new Rectangle(0, 0, 8, texture.Height), Color.White);
             spriteBatch.Draw(texture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, texture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
             spriteBatch.Draw(texture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, texture.Height), Color.White);
@@ -368,7 +369,7 @@ namespace EEMod
                 else
                 {
                     int a = 2;
-                    SurfaceBgStyleLoader.ChooseStyle(ref a);
+                    SurfaceBackgroundStylesLoader.ChooseStyle(ref a);
                 }
             }
 
@@ -406,11 +407,11 @@ namespace EEMod
             {
                 if (Main.projectile[i].active)
                 {
-                    if (Main.projectile[i].modProjectile is Gradient a)
+                    if (Main.projectile[i].ModProjectile is Gradient a)
                     {
                         a.pixelPlacmentHours();
                     }
-                    if (Main.projectile[i].modProjectile is CyanoburstTomeKelp aa)
+                    if (Main.projectile[i].ModProjectile is CyanoburstTomeKelp aa)
                     {
                         aa.DrawBehind();
                     }
@@ -423,7 +424,7 @@ namespace EEMod
                 {
                     if (Main.npc[i].type == ModContent.NPCType<TentacleEdgeHandler>())
                     {
-                        (Main.npc[i].modNPC as TentacleEdgeHandler).DrawTentacleBeziers();
+                        (Main.npc[i].ModNPC as TentacleEdgeHandler).DrawTentacleBeziers();
                     }
                 }
             }
@@ -484,17 +485,17 @@ namespace EEMod
             {
                 Main.spriteBatch.Begin();
 
-                Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug MenuMode: " + Main.menuMode.ToString(), new Vector2(50, 60), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug MenuMode: " + Main.menuMode.ToString(), new Vector2(50, 60), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
 
                 if (!Main.gameMenu)
                 {
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug Player Velocity X: " + Main.LocalPlayer.velocity.X.ToString(), new Vector2(50, 80), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug Player Velocity Y: " + Main.LocalPlayer.velocity.Y.ToString(), new Vector2(50, 100), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug Player Position X: " + Main.LocalPlayer.Center.Y.ToString(), new Vector2(50, 120), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug Player Position Y: " + Main.LocalPlayer.Center.X.ToString(), new Vector2(50, 140), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug Player Tile Pos X: " + ((int)Main.LocalPlayer.Center.Y / 16).ToString(), new Vector2(50, 160), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "EEModDebug Player Tile Pos Y: " + ((int)Main.LocalPlayer.Center.X / 16).ToString(), new Vector2(50, 180), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    Main.spriteBatch.DrawString(Main.fontMouseText, "Time: " + Main.time.ToString(), new Vector2(50, 200), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug Player Velocity X: " + Main.LocalPlayer.velocity.X.ToString(), new Vector2(50, 80), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug Player Velocity Y: " + Main.LocalPlayer.velocity.Y.ToString(), new Vector2(50, 100), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug Player Position X: " + Main.LocalPlayer.Center.Y.ToString(), new Vector2(50, 120), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug Player Position Y: " + Main.LocalPlayer.Center.X.ToString(), new Vector2(50, 140), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug Player Tile Pos X: " + ((int)Main.LocalPlayer.Center.Y / 16).ToString(), new Vector2(50, 160), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "EEModDebug Player Tile Pos Y: " + ((int)Main.LocalPlayer.Center.X / 16).ToString(), new Vector2(50, 180), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
+                    Main.spriteBatch.DrawString(FontAssets.MouseText.Value, "Time: " + Main.time.ToString(), new Vector2(50, 200), Color.AliceBlue, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
                 }
 
                 Main.spriteBatch.End();
@@ -525,11 +526,11 @@ namespace EEMod
 
                 Seamap.SeamapContent.SeamapPlayerShip.localship.velocity = Vector2.Zero;
                 Main.numClouds = 0;
-                Main.logo2Texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
-                Main.logoTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
-                Main.sun2Texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
-                Main.sun3Texture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
-                Main.sunTexture = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty").Value;
+                TextureAssets.Logo2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty");
+                TextureAssets.Logo = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty");
+                TextureAssets.Sun2 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty");
+                TextureAssets.Sun3 = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty");
+                TextureAssets.Sun = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("Empty");
 
                 if (SkyManager.Instance["EEMod:SavingCutscene"] != null)
                 {
@@ -823,19 +824,19 @@ namespace EEMod
                 Main.spriteBatch.Begin();
                 DrawSky();
 
-                if (Main.fontDeathText != null && screenMessageText != null)
+                if (FontAssets.DeathText.Value != null && screenMessageText != null)
                 {
-                    Vector2 textSize = Main.fontDeathText.MeasureString(screenMessageText);
+                    Vector2 textSize = FontAssets.DeathText.Value.MeasureString(screenMessageText);
 
                     if (progressMessage != null)
                     {
-                        Vector2 textSize2 = Main.fontMouseText.MeasureString(progressMessage);
+                        Vector2 textSize2 = FontAssets.MouseText.Value.MeasureString(progressMessage);
                         textSize2 = new Vector2(textSize2.X * 1.2f, textSize2.Y);
 
                         float textPosition2Left = Main.screenWidth / 2 - textSize2.X / 2;
 
                         //Main.spriteBatch.DrawString(Main.fontMouseText, progressMessage, new Vector2(textPosition2Left, Main.screenHeight / 2 + 200), Color.AliceBlue * alpha, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, progressMessage, new Vector2(textPosition2Left, Main.screenHeight / 2 - 350), Color.White * alpha, 0f, Vector2.Zero, new Vector2(1.2f, 1.2f));
+                        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, progressMessage, new Vector2(textPosition2Left, Main.screenHeight / 2 - 350), Color.White * alpha, 0f, Vector2.Zero, new Vector2(1.2f, 1.2f));
                     }
 
                     osSucksAtBedwars++;
@@ -857,7 +858,7 @@ namespace EEMod
 
 
                     //Main.spriteBatch.DrawString(Main.fontDeathText, screenMessageText, new Vector2(textPositionLeft, Main.screenHeight / 2 - 100), Color.White * tempAlpha, 0f, Vector2.Zero, 1, SpriteEffects.None, 0f);
-                    ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontDeathText, screenMessageText, new Vector2(textPositionLeft, Main.screenHeight / 2 - 100), Color.White * tempAlpha, 0f, Vector2.Zero, Vector2.One);
+                    ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.DeathText.Value, screenMessageText, new Vector2(textPositionLeft, Main.screenHeight / 2 - 100), Color.White * tempAlpha, 0f, Vector2.Zero, Vector2.One);
                 }
 
                 try
@@ -891,11 +892,11 @@ namespace EEMod
                         SkyManager.Instance.Deactivate("EEMod:SavingCutscene", new object[0]);
                     }
 
-                    Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2");
-                    Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo");
-                    Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2");
-                    Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3");
-                    Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
+                    TextureAssets.Logo2 = ModContent.Request<Texture2D>("Terraria/Logo2");
+                    TextureAssets.Logo = ModContent.Request<Texture2D>("Terraria/Logo");
+                    TextureAssets.Sun2 = ModContent.Request<Texture2D>("Terraria/Sun2");
+                    TextureAssets.Sun3 = ModContent.Request<Texture2D>("Terraria/Sun3");
+                    TextureAssets.Sun = ModContent.Request<Texture2D>("Terraria/Sun");
                 }
             }
         }
@@ -916,16 +917,16 @@ namespace EEMod
                     SkyManager.Instance.Deactivate("EEMod:SavingCutscene", new object[0]);
                 }
 
-                Main.logo2Texture = ModContent.Request<Texture2D>("Terraria/Logo2");
-                Main.logoTexture = ModContent.Request<Texture2D>("Terraria/Logo");
-                Main.sun2Texture = ModContent.Request<Texture2D>("Terraria/Sun2");
-                Main.sun3Texture = ModContent.Request<Texture2D>("Terraria/Sun3");
-                Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
+                TextureAssets.Logo2 = ModContent.Request<Texture2D>("Terraria/Logo2");
+                TextureAssets.Logo = ModContent.Request<Texture2D>("Terraria/Logo");
+                TextureAssets.Sun2 = ModContent.Request<Texture2D>("Terraria/Sun2");
+                TextureAssets.Sun3 = ModContent.Request<Texture2D>("Terraria/Sun3");
+                TextureAssets.Sun = ModContent.Request<Texture2D>("Terraria/Sun");
             }
 
-            Main.sunTexture = ModContent.Request<Texture2D>("Terraria/Sun");
+            TextureAssets.Sun = ModContent.Request<Texture2D>("Terraria/Sun");
 
-            orig(self, gameTime);
+            orig(self, ref gameTime);
         }
 
         private void Lighting_AddLight_int_int_float_float_float(On.Terraria.Lighting.orig_AddLight_int_int_float_float_float orig, int i, int j, float R, float G, float B)

@@ -53,7 +53,7 @@ namespace EEMod.NPCs.Bosses.Kraken
                 {
                     NPC.damage = 0;
                     alpha = Math.Abs(distance.X / distanceCovered);
-                    (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).GETHIMBOIS = true;
+                    (Main.npc[(int)NPC.ai[2]].ModNPC as KrakenHead).GETHIMBOIS = true;
                     if (!yeet)
                     {
                         Main.npc[(int)NPC.ai[2]].ai[0] = 0;
@@ -65,7 +65,7 @@ namespace EEMod.NPCs.Bosses.Kraken
                     {
                         if (!isRetrating)
                         {
-                            (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).Reset(3);
+                            (Main.npc[(int)NPC.ai[2]].ModNPC as KrakenHead).Reset(3);
                             isRetrating = true;
                         }
                     }
@@ -127,7 +127,7 @@ namespace EEMod.NPCs.Bosses.Kraken
                 {
                     NPC.damage = 0;
                     alpha = Math.Abs(distance.X / distanceCovered);
-                    (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).GETHIMBOIS = true;
+                    (Main.npc[(int)NPC.ai[2]].ModNPC as KrakenHead).GETHIMBOIS = true;
                     if (!yeet)
                     {
                         Main.npc[(int)NPC.ai[2]].ai[0] = 0;
@@ -139,7 +139,7 @@ namespace EEMod.NPCs.Bosses.Kraken
                     {
                         if (!isRetrating)
                         {
-                            (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).Reset(3);
+                            (Main.npc[(int)NPC.ai[2]].ModNPC as KrakenHead).Reset(3);
                             isRetrating = true;
                         }
                     }
@@ -202,12 +202,12 @@ namespace EEMod.NPCs.Bosses.Kraken
             if (NPC.ai[3] == 0)
             {
                 isGrabbing0 = true;
-                (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).isRightOrLeft = true;
+                (Main.npc[(int)NPC.ai[2]].ModNPC as KrakenHead).isRightOrLeft = true;
             }
             if (NPC.ai[3] == 1)
             {
                 isGrabbing1 = true;
-                // (Main.npc[(int)NPC.ai[2]].modNPC as KrakenHead).isRightOrLeft = false;
+                // (Main.npc[(int)NPC.ai[2]].ModNPC as KrakenHead).isRightOrLeft = false;
             }
         }
 

@@ -23,6 +23,7 @@ using EEMod.Tiles.Furniture;
 using EEMod.VerletIntegration;
 using EEMod.Systems.EEGame;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace EEMod
 {
@@ -158,7 +159,7 @@ namespace EEMod
         //should be in helper class
         public static void UIText(string text, Color colour, Vector2 position, int style)
         {
-            var font = style == 0 ? Main.fontDeathText : Main.fontMouseText;
+            var font = style == 0 ? FontAssets.DeathText.Value : FontAssets.MouseText.Value;
             Vector2 textSize = font.MeasureString(text);
             float textPositionLeft = position.X - textSize.X / 2;
             //float textPositionRight = position.X + textSize.X / 2;

@@ -60,7 +60,7 @@ float x0, float x1, float x2, float x3)
 
         public void DrawHead(SpriteBatch spriteBatch, string headTexture, string glowMaskTexture, NPC head, Color drawColor, Vector2 ifYouReallyWantToo)
         {
-            if (head != null && head.active && head.modNPC != null && head.modNPC is Ball)
+            if (head != null && head.active && head.ModNPC != null && head.ModNPC is Ball)
             {
                 Texture2D neckTex2D = ModContent.GetInstance<EEMod>().Assets.Request<Texture2D>("NPCs/CoralReefs/MechanicalReefs/DreadmineChain").Value;
                 Vector2 neckOrigin = NPC.Center;

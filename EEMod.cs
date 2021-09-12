@@ -64,9 +64,11 @@ namespace EEMod
             TVH = new ComponentManager<TileObjVisual>();
             verlet = new Verlet();
             Subworlds = new SubworldInstanceManager();
+
             Terraria.ModLoader.IO.TagSerializer.AddSerializer(new BigCrystalSerializer());
             Terraria.ModLoader.IO.TagSerializer.AddSerializer(new EmptyTileEntitySerializer());
             Terraria.ModLoader.IO.TagSerializer.AddSerializer(new CrystalSerializer());
+
             if (!Main.dedServ)
             {
                 UI = new UIManager();
@@ -91,7 +93,7 @@ namespace EEMod
                 UI.AddInterface("DialogueInterface");
                 UI.AddUIState("DialogueUI", DialogueUI);
 
-                Noise2D = new Noise2D(GetEffect("Effects/Noise2D"));
+                Noise2D = new Noise2D(Assets.Request<Effect>("Effects/Noise2D").Value);
                 primitives = new PrimTrailManager();
             }
             //HandwritingCNN = new Handwriting();
@@ -121,12 +123,12 @@ namespace EEMod
                 Filters.Scene["EEMod:MyTestShader"] = new Filter(new ScreenShaderData(MyTestShader, "MyTestShaderFlot"), EffectPriority.High);
                 Filters.Scene["EEMod:MyTestShader"].Load();
 
-                GameShaders.Misc["EEMod:SpireHeartbeat"] = new MiscShaderData(new Ref<Effect>(Assets.Request<Effect>("Effects/SpireShine").Value), "SpireHeartbeat").UseImage("Textures/Noise/WormNoisePixelated");
+                GameShaders.Misc["EEMod:SpireHeartbeat"] = new MiscShaderData(new Ref<Effect>(Assets.Request<Effect>("Effects/SpireShine").Value), "SpireHeartbeat").UseImage0("Textures/Noise/WormNoisePixelated");
 
                 SkyManager.Instance["EEMod:SavingCutscene"] = new SavingSky();
-                NoiseSurfacing = GetEffect("Effects/NoiseSurfacing");
-                White = GetEffect("Effects/WhiteOutline");
-                Effervescence = GetEffect("Effects/Effervescence");
+                NoiseSurfacing = Assets.Request<Effect>("Effects/NoiseSurfacing").Value;
+                White = Assets.Request<Effect>("Effects/WhiteOutline").Value;
+                Effervescence = Assets.Request<Effect>("Effects/Effervescence").Value;
 
 
                 Ref<Effect> hydrosDye = new Ref<Effect>(Assets.Request<Effect>("Effects/HydrosDye").Value);
@@ -413,7 +415,7 @@ namespace EEMod
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC npc = Main.npc[i];
-                if (npc.modNPC is AquamarineSpire spire)
+                if (npc.ModNPC is AquamarineSpire spire)
                 {
                     if (spire.awake)
                     {

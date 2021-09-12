@@ -55,7 +55,7 @@ namespace EEMod.Systems
 					break;
 				default:
 					CloseDialogue();
-					(Main.npc[AssociatedNPC].modNPC as JonathanSeagull).IntroductionDialogue = true;
+					(Main.npc[AssociatedNPC].ModNPC as JonathanSeagull).IntroductionDialogue = true;
 					break;
 			}
 		}

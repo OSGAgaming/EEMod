@@ -610,8 +610,8 @@ namespace EEMod.EEWorld
             {
                 var tile = Framing.GetTileSafely((int)startingPos.X - 2, (int)startingPos.Y - 3);
                 var tile1 = Framing.GetTileSafely((int)startingPos.X - 2 + 4, (int)startingPos.Y - 3);
-                tile.halfBrick(true);
-                tile1.halfBrick(true);
+                tile.IsHalfBlock = true;
+                tile1.IsHalfBlock = true;
             }
             MakePillarWalls(new Vector2(startingPos.X + 2 - 2, startingPos.Y + 2 - 4), height);
         }
@@ -763,7 +763,7 @@ namespace EEMod.EEWorld
                     }
                     /*if (TowerSlopes[y, x] == 5)
                     {
-                        tile.halfBrick(true);
+                        tile.IsHalfBlock = true;
                     }
                     else
                     {

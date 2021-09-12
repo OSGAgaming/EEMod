@@ -106,7 +106,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
 
                 if (active)
                 {
-                    AquamarineSpire spirespire = spire.modNPC as AquamarineSpire;
+                    AquamarineSpire spirespire = spire.ModNPC as AquamarineSpire;
 
                     if ((spire.ai[0] <= 40 && spire.ai[0] > 20 && !dead)) //If in first phase and projectile is not inactive
                     {
@@ -244,7 +244,7 @@ namespace EEMod.Tiles.Foliage.Aquamarine
                     if (frame >= 8) frame = 0;
                 }
 
-                AquamarineSpire spirespire = spire.modNPC as AquamarineSpire; 
+                AquamarineSpire spirespire = spire.ModNPC as AquamarineSpire; 
                 //(spire.ai[0] <= 20 && spire.ai[0] > 0 && active && !spirespire.phase2Transition)
                 if ((spire.ai[0] <= 40 && spire.ai[0] > 20 && !dead))
                 {

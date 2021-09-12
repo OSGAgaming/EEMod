@@ -605,7 +605,7 @@ namespace EEMod
 
                 void DrawJelly(int noOfPoints)
                 {
-                    Jellyfish ja = (npc.modNPC as Jellyfish);
+                    Jellyfish ja = (npc.ModNPC as Jellyfish);
                     Cap = ja.cap;
                     List<List<List<Vector2>>> tentacle = new List<List<List<Vector2>>>();
 
@@ -922,7 +922,7 @@ namespace EEMod
                 {
                     if (npc.type == NPCType<Jellyfish>())
                     {
-                        DrawJelly(((int)Cap * 6 - 12) * (npc.modNPC as Jellyfish).noOfTentacles);
+                        DrawJelly(((int)Cap * 6 - 12) * (npc.ModNPC as Jellyfish).noOfTentacles);
                     }
                 }
                 GliderPrims.Invoke((int)Cap * 6 - 12);
